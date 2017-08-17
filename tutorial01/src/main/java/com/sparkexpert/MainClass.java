@@ -17,11 +17,11 @@ public class MainClass {
  		// YOUR CODE HERE
  		// -------------------------------------------------------------------------------
  		
- 		DbConnection dbConnection = new DbConnection(MYSQL_DRIVER, "jdbc:postgresql://10.5.115.122:5432/mclm", "postgres", "admin");
+ 		//DbConnection dbConnection = new DbConnection(MYSQL_DRIVER, "jdbc:postgresql://10.5.115.122:5432/mclm", "postgres", "admin");
  		
  		
- 		JdbcRDD<Object[]> jdbcRDD = new JdbcRDD<>(sc, dbConnection, "select * from employees where emp_no >= ? and emp_no <= ?",
-                10001, 499999, 10, new MapResult(), ClassManifestFactory$.MODULE$.fromClass(Object[].class)); 		
+ 		//JdbcRDD<Object[]> jdbcRDD = new JdbcRDD<>(sc, dbConnection, "select * from employees where emp_no >= ? and emp_no <= ?",
+        //        10001, 499999, 10, new MapResult(), ClassManifestFactory$.MODULE$.fromClass(Object[].class)); 		
 
  		
  		

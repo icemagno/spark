@@ -31,24 +31,15 @@ public class PostgreSQLConnect {
 
 		Dataset<Row> jdbcDF = spark.read()
 				.format("jdbc")
-				.option("url", "jdbc:postgresql://10.5.115.122:5432/mclm")
-				.option("dbtable", "public.node_data")
+				.option("url", "jdbc:postgresql://192.168.25.51:5432/graphx")
+				.option("dbtable", "public.graphdatabase")
 				.option("user", "postgres")
 				.option("password", "admin")
 				.load(); 		
 
-		//jdbcDF.show(10);
-		//jdbcDF.printSchema();
-		// jdbcDF.sqlContext().sql
-		
-		jdbcDF.select("layername", "layeralias").write().format("json").save("view_estados_brasil.json");
+		jdbcDF.show(10);
+		jdbcDF.printSchema();
 
-
-		/*
-	    Dataset<Row> peopleDF =
-	    	      spark.read().format("json").load("examples/src/main/resources/people.json");		
-	    peopleDF.write().bucketBy(42, "layername").sortBy("id_node_data").saveAsTable("people_bucketed");
-		*/
 
 		// -------------------------------------------------------------------------------
 		spark.stop();
