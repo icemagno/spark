@@ -1,1 +1,3 @@
 spark-submit --class XXX --master spark://23.195.26.187:7077 --deploy-mode cluster hdfs://path/to/jar/file
+
+spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://codes/spark-samples.jar
