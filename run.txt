@@ -1,0 +1,1 @@
+spark-submit --class XXX --master spark://23.195.26.187:7077 --deploy-mode cluster hdfs://path/to/jar/file
