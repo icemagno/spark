@@ -1,7 +1,5 @@
 package com.letsprog.learning.samples.transformations;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -10,24 +8,34 @@ public class PostgreSQLConnect {
 
 	public static void main(String[] args) {
 
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch ( Exception e ) {
+			System.out.println("Problemas ao carregar o driver PostgreSQL: " + e.getMessage() );
+		}
+		
+		System.out.println("Driver carregado.");
+		
+		/*
 		String master = "local[*]";
 		SparkConf sparkConf = new SparkConf();
 		sparkConf.setAppName("Hello Spark");
 		sparkConf.setMaster( master );
 		JavaSparkContext context = new JavaSparkContext(sparkConf);
-
+		*/
+		
 		// -------------------------------------------------------------------------------
 		// YOUR CODE HERE
 		// -------------------------------------------------------------------------------
 
-		SparkSession.builder().master("local[*]").appName("Spark2JdbcDs").getOrCreate();
 		
 		SparkSession spark = SparkSession
 				.builder()
 				.appName("Java Spark SQL basic example")
-				.config("spark.some.config.option", "some-value")
+				.config("driver", "org.postgresql.Driver")
 				.getOrCreate(); 		
 
+		System.out.println("Sessão Criada.");
 
 		Dataset<Row> jdbcDF = spark.read()
 				.format("jdbc")
@@ -35,6 +43,7 @@ public class PostgreSQLConnect {
 				.option("dbtable", "public.graphdatabase")
 				.option("user", "postgres")
 				.option("password", "admin")
+				.option("driver", "org.postgresql.Driver")
 				.load(); 		
 
 		jdbcDF.show(10);
@@ -43,7 +52,7 @@ public class PostgreSQLConnect {
 
 		// -------------------------------------------------------------------------------
 		spark.stop();
-		context.close();
+		//context.close();
 
 	}	
 
