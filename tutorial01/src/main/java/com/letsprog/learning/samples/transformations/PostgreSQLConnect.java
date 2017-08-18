@@ -31,7 +31,7 @@ public class PostgreSQLConnect {
 		
 		SparkSession spark = SparkSession
 				.builder()
-				.appName("Java Spark SQL basic example")
+				.appName("Teste de Conexao com PostgreSQL")
 				.config("driver", "org.postgresql.Driver")
 				.getOrCreate(); 		
 
@@ -39,7 +39,7 @@ public class PostgreSQLConnect {
 
 		Dataset<Row> jdbcDF = spark.read()
 				.format("jdbc")
-				.option("url", "jdbc:postgresql://192.168.25.51:5432/graphx")
+				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
 				.option("dbtable", "public.graphdatabase")
 				.option("user", "postgres")
 				.option("password", "admin")
