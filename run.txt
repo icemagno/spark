@@ -1,12 +1,10 @@
 
-spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+hdfs dfs -rm /codes/spark-samples.jar
+
+hdfs dfs -put spark-samples.jar /codes
 
 
-
-magno@sparkmaster:~/codes$ hdfs dfs -rm /codes/spark-samples.jar
-Deleted /codes/spark-samples.jar
-magno@sparkmaster:~/codes$ hdfs dfs -put spark-samples.jar /codes
-magno@sparkmaster:~/codes$ spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/spark/codes/spark-samples.jar
 
 
 mvn clean assembly:assembly -DdescriptorId=jar-with-dependencies
