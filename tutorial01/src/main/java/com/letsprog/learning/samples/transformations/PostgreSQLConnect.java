@@ -49,6 +49,8 @@ public class PostgreSQLConnect {
 		jdbcDF.show(10);
 		jdbcDF.printSchema();
 
+		jdbcDF.write().json("/graphx/teste");
+		
 
 		// -------------------------------------------------------------------------------
 		spark.stop();
