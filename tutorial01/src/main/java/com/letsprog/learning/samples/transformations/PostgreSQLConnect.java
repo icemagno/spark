@@ -59,6 +59,8 @@ public class PostgreSQLConnect {
 		// https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java
 		
 		SQLContext sqlContext = jdbcDF.sqlContext();
+		jdbcDF.createOrReplaceTempView("graphdatabase");
+		
 		Dataset<Row> miniPandas = sqlContext.sql("SELECT * FROM graphdatabase WHERE grauminimo = 2 and graumaximo = 3 and ordem = 6");
 		
 		
