@@ -9,12 +9,13 @@ public class PostgreSQLConnect {
 
 	public static void main(String[] args) {
 
+		String indexParameter = "596";
+		
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch ( Exception e ) {
 			System.out.println("Problemas ao carregar o driver PostgreSQL: " + e.getMessage() );
 		}
-		
 		System.out.println("Driver carregado.");
 		
 		/*
@@ -29,16 +30,24 @@ public class PostgreSQLConnect {
 		// YOUR CODE HERE
 		// -------------------------------------------------------------------------------
 
+		// https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java
 		
 		SparkSession spark = SparkSession
 				.builder()
-				.appName("Teste de Conexao com PostgreSQL")
+				.appName("Portal RioGraphX")
 				.config("driver", "org.postgresql.Driver")
 				.getOrCreate(); 		
 
-		System.out.println("Sessão Criada.");
+		Dataset<Row> parametersTable = spark.read()
+				.format("jdbc")
+				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
+				.option("dbtable", "public.spectral_parameters")
+				.option("user", "postgres")
+				.option("password", "admin")
+				.option("driver", "org.postgresql.Driver")
+				.load(); 		
 
-		Dataset<Row> jdbcDF = spark.read()
+		Dataset<Row> graphDatabaseTable = spark.read()
 				.format("jdbc")
 				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
 				.option("dbtable", "public.graphdatabase")
@@ -46,30 +55,53 @@ public class PostgreSQLConnect {
 				.option("password", "admin")
 				.option("driver", "org.postgresql.Driver")
 				.load(); 		
+		
+		
+		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
+		graphDatabaseTable.createOrReplaceTempView("graphdatabase");
 
+		SQLContext parametersContext = parametersTable.sqlContext();
+		parametersTable.createOrReplaceTempView("parameters");
 		
-		/*
-		Function<String,Boolean> function = new Function<String,Boolean>() {
-			public Boolean call( String x ) {
-				return x.contains("");
-			}
-		};
-		*/
+		Dataset<Row> parameters = parametersContext.sql("SELECT * FROM parameters WHERE index_id = " + indexParameter);
 		
-		// https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java
 		
-		SQLContext sqlContext = jdbcDF.sqlContext();
-		jdbcDF.createOrReplaceTempView("graphdatabase");
-		
-		Dataset<Row> miniPandas = sqlContext.sql("SELECT * FROM graphdatabase WHERE grauminimo = 2 and graumaximo = 3 and ordem = 6");
+		//Dataset<Row> graphs = graphDatabaseContext.sql("SELECT * FROM graphdatabase WHERE grauminimo = 2 and graumaximo = 3 and ordem = 6");
+		//graphs.show( 200 );
+
+		parameters.show(1);
 		
 		
 		//jdbcDF.javaRDD().filter( function );
 		//jdbcDF.printSchema();
 		//jdbcDF.write().json("/graphx/teste");
 		
-		miniPandas.show( 200 );
+		// Converte Dataset para Pair RDD ----------------------------------------------------------
+		/*
+		PairFunction<Row, Long, String> pairFunction = new PairFunction<Row, Long, String>() {
+			private static final long serialVersionUID = 1L;
 
+			public Tuple2<Long, String> call(Row row) throws Exception {
+		        return new Tuple2<Long, String>((Long) row.get(2), (String) row.get(1));
+		    }
+			
+		};
+		JavaPairRDD<Long, String> jpRDD = jdbcDF.toJavaRDD().mapToPair( pairFunction );
+		*/		
+		// -----------------------------------------------------------------------------------------
+		
+		
+		// Filtra
+		/*
+		Function< Tuple2<Long, String>, Boolean  > theFilter = new Function< Tuple2<Long, String>, Boolean  >() {
+			public Boolean call( Tuple2<Long, String> keyValue ) {
+				return keyValue._2().equals("");
+			}
+		};
+		JavaPairRDD<Long, String> filteredRDD = jpRDD.filter( theFilter );
+		*/
+		
+		
 		// -------------------------------------------------------------------------------
 		spark.stop();
 		//context.close();
