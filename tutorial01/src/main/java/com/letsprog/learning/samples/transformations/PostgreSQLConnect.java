@@ -64,17 +64,63 @@ public class PostgreSQLConnect {
 		parametersTable.createOrReplaceTempView("parameters");
 		
 		Dataset<Row> parameters = parametersContext.sql("SELECT * FROM parameters WHERE index_id = " + indexParameter);
-		
-		
-		//Dataset<Row> graphs = graphDatabaseContext.sql("SELECT * FROM graphdatabase WHERE grauminimo = 2 and graumaximo = 3 and ordem = 6");
-		//graphs.show( 200 );
+		if ( parameters.count() > 0 ) {
+			
+			Row param = parameters.first();
+			String function = param.getAs("optifunc");
+			String gorder = param.getAs("gorder"); 
+			String mindegree = param.getAs("mindegree"); 
+			String maxdegree = param.getAs("maxdegree"); 
+			String trianglefree = param.getAs("trianglefree"); 
+			String biptonly = param.getAs("biptonly"); 
+			String allowdiscgraphs = param.getAs("allowdiscgraphs"); 
+			
+			if ( trianglefree.equals("on") ) trianglefree = "1"; else trianglefree = "0";
+			if ( biptonly.equals("on") ) biptonly = "1"; else biptonly = "0";
+			
+			// Para LAPACK se: optifunc like '%lambda%' or sp.optifunc like '%mu%' or sp.optifunc like '%q!_%'
+			/*
+				sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and 
+						( case when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and 
+						( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and 
+						( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on'))			
+			*/
+			if ( function.contains("lambda") || function.contains("mu") || function.contains("q_") ) {
+				System.out.println("Executar LAPACK");	
+			}
 
-		parameters.show(1);
+			
+			// Para GENI   se: optifunc like '%omega%' or sp.optifunc like '%chi%' or sp.optifunc like '%SIZE%' or sp.optifunc like '%d!_%'
+			/*
+			
+ 				sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and 
+ 						( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and 
+ 						( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and 
+ 						( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on'))			
+			
+			*/
+			if ( function.contains("omega") || function.contains("chi") || function.contains("SIZE") || function.contains("d_") ) {
+				System.out.println("EXECUTAR GENI");
+			}
+
+			String sql = "SELECT * FROM graphdatabase WHERE "+gorder+" = ordem and grauminimo >= "+mindegree+" and graumaximo <= "+
+					maxdegree+" and "+trianglefree+" = trianglefree and	" + biptonly +" = bipartite and	" +
+					"( ("+allowdiscgraphs+" = 'off' and 1 = conexo) or ("+allowdiscgraphs+" = 'on'))";
+			
+
+			System.out.println( sql );
+			
+			Dataset<Row> graphs = graphDatabaseContext.sql(sql);
+			graphs.show( 200 );
+			
+			
+		} else {
+			System.out.println("Nenhum parametro encontrado com o indice " + indexParameter );
+		}
 		
 		
-		//jdbcDF.javaRDD().filter( function );
-		//jdbcDF.printSchema();
-		//jdbcDF.write().json("/graphx/teste");
+		
+		
 		
 		// Converte Dataset para Pair RDD ----------------------------------------------------------
 		/*
@@ -109,6 +155,13 @@ public class PostgreSQLConnect {
 	}	
 
 	/*
+	  
+	  	+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
+		|index_id|adjacency|laplacian|slaplacian|optifunc            |caixa1|gorder|mindegree|maxdegree|trianglefree|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
+		+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
+		|     596|      off|       on|       off|\mu_2 + \overline...|   max|     5|        1|        7|         off|            off|     off|        10|       off|        on|        off|      off|       off|  off|   off|          off|     off|
+		+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
+	 
 
 		+--------+-----+-----+----------+----------+------------+------+---------+
 		|index_id|grafo|ordem|grauminimo|graumaximo|trianglefree|conexo|bipartite|
