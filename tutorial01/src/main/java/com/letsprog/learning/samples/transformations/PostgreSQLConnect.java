@@ -9,7 +9,12 @@ public class PostgreSQLConnect {
 
 	public static void main(String[] args) {
 
-		String indexParameter = "596";
+		if ( args.length == 0 ) {
+			System.out.println("Falta parametros! Saindo...");
+			System.exit(0);
+		}
+		
+		String indexParameter = String.valueOf( args[0] );
 		
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -105,7 +110,7 @@ public class PostgreSQLConnect {
 
 			String sql = "SELECT * FROM graphdatabase WHERE "+gorder+" = ordem and grauminimo >= "+mindegree+" and graumaximo <= "+
 					maxdegree+" and "+trianglefree+" = trianglefree and	" + biptonly +" = bipartite and	" +
-					"( ("+allowdiscgraphs+" = 'off' and 1 = conexo) or ("+allowdiscgraphs+" = 'on'))";
+					"( ('"+allowdiscgraphs+"' = 'off' and 1 = conexo) or ('"+allowdiscgraphs+"' = 'on'))";
 			
 
 			System.out.println( sql );
