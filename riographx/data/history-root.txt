@@ -1,0 +1,1000 @@
+ 1002  cd /home/sagitarii/
+ 1003  ./getlogs.sh 
+ 1004  service tomcat7 stop
+ 1005  > /var/lib/tomcat7/logs/catalina.out
+ 1006  ls -lh /var/lib/tomcat7/logs/
+ 1007  rm /var/lib/tomcat7/logs/*
+ 1008  cd /etc/teapot/
+ 1009  ls
+ 1010  ls storage/
+ 1011  ls storage/662608
+ 1012  ls /var/lib/tomcat7/webapps/sagitarii/
+ 1013  rm -R storage/
+ 1014  rm -R namespaces/
+ 1015  mv /home/sagitarii/teapot.jar .
+ 1016  mv /home/sagitarii/config.xml .
+ 1017  ls
+ 1018  cd /home/sagitarii/
+ 1019  mv /home/sagitarii/config.xml /etc/teapot/
+ 1020  ./install.sh 
+ 1021  service tomcat7 restart
+ 1022  install -y samba samba-common python-glade2 system-config-samba
+ 1023  apt-get install -y samba samba-common python-glade2 system-config-samba
+ 1024  mv /etc/samba/smb.cnf /etc/samba/smb.cnf.bak
+ 1025  vim /etc/samba/smb.cnf
+ 1026  adduser teapot
+ 1027  smbpasswd -a teapot
+ 1028  service smbd restart
+ 1029  service nmbd restart
+ 1030  vim /etc/samba/smb.cnf
+ 1031  service teapot start
+ 1032  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1033  ls /var/lib/tomcat7/webapps/sagitarii/storage/703
+ 1034  ls /var/lib/tomcat7/webapps/sagitarii/storage/703268/
+ 1035  service teapot stop
+ 1036  service tomcat7 stop
+ 1037  ls /var/lib/tomcat7/webapps/sagitarii/cache/
+ 1038  ls /var/lib/tomcat7/webapps/sagitarii/cache/43ee5bff80b94878b2bb034bd7ea91e5/
+ 1039  /home/sagitarii/install.sh 
+ 1040  service teapot start
+ 1041  ls /var/lib/tomcat7/webapps/sagitarii/
+ 1042  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1043  ls /var/lib/tomcat7/webapps/sagitarii/storage/703535/
+ 1044  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1045  service teapot stop
+ 1046  service tomcat7 restart
+ 1047  rm -R /var/lib/tomcat7/webapps/sagitarii/storage/*
+ 1048  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1049  rm -R /var/lib/tomcat7/webapps/sagitarii/cache/*
+ 1050  service teapot start
+ 1051  apt-get install smbfs samba
+ 1052  apt-get install samba
+ 1053  smbpasswd -a teapot
+ 1054  service teapot stop
+ 1055  service tomcat7 stop
+ 1056  cd /home/sagitarii/
+ 1057  ./getlogs.sh 
+ 1058  vim 
+ 1059  vim /etc/samba/smb.conf
+ 1060  mv /etc/samba/smb.conf /etc/samba/smb.conf.old
+ 1061  vim /etc/samba/smb.conf
+ 1062  cd /home/sagitarii/
+ 1063  ./install.sh
+ 1064  rm -R /etc/teapot/storage/
+ 1065  rm -R /etc/teapot/namespaces/
+ 1066  service teapot stop
+ 1067  samba restart
+ 1068  service snmb restart
+ 1069  service smbd restart
+ 1070  service nmbd restart
+ 1071  service tomcat7 restart
+ 1072  service teapot start
+ 1073  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+ 1074  mkdir /var/lib/tomcat7/webapps/sagitarii/storagef
+ 1075  lsdasf
+ 1076  ls -lh /var/lib/tomcat7/webapps/sagitarii/storage
+ 1077  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1078  ls -lh /var/lib/tomcat7/webapps/sagitarii/storage
+ 1079  ls /var/lib/tomcat7/webapps/sagitarii/storage/7
+ 1080  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1081  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+ 1082  chown -R tomcat7:tomcat7  /var/lib/tomcat7/webapps/sagitarii/
+ 1083  ls /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1084  service teapot stop
+ 1085  service tomcat7 stop
+ 1086  cd /home/sagitarii
+ 1087  .getlogs
+ 1088  ./getlogs.sh 
+ 1089  service tomcat7 start
+ 1090  service teapot start
+ 1091  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1092  tail -f /etc/teapot/logs/teapot.log 
+ 1093  service tomcat7 stop
+ 1094  service teapot stop
+ 1095  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1096  tail -100 /var/lib/tomcat7/logs/catalina.out
+ 1097  tail -200 /var/lib/tomcat7/logs/catalina.out
+ 1098  cd /home/sagitarii/
+ 1099  ls
+ 1100  mkdir log
+ 1101  mv catalina.out log
+ 1102  cd log
+ 1103  ls
+ 1104  split -l 200000 catalina.out
+ 1105  ls
+ 1106  ls -lh
+ 1107  mv catalina.out ..
+ 1108  ls
+ 1109  rm *
+ 1110  mv ../catalina.out .
+ 1111  ls
+ 1112  split -l 100000 catalina.out
+ 1113  ls -lh
+ 1114  mv catalina.out ..
+ 1115  rm *
+ 1116  mv ../catalina.out .
+ 1117  split -l 250000 catalina.out
+ 1118  service teapot stop
+ 1119  rm -R /etc/teapot/storage/
+ 1120  cd ..
+ 1121  rm -R log
+ 1122  ls
+ 1123  cp /etc/samba/smb.conf .
+ 1124  ./install.sh
+ 1125  ls /etc/sagitarii/
+ 1126  rm -R /etc/sagitarii/
+ 1127  service tomcat7 restart
+ 1128  ls
+ 1129  ./install.sh 
+ 1130  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+ 1131  service teapot start
+ 1132  hostname
+ 1133  cd /home/sagitarii/
+ 1134  cp /etc/init.d/teapot .
+ 1135  vim teapot
+ 1136  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1137  service teapot stop
+ 1138  service tomcat7 stop
+ 1139  service teapot stop
+ 1140  mkdir /etc/nunki
+ 1141  cp /home/sagitarii/nunki/* /etc/nunki
+ 1142  ls -lh /etc/nunki
+ 1143  cp /etc/nunki/nunki /etc/init.d/
+ 1144  cp /home/sagitarii/teapot.jar /etc/teapot
+ 1145  /home/sagitarii/install.sh 
+ 1146  service teaopt start
+ 1147  service teapot start
+ 1148  service teapot stop
+ 1149  cd /etc/teapot
+ 1150  java -jar teapot.jar
+ 1151  service teapot start
+ 1152  service nunki start
+ 1153  chmod 755 /etc/init.d/nunki
+ 1154  chown root:root /etc/init.d/nunki
+ 1155  update-rc.d nunki defaults
+ 1156  update-rc.d nunki enable
+ 1157  service nunki start
+ 1158  service nunki stop
+ 1159  cd /etc/nunki
+ 1160  vim config.xml
+ 1161  vim log4j2.xml 
+ 1162  vim logs/nunki.log 
+ 1163  service nunki start
+ 1164  tail -f logs/nunki.log 
+ 1165  service nunki stop
+ 1166  vim log4j2.xml 
+ 1167  vim logs/nunki.log 
+ 1168  ls
+ 1169  vim logs/nunki.log 
+ 1170  cp /home/sagitarii/nunki/nunki.jar /etc/nunki/
+ 1171  service nunki start
+ 1172  tail -f logs/nunki.log 
+ 1173  service nunki stop
+ 1174  vim logs/nunki.log
+ 1175  vim /etc/nunki/logs/nunki.log
+ 1176  service tomcat7 stop
+ 1177  tail -f logs/nunki.log 
+ 1178  /home/sagitarii/install.sh 
+ 1179  service tomcat7 stop
+ 1180  service tomcat7 start
+ 1181  service teapot start
+ 1182  service teapot stop
+ 1183  rm -R /etc/teapot/storage/
+ 1184  rm -R /etc/teapot/namespaces/
+ 1185  service teapot start
+ 1186  service nunki start
+ 1187  vim /etc/nunki/logs/nunki.log
+ 1188  service tomcat7 stop
+ 1189  service nunki stop
+ 1190  service teapot stop
+ 1191  rm -R /etc/teapot/storage/
+ 1192  rm -R /etc/teapot/namespaces/
+ 1193  pg_dump
+ 1194  pg_dump --host localhost --username admin --format tar --blobs --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii"
+ 1195  ls /home/sagitarii/ -lh
+ 1196  sudo postgres
+ 1197  sudo -u postgres
+ 1198  sudo u postgres
+ 1199  sudo u postgres psql
+ 1200  sudo -u postgres psql
+ 1201  pg_dump --host localhost --username admin --format tar --blobs --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii"
+ 1202  sudo -u postgres psql
+ 1203  pg_dump --host localhost --username admin --format tar --blobs --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii"
+ 1204  sudo -u postgres psql
+ 1205  cd /home/sagitarii/
+ 1206  cd nunki
+ 1207  service nunki stop
+ 1208  cp nunki.jar /etc/nunki/
+ 1209  service nunki start
+ 1210  tail -f /etc/nunki/logs/nunki.log 
+ 1211  vim /etc/nunki/logs/nunki.log 
+ 1212  service nunki stop
+ 1213  service teapot stop
+ 1214  service tomcat7 stop
+ 1215  cd..
+ 1216  cd ..
+ 1217  vim getlogs.sh 
+ 1218  ./getlogs.sh 
+ 1219  service teapot stop
+ 1220  service nunki stop
+ 1221  cd /home/sagitarii/
+ 1222  ./install.sh 
+ 1223  cd /home/sagitarii/nunki/
+ 1224  cp nunki.jar /etc/nunki/
+ 1225  cp log4j2.xml /etc/nunki/
+ 1226  service teapot start
+ 1227  service nunki start
+ 1228  tail -f /etc/nunki/logs/nunki.log 
+ 1229  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1230  cd ..
+ 1231  ./getlogs.sh 
+ 1232  service teapot stop
+ 1233  service teapot start
+ 1234  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1235  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1236  tail -f /etc/teapot/logs/teapot.log 
+ 1237  service tomcat7 restart
+ 1238  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1239  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1240  rm /etc/init.d/nunki
+ 1241  service nunki stop
+ 1242  cp /home/sagitarii/nunki/nunki /etc/init.d
+ 1243  +x /etc/init.d/nunki
+ 1244  chmod +x /etc/init.d/nunki
+ 1245  service nunki stop
+ 1246  rm -R /etc/nunki
+ 1247  rm /etc/init.d/nunki 
+ 1248  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1249  tail -f /etc/teapot/logs/teapot.log 
+ 1250  cat /etc/teapot/logs/teapot.log 
+ 1251  service teapot restart
+ 1252  tail -f /etc/teapot/logs/teapot.log 
+ 1253  sudo -u postgres
+ 1254  sudo -u postgre
+ 1255  sudo -u postgres psql
+ 1256  pg_dump --host localhost --username admin --format tar --blobs --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii"
+ 1257  sudo -u postgres psql
+ 1258  cd /home/sagitarii/
+ 1259  ./install-portal.sh 
+ 1260  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1261  ./install.sh
+ 1262  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1263  ./install-portal.sh 
+ 1264  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1265  ./install-portal.sh 
+ 1266  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1267  ./install.sh
+ 1268  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1269  ./install.sh
+ 1270  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1271  ./install-portal.sh 
+ 1272  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1273  ./install.sh
+ 1274  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1275  ./install-portal.sh 
+ 1276  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1277  ./install-portal.sh 
+ 1278  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1279  ./install-portal.sh 
+ 1280  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1281  service tomcat7 restart
+ 1282  rm -R /var/lib/tomcat7/webapps/sagitarii/cache/*
+ 1283  rm -R /var/lib/tomcat7/webapps/sagitarii/storage/*
+ 1284  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+ 1285  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1286  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1287  sudo -u postres psql
+ 1288  sudo -u postgres psql
+ 1289  cd /home/sagitarii/
+ 1290  mv /var/lib/tomcat7/webapps/sagitarii/storage/ .
+ 1291  ./install.sh 
+ 1292  mv storage /var/lib/tomcat7/webapps/sagitarii/
+ 1293  service tomcat7 stop
+ 1294  su postgres psql
+ 1295  su -u postgres psql
+ 1296  sudo -u postres psql
+ 1297  sudo -u postgres psql
+ 1298  pg_dump --host localhost --username admin --format tar  --file "/home/sagitarii/sagitarii.backup" "sagitarii" 
+ 1299  service tomcat7 start
+ 1300  rm -R /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1301  rm -R /var/lib/tomcat7/webapps/sagitarii/cache
+ 1302  mkdir /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1303  chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1304  chmod 0777 /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1305  service tomcat7 stop
+ 1306  pg_dump --host localhost --username admin --format tar  --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii" 
+ 1307  vacumlo
+ 1308  apt-get install postgresql-client-common 
+ 1309  vacumlo
+ 1310  vacuumlo
+ 1311  vacuumlo sagitarii
+ 1312  vacuumlo -v -U admin sagitarii
+ 1313  vacuumlo -v -U admin -W sagitarii
+ 1314  vacuumlo -v -U admin -W -h localhost sagitarii
+ 1315  pg_dump --host localhost --username admin --format tar  --verbose --file "/home/sagitarii/sagitarii.backup" "sagitarii" 
+ 1316  service tomcat7 start
+ 1317  rm -R /etc/teapot/storage/
+ 1318  rm -R /etc/teapot/namespaces/
+ 1319  cd /var/lib/tomcat7/webapps/sagitarii/
+ 1320  ls
+ 1321  cd WEB-INF/
+ 1322  ls
+ 1323  cd classes/
+ 1324  ls
+ 1325  vim log4j2.xml 
+ 1326  service tomcat7 stop
+ 1327  cd ..
+ 1328  ls
+ 1329  cd logs/
+ 1330  ls -lh
+ 1331  > sagitarii.log
+ 1332  cd ..
+ 1333  cd logs
+ 1334  ls -lh catalina.out
+ 1335  service tomcat7 start
+ 1336  cd ..
+ 1337  cd  webapps/sagitarii/
+ 1338  ls
+ 1339  cd storage/
+ 1340  ls
+ 1341  cd 82517
+ 1342  cd 825171
+ 1343  ls
+ 1344  cd ..
+ 1345  tail -f logs/sagitarii.log 
+ 1346  ls -lh
+ 1347  ls -lh /etc/teapot
+ 1348  service teapot stop
+ 1349  service teapot start
+ 1350  ls -lh /etc/teapot
+ 1351  tail -f logs/sagitarii.log 
+ 1352  ls /var/lib/tomcat7/webapps/sagitarii/cache/
+ 1353  sservice teapot stop
+ 1354  service teapot stop
+ 1355  cd /home/sagitarii/
+ 1356  ./install.sh
+ 1357  vim /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/log4j2.xml 
+ 1358  service tomcat7 restart
+ 1359  service teapot start
+ 1360  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1361  service teapot stop
+ 1362  rm -R storage
+ 1363  cp /var/lib/tomcat7/webapps/sagitarii/storage/ .
+ 1364  cp -R /var/lib/tomcat7/webapps/sagitarii/storage/ .
+ 1365  ls -lh
+ 1366  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+ 1367  service tomcat7 stop
+ 1368  mv -R /var/lib/tomcat7/webapps/sagitarii/storage/ .
+ 1369  mv /var/lib/tomcat7/webapps/sagitarii/storage/ .
+ 1370  ./install-portal.sh 
+ 1371  ls -lh
+ 1372  ls storage/
+ 1373  ls -lh storage/
+ 1374  ./install.sh 
+ 1375  service teapot start
+ 1376  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1377  service tomcat7 stop
+ 1378  ./install-portal.sh 
+ 1379  service tomcat7 stop
+ 1380  ./install-portal.sh
+ 1381  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1382  ls -lh
+ 1383  cd /home/sagitarii
+ 1384  ./install-portal.sh 
+ 1385  top
+ 1386  ping spica
+ 1387  sudo -u postgres psql
+ 1388  exit
+ 1389  cd /home/sagitarii
+ 1390  ./install-portal.sh
+ 1391  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1392  top -java
+ 1393  top 
+ 1394  cd /home/sagitarii
+ 1395  ./install-portal.sh
+ 1396  cd /home/sagitarii
+ 1397  ./install-portal.sh
+ 1398  shutdown -r now
+ 1399  ls -lh /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/
+ 1400  mv /home/sagitarii/log4j2.xml /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/
+ 1401  ls -lh /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/
+ 1402  chown tomcat7:tomcat7 /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/log4j2.xml
+ 1403  ls -lh /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/
+ 1404  shutdown -r now
+ 1405  cd /home/sagitarii/
+ 1406  ./install-portal.sh 
+ 1407  exit
+ 1408  top
+ 1409  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1410  cd /home/sagitarii/
+ 1411  ./install-portal.sh 
+ 1412  ./getlogs.sh 
+ 1413  service tomcat7 stop
+ 1414  > /var/lib/tomcat7/logs/catalina.out
+ 1415  ./getlogs.sh 
+ 1416  vim getlogs.sh 
+ 1417  ./getlogs.sh 
+ 1418  service tomcat7 start
+ 1419  cd /home/sagitarii
+ 1420  ./getlogs.sh 
+ 1421  service tomcat7 stop
+ 1422  cd /home/sagitarii/
+ 1423  service teapot stop
+ 1424  service tomcat7 stop
+ 1425  rm -R /etc/teapot/storage/
+ 1426  rm -R /etc/teapot/namespaces/
+ 1427  ./install.sh 
+ 1428  vim getlogs.sh 
+ 1429  vim install.sh 
+ 1430  service tomcat7 stop
+ 1431  ./install.sh 
+ 1432  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1433  ./install.sh 
+ 1434  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1435  aux px
+ 1436  ps aux
+ 1437  ps aux | grep tail
+ 1438  kill 9 29856
+ 1439  ps aux | grep tail
+ 1440  kill 9 7232
+ 1441  kill -9 29856
+ 1442  ps aux | grep tail
+ 1443  ./install.sh 
+ 1444  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1445  service teapot start
+ 1446  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1447  service tomcat7 stop
+ 1448  cd /home/sagitarii/
+ 1449  ./getlogs.sh 
+ 1450  service tomcat7 stop
+ 1451  rm -R /var/lib/tomcat7/webapps/spectral
+ 1452  rm -R /var/lib/tomcat7/webapps/sagitarii
+ 1453  mv spectral.war /var/lib/tomcat7/webapps/
+ 1454  ./install.sh 
+ 1455  service tomcat7 stop
+ 1456  vim /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/log4j2.xml 
+ 1457  service tomcat7 start
+ 1458  tail -f  spectral.war /var/lib/tomcat7/logs/catalina.out
+ 1459  ./install.sh 
+ 1460  tail -f  spectral.war /var/lib/tomcat7/logs/catalina.out
+ 1461  ./install.sh
+ 1462  ls /var/lib/tomcat7/webapps/
+ 1463  ls /var/lib/tomcat7/webapps/sagitarii
+ 1464  tail -f  spectral.war /var/lib/tomcat7/logs/catalina.out
+ 1465  cd /home/sagitarii/
+ 1466  ./install-portal.sh 
+ 1467  service tomcat7 restart
+ 1468  tail -f  spectral.war /var/lib/tomcat7/logs/catalina.out
+ 1469  cd /home/sagitarii/
+ 1470  ./install.sh 
+ 1471  ls
+ 1472  ls -lh
+ 1473  service tomcat7 stop
+ 1474  > /var/lib/tomcat7/logs/catalina.out
+ 1475  service teapot stop
+ 1476  rm -R /etc/teapot/storage/
+ 1477  rm -R /etc/teapot/namespaces/
+ 1478  service tomcat7 start
+ 1479  service teapot start
+ 1480  cd /home/sagitarii/
+ 1481  ./install-portal.sh 
+ 1482  tail -f  spectral.war /var/lib/tomcat7/logs/catalina.out
+ 1483  /home/sagitarii/getlogs.sh 
+ 1484  ls
+ 1485  service tomcat7 stop
+ 1486  > /var/lib/tomcat7/logs/catalina.out
+ 1487  rm -R /var/lib/tomcat7/webapps/sagitarii/storage/
+ 1488  rm -R /var/lib/tomcat7/webapps/sagitarii/cache
+ 1489  /home/sagitarii/install.sh 
+ 1490  service tomcat7 stop
+ 1491  service tomcat7 start
+ 1492  service tomcat7 stop
+ 1493  exit
+ 1494  service tomcat7 start
+ 1495  vim /etc/hosts
+ 1496  vim /etc/hostname
+ 1497  vim /etc/postfix/main.cf
+ 1498  exit
+ 1499  cd /home/sagitarii
+ 1500  ./getlogs.sh
+ 1501  cd /etc/teapot
+ 1502  service teapot stop
+ 1503  service nunki stop
+ 1504  rm -R storage
+ 1505  ls
+ 1506  shutdown -r now
+ 1507  cd /etc/teapot
+ 1508  ls
+ 1509  cd storage
+ 1510  ls
+ 1511  cd ..
+ 1512  cd /var/lib/tomcat7/
+ 1513  ls
+ 1514  cd /usr/share/tomcat7/bin
+ 1515  ls
+ 1516  ./version.sh 
+ 1517  lsb_release -d
+ 1518  vim /etc/hosts
+ 1519  exit
+ 1520  cd /var/lib/tomcat7/webapps/sagitarii
+ 1521  cd storage
+ 1522  rm -R *
+ 1523  cd .
+ 1524  cd ..
+ 1525  ls -lh
+ 1526  service tomcat7 stop
+ 1527  cd /home/sagitarii/
+ 1528  ./install.sh 
+ 1529  taul -f /var/lib/tomcat7/logs/catalina.out
+ 1530  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1531  service tomcat7 stop
+ 1532  vim /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/config.xml 
+ 1533  service tomcat7 start
+ 1534  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1535  cd /home/sagitarii/
+ 1536  ./install.sh 
+ 1537  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1538  cd /home/sagitarii/
+ 1539  rm catalina.out 
+ 1540  rm -R ipeadata/
+ 1541  rm -R E7C4EDA0-FF2D-4/
+ 1542  rm -R EVALUATE/
+ 1543  rm -R EIGSOLVE2/
+ 1544  rm -R old
+ 1545  rm -R echo/
+ 1546  rm -R RUNSAGE/
+ 1547  ./install.sh 
+ 1548  cd /home/sagitarii
+ 1549  ./install.sh
+ 1550  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1551  service tomcat7 stop
+ 1552  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1553  ./install.sh
+ 1554  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1555  service tomcat7 stop
+ 1556  service tomcat7 start
+ 1557  cd /home/sagitarii/
+ 1558  ./getlogs.sh 
+ 1559  service tomcat7 stop
+ 1560  service teapot stop
+ 1561  rm -R /etc/teapot/storage/
+ 1562  ./install.sh 
+ 1563  service teapot start
+ 1564  cd /home/sagitarii/
+ 1565  service tomcat7 stop
+ 1566  rm -R /etc/teapot/storage/
+ 1567  rm -R /etc/teapot/namespaces/
+ 1568  service teapot stop
+ 1569  service teapot start
+ 1570  ls /etc/teapot/
+ 1571  ssh sagitarii@192.168.1.31
+ 1572  ssh sagitarii@192.168.1.32
+ 1573  ./install.sh 
+ 1574  service tomcat7 stop
+ 1575  cd /home/sagitarii/
+ 1576  ./install.sh 
+ 1577  service tomcat7 stop
+ 1578  service tomcat7 start
+ 1579  cd /home/sagitarii
+ 1580  ./getlogs.sh
+ 1581  ls -lh
+ 1582  zip logs.zip catalina.out teapot.log sagitarii.log
+ 1583  ls -lh
+ 1584  shutdown -r now
+ 1585  cd /home/sagitarii/
+ 1586  ./getlogs.sh 
+ 1587  service tomcat7 restart
+ 1588  ls -lh
+ 1589  mkdir /opt/hadoop
+ 1590  unzip hadoop_cluster.zip -d /opt/hadoop
+ 1591  cd /opt/hadoop
+ 1592  ls
+ 1593  mv hadoop /opt/
+ 1594  mv -R hadoop /opt/
+ 1595  mv hadoop/* /opt/hadoop
+ 1596  ls
+ 1597  ls hadoop
+ 1598  rm -R hadoop
+ 1599  ls
+ 1600  rm *
+ 1601  rm -R *
+ 1602  ls
+ 1603  unzip /home/sagitarii/hadoop_cluster.zip -d /opt/hadoop
+ 1604  ls
+ 1605  cd hadoop
+ 1606  ls
+ 1607  ping antares2
+ 1608  vim /etc/hosts
+ 1609  ping 192.168.1.32
+ 1610  ping antares
+ 1611  vim /etc/hosts
+ 1612  shutdown -r now
+ 1613  ping -c 3 antares2
+ 1614  ping -c 3 antares3
+ 1615  ping -c 3 antares1
+ 1616  > ~/.bash_hstory
+ 1617  cd /opt/hadoop/hadoop
+ 1618  chown -R sagitarii:sagitarii /opt/hadoop/
+ 1619  ls -lh
+ 1620  ls -ls /opt/hadoop/hadoop/etc
+ 1621  ls -lh /opt/hadoop/hadoop/etc
+ 1622  ls -lh /opt/hadoop/hadoop/etc/hadoop
+ 1623  cat /opt/hadoop/hadoop/etc/hadoop/slaves
+ 1624  ls -lh /opt/hadoop/hadoop/dfs/name/data
+ 1625  rm -R /opt/hadoop/hadoop/dfs/name/data/*
+ 1626  ls -lh /opt/hadoop/hadoop/dfs/name/
+ 1627  rm -R /opt/hadoop/hadoop/dfs/name/*
+ 1628  cat /etc/hosts
+ 1629  exit
+ 1630  mkdir /usr/local/hadoop_tmp/
+ 1631  chmod 0777 /usr/local/hadoop_tmp/
+ 1632  rm -R /opt/hadoop/hadoop/dfs/name/*
+ 1633  exit
+ 1634  netstat -a | grep 50075
+ 1635  lsof -i :50075
+ 1636  ps -fp 1125
+ 1637  ls -lh /etc/init.d/ > inits.txt
+ 1638  ls -lh
+ 1639  mv inits.txt /home/sagitarii/
+ 1640  export $HADOOP_HOME
+ 1641  cd $HADOOP_HOME
+ 1642  su hduser
+ 1643  /etc/init.d/hadoop_slave.sh stop
+ 1644  ls
+ 1645  find / -name hadoop-daemon.sh
+ 1646  ls
+ 1647  rm /etc/init.d/hadoop_slave.sh
+ 1648  ls
+ 1649  ls /usr/local/hadoop/
+ 1650  ls /usr/local/hadoop/etc
+ 1651  ls /usr/local/hadoop/etc/hadoop
+ 1652  cat /usr/local/hadoop/etc/slaves
+ 1653  cat /usr/local/hadoop/etc/hadoop/slaves
+ 1654  rm -R /usr/local/hadoop
+ 1655  exit
+ 1656  cp /home/sagitarii/hadoop_slave.sh /etc/init.d
+ 1657  exit
+ 1658  cp /home/sagitarii/hadoop_master.sh /etc/init.d
+ 1659  sudo update-rc.d hadoop_master.sh defaults
+ 1660  sudo update-rc.d hadoop_master.sh enable
+ 1661  sudo update-rc.d hadoop_slave.sh enable
+ 1662  chmod 0777 /etc/init.d/hadoop_slave.sh
+ 1663  chmod 0777 /etc/init.d/hadoop_master.sh
+ 1664  shutdown -r now
+ 1665  service tomcat7 stop
+ 1666  service teapot stop
+ 1667  cd /home/sagitarii
+ 1668  cp teapot.jar /etc/teapot
+ 1669  cp log4j2.xml /etc/teapot
+ 1670  ls -lh /etc/teapot
+ 1671  rm -R /etc/teapot/storage/
+ 1672  ./install.sh
+ 1673  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1674  cp teapot.jar /etc/teapot/
+ 1675  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1676  cp teapot.jar /etc/teapot/
+ 1677  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1678  cp teapot.jar /etc/teapot/
+ 1679  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1680  cp teapot.jar /etc/teapot/
+ 1681  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1682  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1683  cp log4j2.xml /etc/teapot/
+ 1684  service tomcat7 stop
+ 1685  service tomcat7 start
+ 1686  cd /etc/teapot
+ 1687  java -jar teapot.jar 
+ 1688  cat config.xml
+ 1689  cp /home/sagitarii/config.xml .
+ 1690  cat config.xml
+ 1691  java -jar teapot.jar 
+ 1692  cp /home/sagitarii/config.xml .
+ 1693  cat config.xml
+ 1694  java -jar teapot.jar 
+ 1695  service teapot stop
+ 1696  service teapot start
+ 1697  service teapot stop
+ 1698  service teapot start
+ 1699  service teapot stop
+ 1700  ls /etc/teapot/namespaces/SPECTRAL_PORTAL/
+ 1701  ls /etc/teapot/namespaces/SPECTRAL_PORTAL/E072D7DB-50A6-4D9/6F006299/9D73A0F3-EFE3-4/EIGSOLVE/
+ 1702  ls /etc/teapot/namespaces/SPECTRAL_PORTAL/E072D7DB-50A6-4D9/6F006299/9D73A0F3-EFE3-4/EIGSOLVE/inbox
+ 1703  service teapot start
+ 1704  service teapot stop
+ 1705  service teapot start
+ 1706  service teapot stop
+ 1707  service teapot start
+ 1708  service teapot stop
+ 1709  service teapot start
+ 1710  service teapot stop
+ 1711  service teapot start
+ 1712  service teapot stop
+ 1713  service teapot start
+ 1714  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1715  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1716  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1717  cd /home/sagitarii/
+ 1718  ./getlogs.sh 
+ 1719  cd /etc/teapot
+ 1720  tail -f logs/teapot.log
+ 1721  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1722  /opt/hadoop/hadoop/bin/hdfs dfs -ls /E072D7DB-50A6-4D9
+ 1723  /opt/hadoop/hadoop/bin/hdfs dfs -ls /E072D7DB-50A6-4D9/3092b8591b124db591233ca2ea144d35/400666861324.g6
+ 1724  /opt/hadoop/hadoop/bin/hdfs dfs -ls /E072D7DB-50A6-4D9/3092b8591b124db591233ca2ea144d35/
+ 1725  /opt/hadoop/hadoop/bin/hdfs dfs -ls /E072D7DB-50A6-4D9/3092b8591b124db591233ca2ea144d35/400666861324.g6.gz
+ 1726  tail -f logs/teapot.log
+ 1727  /opt/hadoop/hadoop/bin/hdfs dfs -ls /E072D7DB-50A6-4D9/
+ 1728  tail -f logs/teapot.log
+ 1729  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /E072D7DB-50A6-4D9/
+ 1730  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1731  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /magno
+ 1732  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1733  cd /var/lib/tomcat7/conf
+ 1734  ls
+ 1735  cp /var/lib/tomcat7/conf/tomcat-users.xml /home/sagitarii
+ 1736  cd /home/sagitarii
+ 1737  ls -lh
+ 1738  chown sagitarii tomcat-users.xml
+ 1739  cp tomcat-users.xml /var/lib/tomcat7/conf/
+ 1740  cd /var/lib/tomcat7/conf/
+ 1741  ls -lh
+ 1742  mvn
+ 1743  apt-get install maven2
+ 1744  ls
+ 1745  svn
+ 1746  apt-get install subversion
+ 1747  ls
+ 1748  cd /home/sagitarii
+ 1749  ls sagitarii
+ 1750  svn checkout https://github.com/eic-cefet-rj/sagitarii/trunk sagitarii
+ 1751  ls
+ 1752  cd sagitarii
+ 1753  cat rebuild.bat
+ 1754  mvn clean eclipse:eclipse -Dwtpversion=2.0
+ 1755  ls
+ 1756  cd target
+ 1757  ls
+ 1758  cd ..
+ 1759  cat compile.bat
+ 1760  mvn clean package
+ 1761  ls
+ 1762  mvn update
+ 1763  svn update
+ 1764  mvn clean package
+ 1765  mvn clean eclipse:eclipse -Dwtpversion=2.0
+ 1766  mvn --version
+ 1767  apt-get remove maven2
+ 1768  apt-get install maven
+ 1769  ls
+ 1770  mvn --version
+ 1771  mvn clean eclipse:eclipse -Dwtpversion=2.0
+ 1772  ls
+ 1773  mvn clean package
+ 1774  ls
+ 1775  cd target
+ 1776  ls
+ 1777  cp sagitarii.war /var/lib/tomcat7/webapps
+ 1778  shutdown -r now
+ 1779  jps
+ 1780  /opt/hadoop/hadoop/bin hdfs dfs -ls /
+ 1781  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1782  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /D64E85CB-5E06-42F
+ 1783  service teapot stop
+ 1784  ls /var/lib/tomcat7/webapps/sagitarii/cache/c4cea5f5ad704e9cb62ebf5868f3ddd2/
+ 1785  /var/lib/tomcat7/webapps/sagitarii/cache/
+ 1786  ls /var/lib/tomcat7/webapps/sagitarii/cache/
+ 1787  cp /var/lib/tomcat7/logs/catalina.out /home/sagitarii/
+ 1788  cd /home/sagitarii/sagitarii
+ 1789  svn update
+ 1790  cd extra/teapot
+ 1791  mvn clean package
+ 1792  cd target
+ 1793  ls -lh
+ 1794  mv teapot-1.0.125.jar /etc/teapot/teapot.jar
+ 1795  service teapot start
+ 1796  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1797  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /F830A794-3E5D-485
+ 1798  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1799  service teapot stop
+ 1800  cp /etc/teapot/logs/teapot.log /home/sagitarii/
+ 1801  shutdown -r now
+ 1802  cp /etc/teapot/logs/teapot.log /home/sagitarii/
+ 1803  cd SPECTRAL_PORTAL/17AB9124-98D4-424/CB7B2C4A/39520A89-2543-4/EVALUATE
+ 1804  cd /etc/teapot/namespaces/SPECTRAL_PORTAL/17AB9124-98D4-424/CB7B2C4A/39520A89-2543-4/EVALUATE
+ 1805  ls -lh
+ 1806  service teapot stop
+ 1807  service tomcat7 stop
+ 1808  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1809  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /17AB9124-98D4-424
+ 1810  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1811  cp /home/sagitarii/teapot.jar /etc/teapot/
+ 1812  service tomcat7 start
+ 1813  service teapot start
+ 1814  tail -f /etc/teapot/logs/teapot.log 
+ 1815  /opt/hadoop/hadoop/bin/hdfs dfs -ls /D783E502-5BED-42C
+ 1816  /opt/hadoop/hadoop/bin/hdfs dfs -ls /D783E502-5BED-42C/1e7f1512dbc740e181c58bc09c609fb6
+ 1817  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1818  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1819  /opt/hadoop/hadoop/bin/hdfs dfs -ls /D783E502-5BED-42C/1e7f1512dbc740e181c58bc09c609fb6
+ 1820  /opt/hadoop/hadoop/bin/hdfs dfs -ls /D783E502-5BED-42C
+ 1821  service teapot stop
+ 1822  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /D783E502-5BED-42C
+ 1823  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1824  service teapot start
+ 1825  tail -f /etc/teapot/logs/teapot.log 
+ 1826  service tomcat7 restart
+ 1827  service teapot start
+ 1828  ls -lh /etc/teapot
+ 1829  tail -f /etc/teapot/logs/teapot.log 
+ 1830  cp /etc/init.d/teapot /home/sagitarii/
+ 1831  cp /etc/init.d/hadoop_master.sh /home/sagitarii/
+ 1832  cp /etc/init.d/hadoop_slave.sh /home/sagitarii/
+ 1833  exit
+ 1834  top -b -n1 -c
+ 1835  top -b -n1 -c | grep java
+ 1836  cd /home/sagitarii
+ 1837  ./getlogs.sh
+ 1838  ls
+ 1839  shutdown -r now
+ 1840  service teapot stop
+ 1841  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1842  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /34BE2F71-AC96-441
+ 1843  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /B2351D01-0A78-409
+ 1844  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /FA73BEBF-1464-498
+ 1845  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1846  service tomcat7 stop
+ 1847  cd /home/sagitarii/
+ 1848  ./install.sh
+ 1849  service tomcat7 stop
+ 1850  ./install.sh
+ 1851  service teapot stop
+ 1852  service tomcat7 stop
+ 1853  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1854  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1855  service tomcat7 start
+ 1856  service teapot start
+ 1857  shutdown -r now
+ 1858  service tomcat7 stop
+ 1859  exit
+ 1860  cd /home/sagitarii/
+ 1861  ./getlogs.sh 
+ 1862  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1863  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /85AC7452-3C82-45D
+ 1864  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1865  jps
+ 1866  service teapot stop
+ 1867  service tomcat7 stop
+ 1868  cd /home/sagitarii/
+ 1869  ./install.sh
+ 1870  service teapot start
+ 1871  cd /home/sagitarii/
+ 1872  ./getlogs.sh 
+ 1873  service tomcat7 stop
+ 1874  ./getlogs.sh 
+ 1875  service tomcat7 start
+ 1876  tail -f /etc/teapot/logs/teapot.log 
+ 1877  top
+ 1878  service teapot stop
+ 1879  cp /home/sagitarii/teapot.jar /etc/teapot
+ 1880  cp /home/sagitarii/log4j2.xml /etc/teapot
+ 1881  service teapot start
+ 1882  tail -f /etc/teapot/logs/teapot.log 
+ 1883  cp /home/sagitarii/config.xml /etc/teapot
+ 1884  service tomcat7 stop
+ 1885  tail -f /etc/teapot/logs/teapot.log 
+ 1886  service teapot stop
+ 1887  cd /home/sagitarii/
+ 1888  ./getlogs.sh 
+ 1889  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1890  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /1D66BD60-4D31-4BC
+ 1891  /opt/hadoop/hadoop/bin/hdfs dfs -rm -r /61F639EB-174E-47B
+ 1892  /opt/hadoop/hadoop/bin/hdfs dfs -expunge
+ 1893  vim /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/log4j2.xml 
+ 1894  service tomcat7 start
+ 1895  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1896  service teapot start
+ 1897  tail -f /etc/teapot/logs/teapot.log 
+ 1898  service teapot stop
+ 1899  cd /etc/teapot
+ 1900  java -jar teapot.jar
+ 1901  service teapot start
+ 1902  tail -f /etc/teapot/logs/teapot.log 
+ 1903  service teapot stop
+ 1904  vim config.xml
+ 1905  cp /home/sagitarii/config.xml .
+ 1906  service teapot start
+ 1907  tail -f /etc/teapot/logs/teapot.log 
+ 1908  service tomcat7 stop
+ 1909  cat /var/lib/tomcat7/logs/catalina.out
+ 1910  cd /home/sagitarii/
+ 1911  ./install.sh
+ 1912  cd /home/sagitarii/
+ 1913  ./install.sh
+ 1914  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1915  service tomcat7 stop
+ 1916  > /var/lib/tomcat7/logs/catalina.out
+ 1917  ./install.sh
+ 1918  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1919  service tomcat7 stop
+ 1920  > /var/lib/tomcat7/logs/catalina.out
+ 1921  service tomcat7 start
+ 1922  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1923  ./install.sh
+ 1924  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1925  service tomcat7 stop
+ 1926  /home/sagitarii/install.sh 
+ 1927  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1928  service teapot stop
+ 1929  cat /etc/teapot/config.xml 
+ 1930  vim /etc/teapot/config.xml 
+ 1931  /home/sagitarii/install.sh
+ 1932  service teapot start
+ 1933  service tomcat7 stop
+ 1934  cat /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1935  vim /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1936  /home/sagitarii/install.sh
+ 1937  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+ 1938  /opt/hadoop/hadoop/bin/hdfs dfs -ls /DCCFE731-5F84-4E3/0a38743869e54f30a7ad187467b90fae/
+ 1939  /opt/hadoop/hadoop/bin/hdfs dfs -ls /DCCFE731-5F84-E3
+ 1940  /opt/hadoop/hadoop/bin/hdfs dfs -ls /DCCFE731-5F84-4E3
+ 1941  service tomcat7 stop
+ 1942  shutdown -r now
+ 1943  df -h
+ 1944  exit
+ 1945  cd /var/lib/tomcat7/webapps/
+ 1946  ls
+ 1947  exit
+ 1948  netstat -a
+ 1949  netstat -a | grep 3333
+ 1950  netstat -a | grep 8130
+ 1951  cd /var/lib/tomcat7/webapps/sagitarii/
+ 1952  ls
+ 1953  cd WEB-INF/
+ 1954  cd classes/
+ 1955  ls
+ 1956  cat config.xml 
+ 1957  netstat -a | grep 8139
+ 1958  cd ../../../..
+ 1959  cd logs
+ 1960  tail -f catalina.out
+ 1961  less catalina.out
+ 1962  ls
+ 1963  ls -lh
+ 1964  rm *
+ 1965  ls
+ 1966  service tomcat7 restart
+ 1967  ls
+ 1968  ls -lh
+ 1969  tail catalina.out
+ 1970  tail -f catalina.out
+ 1971  ifconfig
+ 1972  cd /etc/teapot/
+ 1973  ls
+ 1974  cat config.xml
+ 1975  service teapot stop
+ 1976  vim config.xml 
+ 1977  cd /opt/hadoop/hadoop/etc/hadoop/
+ 1978  ls
+ 1979  vim /etc/hosts
+ 1980  cat hdfs-site.xml 
+ 1981  ls
+ 1982  cat masters
+ 1983  cat slaves 
+ 1984  vim masters
+ 1985  vim slaves
+ 1986  shutdown -r now
+ 1987  vim /etc/hosts
+ 1988  shutdown -r now
+ 1989  jps
+ 1990  exit
+ 1991  cd /opt/hadoop/hadoop/etc/hadoop/
+ 1992  ls
+ 1993  vim core-site.xml 
+ 1994  shutdown -r now
+ 1995  tail -f /var/lib/tomcat7/logs/catalina.out
+ 1996  tail -f /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log 
+ 1997  cd /var/lib/tomcat7/webapps/sagitarii/cache/
+ 1998  ls
+ 1999  cd /opt/hadoop
+ 2000  ls
+ 2001  history > history-root.txt

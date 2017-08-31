@@ -1,0 +1,1 @@
+insert into portal_result_files( id_instance, id_experiment, id_activity, workfile, gorder ) select %ID_PIP%, %ID_EXP%, %ID_ACT%, pdffile, gorder from pdfcreator_out where id_experiment = %ID_EXP% 

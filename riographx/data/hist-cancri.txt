@@ -1,0 +1,988 @@
+    1  ls
+    2  exit
+    3  ls
+    4  rm Quelopes -r -f
+    5  ls -la
+    6  rm *.war
+    7  ls
+    8  scp * sagitarii@192.168.1.31:/home/sagitarii/ -r
+    9  scp -r * sagitarii@192.168.1.31:/home/sagitarii/ 
+   10  scp -r * sagitarii@192.168.1.32:/home/sagitarii/ 
+   11  ls
+   12  exit
+   13  vi config.xml 
+   14  exit
+   15  ls
+   16  cd /etc
+   17  ls
+   18  cd teapot
+   19  ls
+   20  cd ..
+   21  cd sagitarii/
+   22  ls
+   23  cd /var/lib/tomcat7/webapps/sagitarii/WEB-INF/classes/
+   24  ls
+   25  vi config.xml 
+   26  sudo bash
+   27  exit
+   28  init 6
+   29  exit
+   30  sudo bash
+   31  cd /etc
+   32  vi teapot/
+   33  cd teapot/
+   34  ls
+   35  vi config.xml 
+   36  ping 192.168.1.30
+   37  wget 192.168.1.30:8080
+   38  ls -la
+   39  rm index.html 
+   40  ls
+   41  ls -la
+   42  cd ..
+   43  ls
+   44  cd init.d/
+   45  ls
+   46  cat teapot 
+   47  cd /etc
+   48  cd /tmp
+   49  ls
+   50  ls -la
+   51  cat teapot-pid 
+   52  ps -all
+   53  ps -All
+   54  exit
+   55  sudo -i
+   56  exit
+   57  sudo -i
+   58  exit
+   59  sudo -i
+   60  exit
+   61  sujdo -i
+   62  sudo -i
+   63  exit
+   64  cd /home/sagitarii/cd sage-6.8-x86_64-Linux/
+   65  cd /home/sagitarii/sage-6.8-x86_64-Linux/
+   66  make
+   67  service teapot start
+   68  service teapot stop
+   69  sudo -i
+   70  cp /var/lib/tomcat7/webapps/sagitarii/logs/sagitarii.log /home/sagitarii/
+   71  exit
+   72  sudo -i
+   73  exit
+   74  sudo -i
+   75  exit
+   76  sudo -i
+   77  ls
+   78  cd gportal/
+   79  ls
+   80  cd nauty24r2
+   81  ls
+   82  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/gportal/nauty24r2 Desktop/
+   83  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/gportal/nauty24r2/output-4.g6 Desktop/
+   84  pwd
+   85  scp -P 8130 /home/sagitarii/gportal/nauty24r2/output-10.g6 /Users/leonardolima
+   86  scp -P 8130 /home/sagitarii/gportal/nauty24r2/output-10.g6 /Users/leonardolima/Desktop
+   87  scp -P 8130 /home/sagitarii/gportal/nauty24r2/output-10.g6 /Users/leonardolima/Desktop/
+   88  scp -P 8130 /home/sagitarii/gportal/nauty24r2/output-10.g6 
+   89  pwd
+   90  scp -P 8130 /home/sagitarii/gportal/nauty24r2/output-10.g6 home/Users/leonardolima/Desktop/
+   91  ./geng 6 -g -q -d5 -D5 5reg_order_6.g6
+   92  geng 6 -g -q -d5 -D5 5reg_order_6.g6
+   93  cd..
+   94  cd ..
+   95  ls
+   96  cd lapackpp-2.5.4/
+   97  ls
+   98  cd ..
+   99  ls
+  100  cd nauty24r2/
+  101  ls
+  102  cd gportal
+  103  ls
+  104  cd ..
+  105  cd sage
+  106  ls
+  107  ./sage
+  108  cd ..
+  109  ./sage
+  110  cd sage-6.8-x86_64-Linux/
+  111  ls
+  112  ./sage
+  113  ls /home/users/
+  114  home/Users
+  115  pwd
+  116  scp -8139 /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs/cub04.g6
+  117  pwd
+  118  scp -8139 /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs/cub04.g6 /home/sagitarii/sage-6.8-x86_64-Linux
+  119  scp -8139 /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs/cub04.g6 /home/sagitarii/sage-6.8-x86_64-Linux/
+  120  scp -8130 /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs/cub04.g6 /home/sagitarii/sage-6.8-x86_64-Linux/
+  121  scp -r foo your_username@remotehost.edu:/some/remote/directory/bar
+  122  ls
+  123  scp -8130 sagitarii@antares.eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  124  scp sagitarii@antares.eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  125  scp -P 8130 sagitarii@antares.eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  126  scp -P 8130 sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  127  scp sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  128  sudo scp sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  129  sudo scp -P 8130 sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Dropbox/artigos-2015/CubicGraphs
+  130  ping eic.cefet-rj.br
+  131  exit
+  132  ls
+  133  cd sage-6.8-x86_64-Linux/
+  134  ls
+  135  scp -P 8130 sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Desktop
+  136  scp -P p130 sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Desktop
+  137  scp -p 8130 sagitarii@eic.cefet-rj.br:README.txt /Users/leonardolima/Desktop
+  138  pwd
+  139  scp -p 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Desktop
+  140  cd ..
+  141  ls
+  142  cd gportal
+  143  ls
+  144  cd nauty24r2/
+  145  ls
+  146  ./geng
+  147  ./geng -c 4
+  148  ./geng 4 order4.g6
+  149  ls or*.g6
+  150  ./geng 11 -d5 -D5 order11.g6
+  151  ./geng 11 -d5D5 order11.g6
+  152  ./geng 11 -d5-D5 order11.g6
+  153  ./geng 11 -d5 -D5 order11.g6
+  154  ./geng 11 order11.g6
+  155  ./geng 11 -d5D5 order11.g6
+  156  ./geng 11 order11.g6
+  157  ls
+  158  cd sage-6.8-x86_64-Linux/
+  159  pwd
+  160  ls
+  161  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux /Users/leonardolima/Documents
+  162  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Documents
+  163  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Documents/
+  164  scp -Psagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Documents/
+  165  sudo -i
+  166  exit
+  167  ls
+  168  exit
+  169  ls
+  170  cd sage-6.8-x86_64-Linux/
+  171  ls
+  172  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Documents/
+  173  scp - sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Documents/
+  174  scp sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Desktop
+  175  sudo su
+  176  ls -ld
+  177  ls -ld sage-6.8-x86_64-Linux
+  178  man ls
+  179  ls -lead
+  180  cd ..
+  181  cd sage-6.8-x86_64-Linux/
+  182  pwd
+  183  cd ..
+  184  ls -ld /home/sagitarii/sage-6.8-x86_64-Linux
+  185  chmod 755*
+  186  chmod 755 *
+  187  ls
+  188  chmod 755 sage-6.8-x86_64-Linux/
+  189  ls -ld /home/sagitarii/sage-6.8-x86_64-Linux
+  190  scp sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Desktop
+  191  ls
+  192  cd sage-6.8-x86_64-Linux/
+  193  ./sage
+  194  whoami
+  195  pwd
+  196  cd ..
+  197  ls -l
+  198  cd ..
+  199  ls -l
+  200  cd ..
+  201  ls -l
+  202  ls -l home/
+  203  cd home/sagitarii/
+  204  l s-l
+  205  ls -l
+  206  scp -P 8130 sagitarii@eic.cefet-rj.br:/home/sagitarii/sage-6.8-x86_64-Linux/README.txt /Users/leonardolima/Desktop
+  207  sftp sagitarii@eic.cefet-rj.br
+  208  ls
+  209  cd gportal
+  210  ls
+  211  cd nauty24r2/
+  212  ls
+  213  ls -l
+  214  scp showg.c /Users/leonadolima/Desktop
+  215  sudo -i
+  216  ls
+  217  cd sage-6.8-x86_64-Linux/
+  218  ls
+  219  pwd
+  220  ls
+  221  ./sage
+  222  sudo -i
+  223  ls
+  224  ls -l
+  225  cd sage-6.8-x86_64-Linux/
+  226  ls
+  227  load("CubicGraphs.py")
+  228  ./sage load("CubicGraphs.py")
+  229  ./sage
+  230  sudo -i
+  231  exit
+  232  sudo -i
+  233  ls -l
+  234  cd sage-6.8-x86_64-Linux/
+  235  ./sage
+  236  sudo -i
+  237  ls -l
+  238  history
+  239  ls -l
+  240  cd sage-6.8-x86_64-Linux/
+  241  ls -k
+  242  ls -l
+  243  ./sage
+  244  ls -l
+  245  cd gportal
+  246  ls
+  247  cd nauty24r2/
+  248  ls
+  249  ls -l
+  250  geng -d5D5 fivereg.g6
+  251  ./geng -d5D5 fivereg.g6
+  252  ./geng -d5D5 11 fivereg.g6
+  253  ./geng -d5 -D5 11 fivereg.g6
+  254  ./geng 11 -d5 -D5 fivereg.g6
+  255  geng
+  256  ./geng
+  257  ls -l
+  258  ls -l
+  259  cd gportal
+  260  cd nauty24r2/
+  261  geng -d5D5 -g 11 5reg.g6
+  262  ./geng -d5D5 -g 11 5reg.g6
+  263  ./geng
+  264  ./geng -g 11 5reg.g6
+  265  ls *.g6
+  266  ./geng -g 11 '5reg.g6'
+  267  ls *.g6
+  268  ./geng -d0D5 -g 11 '5reg.g6'
+  269  ./geng -d1D5 -g 11 '5reg.g6'
+  270  ./geng -d5 -g 11 '5reg.g6'
+  271  ./geng -d5 11 '5reg.g6'
+  272  ./geng -help
+  273  ./geng -d5 11
+  274  ./geng -d5D5 11 
+  275  ./geng -d5D5 8 
+  276  ./geng -d5D5 8 leo.g6
+  277  ls -l *.g6
+  278  ./geng -d5D5 6 Five_Reg_6.g6
+  279  ./geng -d5D5 8 Five_Reg_8.g6
+  280  ./geng -d5D5 10 Five_Reg_10.g6
+  281  ./geng -d5D5 12 Five_Reg_12.g6
+  282  ./geng -d5D5 14 Five_Reg_14.g6
+  283  cd /etc/teapot/namespaces/SPECTRAL_PORTAL/34FB36A5-B0C6-41D/7EF00570/9A1A798F-F4AE-4/EVALUATE
+  284  ls -lh
+  285  cd inbox
+  286  ls -lh
+  287  sudo -i
+  288  sudo -i
+  289  ls -l
+  290  cd gportal
+  291  ls -l
+  292  cd nauty24r2/
+  293  ls -l
+  294  nohup ./geng -d5D5 14 Five_Reg_14.g6 &
+  295  ls -l
+  296  nohup ./geng -d5D5 14 Five_Reg_14.g6
+  297  jobs
+  298  ls -l
+  299  cd gportal
+  300  cd nauty24r2/
+  301  ls -l
+  302  jobs
+  303  ls -l
+  304  jobs
+  305  ./geng -d5D5 14 Five_Reg_14.g6
+  306  jobs
+  307  bg 1
+  308  jobs
+  309  ls -l *.g6
+  310  ./geng -d5D5 16 Five_Reg_16.g6
+  311  bg 1
+  312  jobs
+  313  ls -l 
+  314  ls -l *.g6
+  315  ls -l
+  316  ls -l *.g6
+  317  cd gportal
+  318  cd nauty24r2/
+  319  ls
+  320  ls -l
+  321  ls -l *.g6
+  322  ./geng -d5D5 18 Five_Reg_18.g6
+  323  bg 1
+  324  jobs
+  325  ls -l
+  326  ./geng -d5D5 16 Five_Reg_16.g6
+  327  bg 2
+  328  ls -l *.g6
+  329  cd gportal/nauty24r2/
+  330  ls -l *.g6
+  331  cd gportal/nauty24r2/
+  332  ls -l *.g6
+  333  ./geng -d5D5 16 Five_Reg_16.g6
+  334  bg 1
+  335  jobs
+  336  ls -l *.g6
+  337  cd gportal/nauty24r2/
+  338  ./geng -d5D5 16 Five_Reg_16.g6
+  339  bg 1
+  340  ls -l *.g6
+  341  jobs
+  342  cd gportal/nauty24r2/
+  343  rm Five_Reg_16.g6
+  344  rm Five_Reg_18.g6
+  345  ls -l *.g6
+  346  ./geng -d5D5 16 Five_Reg_16.g6
+  347  jobs
+  348  bg 1
+  349  jobs
+  350  ls -l *.g6
+  351  jobs
+  352  cd gportal/nauty24r2/
+  353  ls -l *.g6
+  354  rm Five_Reg_16.g6
+  355  ls -l *.g6
+  356  ./geng -d5D5 16 Five_Reg_16.g6
+  357  bg 1
+  358  jobs
+  359  ls -l *.g6
+  360  ./geng -d5D5 16 Five_Reg_16.g6
+  361  cd gportal/nauty24r2/
+  362  ./geng -d5D5 16 Five_Reg_16.g6
+  363  jobs
+  364  ls -l *.g6
+  365  ls -l Five*.g6
+  366  jobs
+  367  ls -l Five*.g6
+  368  cd gportal/nauty24r2/
+  369  ./geng -d5D5 16 Five_Reg_16.g6
+  370  cd gportal/nauty24r2/
+  371  ./geng -d5D5 16 Five_Reg_16.g6
+  372  bg 1
+  373  jobs
+  374  ls -l Five*.g6
+  375  cd gportal/nauty24r2/
+  376  rm Five_Reg_16.g6
+  377  ./geng -d5D5 16 Five_Reg_16.g6
+  378  jobs
+  379  bg 1
+  380  jobs
+  381  ping
+  382  ping eic.cefet-rj.br
+  383  exit
+  384  ping sagitarii@eic.cefet-rj.br
+  385  ping eic.cefet-rj.br
+  386  ls -l
+  387  ping sagitarii@eic.cefet-rj.br
+  388  ping eic.cefet-rj.br
+  389  cd gportal/nauty24r2/
+  390  ./geng -d5D5 16 Five_Reg_16.g6
+  391  bg 1
+  392  jobs
+  393  cd gportal/nauty24r2/
+  394  ls -l
+  395  ./geng 11 output-11.g6
+  396  bg 1
+  397  jobs
+  398  ls -l *.g6
+  399  jobs
+  400  cd gportal/nauty24r2/
+  401  ls -l *.g6
+  402  exit
+  403  cd
+  404  ls -l
+  405  cd gportal
+  406  ls -l
+  407  cd nauty24r2/
+  408  ./geng 5 luisa.g6
+  409  ls -l *.g6
+  410  cd /home/sagitarii
+  411  cd /etc/teapot
+  412  ls -lh
+  413  cd wrappers
+  414  ls -lh
+  415  cd /etc/teapot/namespaces/SPECTRAL_PORTAL/20186C29-7B54-433/D88419FE/6E7B2679-0E6C-4/EVALUATE
+  416  ls -lh
+  417  rm -R /home/sagitarii/EVALUATE
+  418  cd ..
+  419  cp -R EVALUATE /home/sagitarii
+  420  ls -lh /home/sagitarii/EVALUATE
+  421  java -Djava.library.path=/usr/local/lib/R/site-library/rJava/jri/ -jar /etc/teapot/wrappers/evaluate.jar /etc/teapot/namespaces/SPECTRAL_PORTAL/20186C29-7B54-433/D88419FE/6E7B2679-0E6C-4/EVALUATE /etc/teapot/wrappers/
+  422  sudo -i
+  423  sudo -i
+  424  cd /etc/teapot/namespaces/SPECTRAL_PORTAL/CC23EFD7-F70F-42C/BFD1494C/410B1490-403D-4/EVALUATE 
+  425  cd inbox
+  426  ls -lh
+  427  cat 837C434769.g6.sgnlapb
+  428  cd ..
+  429  ls -lh
+  430  rm -R \home\sagitarii\EVALUATE
+  431  cp -R EVALUATE \home\sagitarii
+  432  rm -R /home/sagitarii/EVALUATE
+  433  cp -R EVALUATE /home/sagitarii
+  434  cd ..
+  435  ls -lh
+  436  cd /etc/teapot/namespaces/SPECTRAL_PORTAL/CC23EFD7-F70F-42C/841715F6/6A911B12-2F55-4/EIGSOLVE
+  437  sudo -i
+  438  service tomcat7 restart
+  439  sudo -i
+  440  sudo - i
+  441  sudo -i
+  442  exit
+  443  sudo -i
+  444  exit
+  445  sudo -i
+  446  exit
+  447  sudo -i
+  448  exit
+  449  sudo -i
+  450  ls -lh
+  451  sudo -i
+  452  exit
+  453  ls -l
+  454  cd gportal
+  455  ls -l
+  456  cd lapackpp-2.5.4/
+  457  ls -l
+  458  cd src
+  459  ls -l
+  460  cd ..
+  461  cd testing/
+  462  ls -l
+  463  scp -P 8090 sagitarii@eic.cefet-rj.br:/home/sagitarii/gportal/lapackpp-2.5.4/testing/tEigSolve.cc Desktop/scp -P 8090 sagitarii@eic.cefet-rj.br:/home/sagitarii/gportal/lapackpp-2.5.4/testing/tEigSolve.cc Desktop/
+  464  ls -l
+  465  scp tEigSolve.cc ./Users/leonardolima
+  466  scp tEigSolve.cc ./home/Users/leonardolima
+  467  ls -l /Users/leonardolima
+  468  ls -l home/Users/leonardolima
+  469  ls /home
+  470  ls -l /usr/local/bin
+  471  scp tEigSolve.cc ./usr/local/bin
+  472  ls -l
+  473  vi tEigSolve.cc
+  474  ls -l
+  475  cd gportal
+  476  ls -l
+  477  cd lapackpp-2.5.4/
+  478  ls -l
+  479  cd testing
+  480  ls -l
+  481  vi tEigSolve.cc
+  482  cd gportal/lapackpp-2.5.4/
+  483  ls -l
+  484  cd testing
+  485  ls -l
+  486  vi tEigSolve.cc
+  487  cd gportal/lapackpp-2.5.4/
+  488  ls -l
+  489  cd testing
+  490  ls -l
+  491  vi tEigSolve.cc
+  492  ls -l
+  493  cd gportal
+  494  ls -l
+  495  cd nauty
+  496  cd nauty24r2/
+  497  ls -l
+  498  ls -l *.g6
+  499  vi leo.g6
+  500  scp -P 8090 sagitarii@eic.cefet-rj.br:/home/sagitarii/gportal/lapackpp-2.5.4/testing/tEigSolve.cc Desktop/
+  501  scp -P 8 leo.g6 ./home/sagitarii/gportal/lapackpp-2.5.4/testing
+  502  scp -P ./leo.g6 ./home/sagitarii/gportal/lapackpp-2.5.4/testing
+  503  scp -P ./home/sagitarii/gportal/lapackpp-2.5.4/testing leo.g6
+  504  scp ./home/sagitarii/gportal/lapackpp-2.5.4/testing leo.g6
+  505  scp /home/sagitarii/gportal/lapackpp-2.5.4/testing leo.g6
+  506  clear
+  507  exit
+  508  cd gportal/lapackpp-2.5.4/
+  509  ls -l
+  510  cd testing
+  511  ls -l
+  512  ./tEigSolve -a -f /home/sagitarii/lapackpp-2.5.4/testing/saida.g6
+  513  ./tEigSolve -a -f saida.g6
+  514  ls -l
+  515  vi saida.g6.adj
+  516  cd gportal
+  517  cd lapackpp-2.5.4/
+  518  cd testing
+  519  ls -l
+  520  vi teste.g6
+  521  ls -l 8g6
+  522  ls -l *g6
+  523  ./tEigSolve -a -f /home/sagitarii/lapackpp-2.5.4/testing/teste.g6
+  524  ./tEigSolve -a -f teste.g6
+  525  ls -l *.adj
+  526  vi teste.g6.adj
+  527  exit
+  528  cd gportal
+  529  ls -l
+  530  scp ajuda-comandos.rtf 
+  531  sudo -i
+  532  exit
+  533  cd EIGSOLVE2/
+  534  ls
+  535  sudo -i
+  536  exit
+  537  sudo -i
+  538  exit
+  539  sudo -i
+  540  service tomcat7 restart
+  541  sudo -i
+  542  exit
+  543  sudo -i
+  544  ls -l
+  545  cd gportal
+  546  ls -l
+  547  cd ..
+  548  ls -l
+  549  cd repository/
+  550  ls -l
+  551  cd ..
+  552  ls -l
+  553  cd evaluate
+  554  cd EVALUATE/
+  555  ls -l
+  556  cd ..
+  557  whereis tomcat
+  558  exit
+  559  whereis tomcat
+  560  whereis tomcat7
+  561  cd /etc/tomcat7
+  562  ls -l
+  563  cd Catalina/
+  564  ls -l
+  565  cd ..
+  566  whereis tomcat7
+  567  cd /usr/share/tomcat7
+  568  ls -l
+  569  cd bin
+  570  ls -l
+  571  cd ..
+  572  cd lib
+  573  ls -l
+  574  cd..
+  575  cd ..
+  576  whereis style.css
+  577  whereis style.css7
+  578  cd ..
+  579  ls -l
+  580  cd app
+  581  ls -l
+  582  cd ..
+  583  ls -l
+  584  cd usr
+  585  ls -l
+  586  locate -b tomcat
+  587  locate -b spectral
+  588  cd /var/lib/tomcat7/webapps/spectral
+  589  ls -l
+  590  cd css
+  591  ls -l
+  592  scp ./style.css /home/Users/leonardolima
+  593  scp ./style.css /home/Users/leonardolim
+  594  pwd
+  595  chmod 777 *
+  596  ls -l
+  597  sudo
+  598  sudo -h
+  599  sudo -e
+  600  sudo -e style.css
+  601  vi style.css
+  602  vim style.css
+  603  Y
+  604  y
+  605  ls -l
+  606  more style.css 
+  607  ls -l
+  608  cd ..
+  609  ls -l
+  610  cd WEB-INF/
+  611  la
+  612  ls
+  613  cd content/
+  614  ls
+  615  ls -l
+  616  cd ..
+  617  tar cvf spectral.tar ./spectral
+  618  tar cvf ˜/spectral.tar ./spectral
+  619  tar cvf spectral.tar ./spectral
+  620  cd 
+  621  pwd
+  622  tar cvf spectral.tar /var/lib/tomcat7/webapps/spectral
+  623  ls -l spectral.tar 
+  624  gzip spectral.tar 
+  625  ls -l spectral.*
+  626  pwd
+  627  sudo -i
+  628  exit
+  629  sudo -i
+  630  exit
+  631  ls -l
+  632  chmod 755 *
+  633  sudo
+  634  root
+  635  sudo -i
+  636  ls -l
+  637  mv -v ~/spectral 2/* ~/var/lib/tomcat7/webapps/
+  638  mv -v ~/spectral 2/* ~./var/lib/tomcat7/webapps/
+  639  mv -v ~/spectral 2/* ~var/lib/tomcat7/webapps/
+  640  mv -v ~/spectral 2/* ~/var/lib/tomcat7/webapps/
+  641  ls -l
+  642  cd ..
+  643  pwd
+  644  cd ..
+  645  ls -l
+  646  pwd
+  647  mv ~/home/sagitarii/spectral 2/* ~/var/lib/tomcat7/webapps/
+  648  mv ~/home/sagitarii/spectral 2/* ~var/lib/tomcat7/webapps/
+  649  cd /var/lib/tomcat7/webapps/spectral/cs
+  650  ls -l
+  651  cd ..
+  652  mv ~/home/sagitarii/spectral 2/* ~.
+  653  mv ~/home/sagitarii/spectral 2/* ~/.
+  654  cd /home/sagitarii
+  655  ls -l
+  656  cd spectral 2
+  657  ls -l spe*
+  658  ls -l
+  659  cd /var/lib
+  660  cd tomcat7/webapps
+  661  ls -l
+  662  mv ~/home/sagitarii/spectral/* ./
+  663  mv ~/home/sagitarii/spectral/ ./
+  664  ls -l /home/sagitarii/home/sagitarii/spectral/*
+  665  ls -l /home/sagitarii/home/sagitarii/spectral/
+  666  ls -l /home/sagitarii/home/sagitarii/spectral
+  667  ls -l /home/sagitarii/home/sagitarii/spectral/
+  668  ls -l home/sagitarii/home/sagitarii/spectral/
+  669  ls -l /home/sagitarii/home/sagitarii/spectral/
+  670  cd /home/sagitarii/home/sagitarii/spectral/
+  671  cd /sagitarii
+  672  cd /var/lib/tomcat7/webapps
+  673  ls -l
+  674  ls -l  /sagitarii/home/sagitarii/spectral/
+  675  ls -l  /sagitarii/spectral/
+  676  ls -l /sagitarii/spectral/
+  677  cd /sagitarii/
+  678  ls -l /sagitarii/
+  679  exit
+  680  pwd
+  681  ls -l /home/sagitarii
+  682  scp -
+  683  scp -8130 /spectral/footer.jsp /var/lib/tomcat7/webapps/spectral/
+  684  scp -P 8130 /spectral/footer.jsp /var/lib/tomcat7/webapps/spectral/
+  685  scp -P 8130 ./spectral/footer.jsp ./var/lib/tomcat7/webapps/spectral/
+  686  sudo -i
+  687  cd /etc/teapot
+  688  ls
+  689  mv teapot-dont-run.jar teapot.jar
+  690  ls
+  691  service tapot start
+  692  service teapot start
+  693  service teapot restart
+  694  service teapot stop
+  695  service teapot start
+  696  top
+  697  top | grep java
+  698  rm /tmp/teapot-pid 
+  699  service teapot stop
+  700  service teapot start
+  701  sudo -i
+  702  exit
+  703  sudo -i
+  704  exit
+  705  sudo -i
+  706  exit
+  707  sudo -i
+  708  exit
+  709  sudo -i
+  710  sudo
+  711  sudo -i
+  712  sudo service teapot stop
+  713  sudo -i
+  714  ls -lh /var/lib/tomcat7/webapps/sagitarii/
+  715  ls -lh /var/lib/tomcat7/webapps/sagitarii/cache/
+  716  ls -lh /var/lib/tomcat7/webapps/sagitarii/cache/ffdfb624e4524c1a85f7d25b7bebc20d/
+  717  rm catalina.out 
+  718  sudo -i
+  719  exit
+  720  sujdo -i
+  721  sudo -i
+  722  cd ipeadata/
+  723  ls
+  724  python -V
+  725  python robo.py 
+  726  cd ipeadata/
+  727  python robo.py 
+  728  ImportError: No module named request
+  729  cd ..
+  730  ls
+  731  ./install-portal.sh 
+  732  sudo ./install-portal.sh 
+  733  sudo -i
+  734  sudo -i
+  735  sudo -i
+  736  sudo service teapot stop
+  737  sudo -i
+  738  sudo -i
+  739  sdo -i
+  740  sudo -i
+  741  cd /home/sagitarii/
+  742  ls
+  743  ls -lh
+  744  /home/sagitarii/install.sh 
+  745  sudo /home/sagitarii/install.sh 
+  746  ps aux | grep postgres
+  747  shutdown -r now
+  748  sudo shutdown -r now
+  749  sudo -i
+  750  ls
+  751  rm -R storage
+  752  ls storage
+  753  ls -lh
+  754  cd ipeadata
+  755  exit
+  756  sudo -i
+  757  exit
+  758  sudo -i
+  759  exit
+  760  sudo -i
+  761  exit
+  762  ls
+  763  exit
+  764  sudo -i
+  765  exit
+  766  sudo -i
+  767  exit
+  768  sudo -i
+  769  exit
+  770  sudo -i
+  771  cd /home/sagitarii/
+  772  rm catalina.out 
+  773  sudo -i
+  774  ssh-keygen -t rsa
+  775  ssh-keygen -t rsa -p ''
+  776  ssh-keygen -t rsa -P ''
+  777  ssh-copy-id -i  /home/sagitarii/.ssh/id_rsa.pub sagitarii@antares1
+  778  ssh-copy-id -i  /home/sagitarii/.ssh/id_rsa.pub sagitarii@antares2
+  779  ssh-copy-id -i  /home/sagitarii/.ssh/id_rsa.pub sagitarii@antares
+  780  chmod 0600 /home/sagitarii/.ssh/authorized_keys
+  781  ssh antares2
+  782  cd /opt/hadoop
+  783  scp -r hadoop antares2:/opt/hadoop
+  784  scp -r hadoop antares2:/home/sagitarii
+  785  ls
+  786  scp -r hadoop antares1:/home/sagitarii
+  787  ls
+  788  cd /opt/hadoop/hadoop
+  789  bin/hadoop namenode -format
+  790  ls etc
+  791  ls -lh etc/hadoop
+  792  which java
+  793  ls /usr/bin/java
+  794  cd /usr/bin/java
+  795  ls /usr/lib/jvm/
+  796  bin/hadoop namenode -format
+  797  sbin/start-dfs.sh
+  798  jps
+  799  sudo -i
+  800  bin/hadoop namenode -format
+  801  sbin/start-dfs.sh
+  802  jps
+  803  cat /opt/hadoop/hadoop/logs/hadoop-sagitarii-datanode-antares1.out
+  804  ls /opt/hadoop/hadoop/logs
+  805  cat /opt/hadoop/hadoop/logs/hadoop-hadoop-datanode-node01.out
+  806  ls /usr/local/hadoop_tmp/
+  807  rm -R /opt/hadoop/hadoop/dfs/name/*
+  808  rm -R /usr/local/hadoop_tmp/*
+  809  bin/hadoop namenode -format
+  810  sbin/start-dfs.sh
+  811  jps
+  812  bin/hadoop datanode
+  813  exit
+  814  sudo -i
+  815  cd /opt/hadoop/hadoop
+  816  bin/start-dfs.sh
+  817  ls
+  818  sbin/start-dfs.sh
+  819  jps
+  820  ls /etc/init
+  821  ls -lh /etc/rc2
+  822  ls -lh /etc/rc2.d
+  823  update-rc.d hadoop_slave.sh disable
+  824  ls -lh /etc/rc2.d
+  825  sudo -i
+  826  /opt/hadoop/hadoop/sbin/hadoop-daemon.sh --config /opt/hadoop/hadoop/etc/hadoop --script hdfs start datanode
+  827  sbin/stop-dfs.sh
+  828  jps
+  829  ls
+  830  /opt/hadoop/hadoop/sbin/hadoop-daemon.sh --config /opt/hadoop/hadoop/etc/hadoop --script hdfs start datanode
+  831  ls
+  832  jps
+  833  /opt/hadoop/hadoop/sbin/hadoop-daemon.sh --config /opt/hadoop/hadoop/etc/hadoop --script hdfs stop datanode
+  834  sbin/start-dfs.sh
+  835  netstat -a | grep 9000
+  836  sudo -i
+  837  more /etc/network
+  838  more /etc/network/interfaces
+  839  ls -l
+  840  more /etc/network/interfaces
+  841  pwd
+  842  ls -l
+  843  ssh fxcode@andromeda
+  844  ssh fxcode@10.1.1.184
+  845  exit
+  846  jps
+  847  cd /opt/hadoop/hadoop
+  848  bin/hdfs dfs -ls /
+  849  bin/hdfs dfs -mkdir /magno/teste
+  850  bin/hdfs dfs -mkdir -p /magno/teste
+  851  bin/hdfs dfs -ls /
+  852  bin/hdfs dfs -ls /magno
+  853  sudo -i
+  854  sudo service tomcat7 restart
+  855  sudo -i
+  856  sudo -i
+  857  service teapot start
+  858  service teapot stop
+  859  cd /etc/teapot
+  860  java -jar teapot.jar 
+  861  ls
+  862  ls -lh
+  863  ls wrappers
+  864  ls -lh wrappers
+  865  sudo -i
+  866  exit
+  867  sudo -i
+  868  sudi -i
+  869  sudo -i
+  870  exit
+  871  sudo -i
+  872  ls
+  873  sudo -i
+  874  exit
+  875  sudo -i
+  876  exit
+  877  netstat -a
+  878  sudo service tomcat7 restart
+  879  sudo -i
+  880  cd /opt/hadoop/hadoop
+  881  bin/hdfs dfs -ls /magno
+  882  sudo -i
+  883  jps
+  884  netstat -a | grep 8088
+  885  netstat -a | grep 9000
+  886  sudo -i
+  887  ping cmabreu.no-ip.org
+  888  ssh magno@cmabreu.no-ip.org
+  889  cd /opt/hadoop/hadoop
+  890  ls
+  891  cd ..
+  892  ls
+  893  sudo zip -r /home/sagitarii/hadoop_all.zip hadoop
+  894  rm hadoop/logs/*
+  895  rm -R hadoop/logs/*
+  896  sudo zip -r /home/sagitarii/hadoop_all.zip hadoop
+  897  cp /etc/init.d/hadoop_* /home/sagitarii/
+  898  ls
+  899  history > history.txt
+  900  vim history.txt
+  901  sudo -i
+  902  ls
+  903  ls -lh
+  904  vim history.txt 
+  905  ls
+  906  cd hadoop
+  907  ls
+  908  bin/hadoop namenode -format
+  909  service hadoop_master.sh start
+  910  service hadoop_slave.sh start
+  911  jps
+  912  sudo service hadoop_master.sh stop
+  913  sudo service hadoop_slave.sh stop
+  914  ls
+  915  cd etc
+  916  ls
+  917  cd hadoop/
+  918  vim core-site.xml 
+  919  sudo service hadoop_master.sh start
+  920  sudo service hadoop_slave.sh start
+  921  cd ..
+  922  bin/hdfs dfs -ls /
+  923  ls
+  924  bin/hdfs dfs -put LICENSE.txt /
+  925  bin/hdfs dfs -ls /
+  926  cd ..
+  927  ls
+  928  rm /home/sagitarii/hadoop_all.zip 
+  929  sudo rm /home/sagitarii/hadoop_all.zip 
+  930  sudo -i
+  931  sudo zip -r /home/sagitarii/hadoop_all.zip hadoop
+  932  scp -r hadoop magno@cmabreu.no-ip.org:/home/magno
+  933  ls
+  934  cd hadoop/etc/hadoop/
+  935  ls
+  936  vim masters
+  937  vim slaves
+  938  cd ..
+  939  ls
+  940  ls -lh
+  941  sudo service hadoop_slave.sh 
+  942  sudo service hadoop_master.sh stop
+  943  ls /home/sagitarii/had*
+  944  scp -r /home/sagitarii/hadoop_* magno@cmabreu.no-ip.org:/home/magno
+  945  scp -r /home/sagitarii/hadoop_master.sh  magno@cmabreu.no-ip.org:/home/magno
+  946  scp -r /home/sagitarii/hadoop_slave.sh  magno@cmabreu.no-ip.org:/home/magno
+  947  ls
+  948  vim history.txt 
+  949  sudo vim history-root.txt 
+  950  sudo service hadoop_master.sh start
+  951  sudo service hadoop_slave.sh start
+  952  netstat -a | grep 9000
+  953  ls
+  954  cd hadoop/
+  955  ls
+  956  bin/hdfs dfs -ls /
+  957  cd /var/lib/tomcat7/webapps/sagitarii/cache/
+  958  ls
+  959  cd 7c28cb9fd3c14674817327e57897f6bc 
+  960  ls
+  961  sudo -i
+  962  /opt/hadoop/hadoop/ bin/hdfs dfs -ls /
+  963  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+  964  service tomcat7 restart
+  965  sudo service tomcat7 restart
+  966  cd /var/lib/tomcat7/webapps/sagitarii/repository/
+  967  ls run*
+  968  ls /etc/teapot/
+  969  ls /etc/teapot/wrappers/r*
+  970  sudo service teapot stop
+  971  sudo service teapot start
+  972  ls /etc/teapot/wrappers/r*
+  973  ls /etc/teapot/wrappers/ei*
+  974  sudo service teapot start
+  975  sudo service teapot stop
+  976  sudo service teapot start
+  977  ls /etc/teapot/wrappers/ei*
+  978  sudo -i
+  979  /opt/hadoop/hadoop/bin/hdfs dfs -ls /
+  980  sudo -i
+  981  jps
+  982  cd /etc/teapot
+  983  ls
+  984  service teapot stop
+  985  sudo -i
+  986  history
+  987  history | grep sage
+  988  history > hist-cancri.txt
