@@ -1,6 +1,7 @@
 #!/bin/bash
 
-hdfs dfs -rm /spark/codes/spark-samples.jar
+#hdfs dfs -rm -r /spark
 
-hdfs dfs -put spark-samples.jar /spark/codes/
+hdfs dfs -rm /riographx/riographx-0.1.jar
+hdfs dfs -put target/riographx-0.1.jar /riographx/
 
