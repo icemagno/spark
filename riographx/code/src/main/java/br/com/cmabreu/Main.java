@@ -1,7 +1,5 @@
 package br.com.cmabreu;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
@@ -18,21 +16,24 @@ public class Main {
 		
 		String indexParameter = String.valueOf( args[0] );
 
+		/*
 		if ( args.length > 1 ) {
 			String master = "local[*]";
 			SparkConf sparkConf = new SparkConf();
 			sparkConf.setAppName("Hello Spark");
 			sparkConf.setMaster( master );
 			JavaSparkContext context = new JavaSparkContext(sparkConf);
-		}		
+		}
+		*/		
 		
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch ( Exception e ) {
 			System.out.println("Problemas ao carregar o driver PostgreSQL: " + e.getMessage() );
+			System.exit(0);
 		}
-		System.out.println("Driver carregado.");
 		
+		System.out.println("Driver carregado.");
 
 		// https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java
 		
