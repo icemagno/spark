@@ -2,6 +2,8 @@
 
 #hdfs dfs -rm -r /spark
 
-hdfs dfs -rm /riographx/riographx-0.1.jar
-hdfs dfs -put target/riographx-0.1.jar /riographx/
+mv target/riographx-0.1-jar-with-dependencies.jar target/riographx.jar
+
+hdfs dfs -rm /riographx/riographx.jar
+hdfs dfs -put target/riographx.jar /riographx/
 
