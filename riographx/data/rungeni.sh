@@ -1,5 +1,7 @@
 #!/bin/bash
-export HOME="/etc/teapot/wrappers"
+
+# rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g
+
 echo "Geni File  : " $1
 echo "Save to    : " $2
 echo "Source File: " $3

@@ -1,14 +1,14 @@
 ## geni = invariants generator
-## função que calcula os valores dos invariantes de grafos
-## Parâmetros: 
-## arquivo:  arquivo texto com a matriz de adjacência gerada pelo geng
+## funcao que calcula os valores dos invariantes de grafos
+## Parametros: 
+## arquivo:  arquivo texto com a matriz de adjacencia gerada pelo geng
 ## args: string contendo os caracteres correspondentes 
-## das funções a serem geradas
-##        -a   : número cromatico ( \chi )
-##        -b   : número cromatico do grafo complementar ( \overline{\chi} )
+## das funcoes a serem geradas
+##        -a   : numero cromatico ( \chi )
+##        -b   : numero cromatico do grafo complementar ( \overline{\chi} )
 ##        -c   : tamanho da maior clique ( \omega )
 ##        -d   : tamanho da maior clique do grafo complementar ( \overline{\omega} ) 
-##        -e k : k-ésimo maior grau do grafo ( d_{k} )
+##        -e k : k-esimo maior grau do grafo ( d_{k} )
 ##        -g   : number of edges ( m )
 ##
 
@@ -17,13 +17,13 @@ import csv
 import mathchem
 
 import sys
-sys.path.append("/etc/teapot/wrappers")
+#sys.path.append("/etc/teapot/wrappers")
 
 from sage.graphs.graph_coloring import chromatic_number
 
 def geni(outputdir, arquivo, args):
 	##f = open(arquivo,'r') #leitura do arquivo
-	## l = Matrix ([ map(int,line.split(' ')) for line in f ]) ## matrix de adjacência do grafo
+	## l = Matrix ([ map(int,line.split(' ')) for line in f ]) ## matrix de adjacencia do grafo
 	mols = mathchem.read_from_g6(arquivo)
 	l = mols[0].adjacency_matrix()
 	l = Matrix(l)
@@ -60,7 +60,7 @@ def geni(outputdir, arquivo, args):
 	if ChromaticNumberComplementNeeded or LargestCliqueSizeComplementNeeded:
 	   GC = G.complement()
 	## lc = G.complement().adjacency_matrix()
-	## lista de saída dos parâmetros
+	## lista de saida dos parametros
 	## lista.array('i',[0,0,0,0,0,0])
 	##lista = vector([0,0,0,0,'',0])
 	## print lista[0]
@@ -87,7 +87,7 @@ def geni(outputdir, arquivo, args):
 	else:
 		lista[3] = -1	
 	if kLargestDegree == True:
-		load("/etc/teapot/wrappers/DegreeModificado.py")
+		load("./DegreeModificado.py")
 		#load("/etc/teapot/wrappers/DegreeModificado.py")
 		#LD = Degree(G,int(ParamkLargestDegree))
 		SequenceDegree, SequenceDegreeInString = DegreeModificado(G)
