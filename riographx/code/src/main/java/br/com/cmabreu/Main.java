@@ -58,10 +58,8 @@ public class Main {
 
 		String sql = "select * from graphdatabase gd, spectral_parameters sp where " + 
 			"sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and " + 
-			"	( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and " +
-			"	( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and " +
-			"	( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on')) " +
-			"and sp.index_id = " + indexParameter; 			
+			"sp.trianglefree = gd.trianglefree and sp.biptonly = gd.bipartite and " +
+			"( (sp.allowdiscgraphs = '0' and gd.conexo = 1 ) or (sp.allowdiscgraphs = '1')) and sp.index_id = " + indexParameter; 			
 
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 		graphs.show( 200 );

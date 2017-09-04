@@ -12,8 +12,23 @@ public class Graph implements Serializable {
 	private Integer graumaximo;
 	private Integer trianglefree;
 	private Integer conexo;
-	private Integer bipartite;
+	private Integer bipartite;	
 	
+	
+	public Graph(Integer index_id, String function, String g6, Integer ordem, Integer grauminimo, Integer graumaximo,
+			Integer trianglefree, Integer conexo, Integer bipartite) {
+		super();
+		this.index_id = index_id;
+		this.function = function;
+		this.g6 = g6;
+		this.ordem = ordem;
+		this.grauminimo = grauminimo;
+		this.graumaximo = graumaximo;
+		this.trianglefree = trianglefree;
+		this.conexo = conexo;
+		this.bipartite = bipartite;
+	}
+
 	public String getFunction() {
 		return function;
 	}
