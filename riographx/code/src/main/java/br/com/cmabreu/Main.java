@@ -68,6 +68,17 @@ public class Main {
 		SQLContext parametersContext = parametersTable.sqlContext();
 		parametersTable.createOrReplaceTempView("parameters");
 		
+		// USAR ESSE:
+		select * from graphdatabase gd, spectral_parameters sp where
+			sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and 
+				( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and 
+				( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and 
+				( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on'))
+			and sp.index_id = 604 			
+		// -----------------------------------
+
+
+		
 		Dataset<Row> parameters = parametersContext.sql("SELECT * FROM parameters WHERE index_id = " + indexParameter);
 		parameters.show(1);
 		
