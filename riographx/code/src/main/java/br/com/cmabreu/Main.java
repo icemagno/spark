@@ -43,15 +43,6 @@ public class Main {
 				.config("driver", "org.postgresql.Driver")
 				.getOrCreate(); 		
 
-		Dataset<Row> parametersTable = spark.read()
-				.format("jdbc")
-				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
-				.option("dbtable", "public.spectral_parameters")
-				.option("user", "postgres")
-				.option("password", "admin")
-				.option("driver", "org.postgresql.Driver")
-				.load(); 		
-
 		Dataset<Row> graphDatabaseTable = spark.read()
 				.format("jdbc")
 				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
@@ -65,24 +56,18 @@ public class Main {
 		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
 		graphDatabaseTable.createOrReplaceTempView("graphdatabase");
 
-		SQLContext parametersContext = parametersTable.sqlContext();
-		parametersTable.createOrReplaceTempView("parameters");
-		
-		// USAR ESSE:
-		select * from graphdatabase gd, spectral_parameters sp where
-			sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and 
-				( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and 
-				( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and 
-				( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on'))
-			and sp.index_id = 604 			
-		// -----------------------------------
+		String sql = "select * from graphdatabase gd, spectral_parameters sp where " + 
+			"sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and " + 
+			"	( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and " +
+			"	( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and " +
+			"	( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on')) " +
+			"and sp.index_id = " + indexParameter; 			
 
+		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
+		graphs.show( 200 );
 
-		
-		Dataset<Row> parameters = parametersContext.sql("SELECT * FROM parameters WHERE index_id = " + indexParameter);
-		parameters.show(1);
-		
-		if ( parameters.count() > 0 ) {
+		/*
+		if ( graphs.count() > 0 ) {
 			
 			Row param = parameters.first();
 			String function = param.getAs("optifunc");
@@ -98,23 +83,6 @@ public class Main {
 			
 			System.out.println("Funcao: " + function );
 			
-			
-			/*
-				sp.gorder::int = gd.ordem and gd.grauminimo >= sp.mindegree::int and gd.graumaximo <= sp.maxdegree::int and 
-						( case	when sp.trianglefree = 'on' then 1 else 0 end ) = gd.trianglefree and 
-						( case	when sp.biptonly = 'on' then 1 else 0 end ) = gd.bipartite and 
-						( (sp.allowdiscgraphs = 'off' and 1 = gd.conexo) or (sp.allowdiscgraphs = 'on'))			
-		
-			*/
-			String sql = "SELECT * FROM graphdatabase WHERE "+gorder+" = ordem and grauminimo >= "+mindegree+" and graumaximo <= "+
-					maxdegree+" and "+trianglefree+" = trianglefree and	" + biptonly +" = bipartite and	" +
-					"( ('"+allowdiscgraphs+"' = 'off' and 1 = conexo) or ('"+allowdiscgraphs+"' = 'on'))";
-			System.out.println( sql );
-
-			
-			
-			Dataset<Row> graphs = graphDatabaseContext.sql(sql);
-			graphs.show( 200 );
 			
 			// Para LAPACK se: optifunc like '%lambda%' or sp.optifunc like '%mu%' or sp.optifunc like '%q!_%'
 			if ( function.contains("lambda") || function.contains("mu") || function.contains("q_") ) {
