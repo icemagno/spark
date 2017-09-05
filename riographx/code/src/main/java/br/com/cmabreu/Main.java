@@ -56,10 +56,7 @@ public class Main {
 		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
 		graphDatabaseTable.createOrReplaceTempView("graphdatabase");
 
-		String sql = "select * from graphdatabase gd, spectral_parameters sp where " + 
-			"cast(sp.gorder as integer) = gd.ordem and gd.grauminimo >= cast(sp.mindegree as integer) and gd.graumaximo <= cast(sp.maxdegree as integer) and " + 
-			"cast(sp.trianglefree as integer) = gd.trianglefree and cast(sp.biptonly as integer) = gd.bipartite and " +
-			"( (sp.allowdiscgraphs = '0' and gd.conexo = 1 ) or (sp.allowdiscgraphs = '1')) and sp.index_id = " + indexParameter; 			
+		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 		graphs.show( 200 );
