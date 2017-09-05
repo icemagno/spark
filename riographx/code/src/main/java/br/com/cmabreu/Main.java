@@ -54,7 +54,7 @@ public class Main {
 		
 		
 		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
-		graphDatabaseTable.createOrReplaceTempView("graphdatabase");
+		graphDatabaseTable.createOrReplaceTempView("select_graphs");
 
 		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 
