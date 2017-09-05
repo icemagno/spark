@@ -46,7 +46,7 @@ public class Main {
 		Dataset<Row> graphDatabaseTable = spark.read()
 				.format("jdbc")
 				.option("url", "jdbc:postgresql://192.168.25.103:5432/graphx")
-				.option("dbtable", "public.graphdatabase")
+				//.option("dbtable", "public.select_graphs")
 				.option("user", "postgres")
 				.option("password", "admin")
 				.option("driver", "org.postgresql.Driver")
