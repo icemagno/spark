@@ -1,28 +1,51 @@
 package br.com.cmabreu;
 
-public class Main {
+import org.apache.spark.sql.Dataset;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
+import org.apache.spark.sql.SparkSession;
 
-	public static void main(String[] args) {
+/*
+ * Primeiro passo do workflow
+ * 
+ * 		Conecta com o banco de dados. 
+ * 	
+ * 		TODO: Parametrizar os dados de conexão ao banco.
+ * 
+ * 		Recebe o indice dos parametros na tabela de parametros e 
+ * 		seleciona todos os grafos que cumprem os requisitos
+ * 
+ *  	REQUER VIEW "select_graphs" no banco de dados.
+ *  
+ *  	Retorna um Dataset ( Dataset<Row> ) contendo os grafos encontrados.
+ *  
+ * 		https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java 
+ */
 
-		// O indice dos parametros na tabela devera ser passado
-		if ( args.length == 0 ) {
-			System.out.println("Falta parametros! Saindo...");
-			System.exit(0);
-		}
-		String indexParameter = String.valueOf( args[0] );
+/*
+	drop view if exists select_graphs;
+	create or replace view select_graphs as (
+			select 
+					gd.*,sp.index_id as parameter_id, sp.optifunc, sp.caixa1, 
+					sp.adjacency, sp.laplacian, sp.slaplacian,sp.allowdiscgraphs,
+					sp.biptonly,sp.maxresults,sp.adjacencyb,sp.laplacianb,sp.slaplacianb,
+					sp.chromatic,sp.chromaticb,sp.click,sp.clickb,sp.largestdegree,sp.numedges 
+			from 
+					graphdatabase gd, spectral_parameters sp 
+			where  
+					cast(sp.gorder as integer) = gd.ordem and gd.grauminimo >= cast(sp.mindegree as integer) and 
+					gd.graumaximo <= cast(sp.maxdegree as integer) and  
+					cast(sp.trianglefree as integer) = gd.trianglefree and cast(sp.biptonly as integer) = gd.bipartite and 
+					( (sp.allowdiscgraphs = '0' and gd.conexo = 1 ) or (sp.allowdiscgraphs = '1'))
+	);
+	
+	-- select * from select_graphs where parameter_id = 591
 
-		DriverApplication da = new DriverApplication();
-		da.run(indexParameter);
-		
-		
-		
-/*		
-		
-		// Carrega o banco de dados
-		// https://github.com/high-performance-spark/high-performance-spark-examples/blob/master/src/main/java/com/highperformancespark/examples/dataframe/JavaHappyPandas.java
-		SparkSession spark = new SparkSession().appName("Portal RioGraphX")
-				.config("driver", "org.postgresql.Driver")
-				.getOrCreate(); 	
+*/
+
+public class Step1 {
+
+	public Dataset<Row> run( SparkSession spark, String indexParameter ) {
 		
 		// Abre conexao com a view select_graphs
 		Dataset<Row> graphDatabaseTable = spark.read()
@@ -40,93 +63,20 @@ public class Main {
 		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 
-		if ( graphs.count() == 0 ) {
-			System.out.println("Nenhum grafo encontrado para os parametros fornecidos, ou parametros nao encontrados com indice " + indexParameter + "." );
-			System.exit(0);
-		}
-		
-		// Funcao MAP
-		Function<Row, Graph> mapFunction = new Function<Row, Graph>() {
-			private static final long serialVersionUID = 1L;
-			public Graph call(Row param) throws Exception {
-				
-				String function = param.getAs("optifunc");
-				Integer ordem = param.getAs("ordem"); 
-				Integer mindegree = param.getAs("grauminimo"); 
-				Integer maxdegree = param.getAs("graumaximo"); 
-				Integer trianglefree = param.getAs("trianglefree"); 
-				String biptonly = param.getAs("biptonly"); 
-				String allowdiscgraphs = param.getAs("allowdiscgraphs"); 
-				
-				System.out.println(" Ordem: " + ordem + " MinDeg: " + mindegree + " MaxDeg: " + maxdegree );
-				
-				// Para LAPACK se: optifunc like '%lambda%' or sp.optifunc like '%mu%' or sp.optifunc like '%q!_%'
-				if ( function.contains("lambda") || function.contains("mu") || function.contains("q_") ) {
-					System.out.println(" > Executar LAPACK");	
-				}
+		return graphs;
+	}
 
-				
-				// Para GENI   se: optifunc like '%omega%' or sp.optifunc like '%chi%' or sp.optifunc like '%SIZE%' or sp.optifunc like '%d!_%'
-				if ( function.contains("omega") || function.contains("chi") || function.contains("SIZE") || function.contains("d_") ) {
-					System.out.println(" > EXECUTAR GENI");
-					//  geni('/home/magno/riographx_data/','graphtest.g6','-a -b -c -d -e 3 -g');
-					// ./rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
-				}
-				
-				Graph graph = new Graph();
-		        return graph;
-		    }
-		};
+}
 
-		List<Graph> result = graphs.javaRDD().map( mapFunction ).collect();
-*/
-		
-		
-		/*
-		PairFunction<Row, String, Graph> pairFunction = new PairFunction<Row, String, Graph>() {
-			private static final long serialVersionUID = 1L;
-
-			public Tuple2<String, Graph> call(Row row) throws Exception {
-				Graph graph = new Graph();
-				String key = String.valueOf( row.getInt(2) ) + String.valueOf( row.getInt(3) ) + String.valueOf( row.getInt(4) );
-		        return new Tuple2<String, Graph>( key, graph );
-		    }
-			
-		};
-		// https://stackoverflow.com/questions/31424396/how-does-hashpartitioner-work
-		JavaPairRDD<String, Graph> graphsPairRDD = graphs.toJavaRDD().mapToPair( pairFunction );		
-		*/
-		
-
-		// -----------------------------------------------------------------------------------------
-		
-		
-		// Filtra
-		/*
-		Function< Tuple2<Long, String>, Boolean  > theFilter = new Function< Tuple2<Long, String>, Boolean  >() {
-			public Boolean call( Tuple2<Long, String> keyValue ) {
-				return keyValue._2().equals("");
-			}
-		};
-		JavaPairRDD<Long, String> filteredRDD = jpRDD.filter( theFilter );
-		*/
-		
-		
-		// -------------------------------------------------------------------------------
-		
-		//context.close();
-
-	}	
-
-	/*
-	  
+/*
+Tabela de parametros
 +--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
 |index_id|adjacency|laplacian|slaplacian|            optifunc|caixa1|gorder|mindegree|maxdegree|trianglefree|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
 +--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
 |     591|       on|      off|       off|\lambda_2 + \chi ...|   min|     6|        0|        5|         off|            off|     off|        10|        on|       off|        off|       on|       off|  off|   off|          off|     off|
 +--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+	 
 
-
+Retorno da função "select_graphs" 
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
 |index_id|grafo|ordem|grauminimo|graumaximo|trianglefree|conexo|bipartite|parameter_id|            optifunc|caixa1|adjacency|laplacian|slaplacian|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
@@ -224,6 +174,5 @@ public class Main {
 |     189| E^~w|    6|         4|         5|           0|     1|        0|         591|\lambda_2 + \chi ...|   min|        1|        0|         0|              0|       0|        10|         1|         0|          0|        1|         0|    0|     0|            0|       0|
 |     190| E~~w|    6|         5|         5|           0|     1|        0|         591|\lambda_2 + \chi ...|   min|        1|        0|         0|              0|       0|        10|         1|         0|          0|        1|         0|    0|     0|            0|       0|
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
-	 */
+ */
 
-}
