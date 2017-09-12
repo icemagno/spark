@@ -70,7 +70,7 @@ public class DriverApplication implements Serializable {
 		
 		System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
 		
-		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( numCores ) );
+		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( numExecs ) );
 		
 		
 
