@@ -1,5 +1,7 @@
 package br.com.cmabreu;
 
+import java.io.Serializable;
+
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
@@ -43,7 +45,8 @@ import org.apache.spark.sql.SparkSession;
 
 */
 
-public class Step1 {
+public class Step1 implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	public Dataset<Row> run( SparkSession spark, String indexParameter ) {
 		

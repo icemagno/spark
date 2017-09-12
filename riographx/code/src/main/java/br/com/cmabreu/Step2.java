@@ -1,5 +1,7 @@
 package br.com.cmabreu;
 
+import java.io.Serializable;
+
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.function.PairFunction;
 import org.apache.spark.sql.Dataset;
@@ -21,8 +23,10 @@ import scala.Tuple2;
  * 	// https://stackoverflow.com/questions/31424396/how-does-hashpartitioner-work
  */
 
-public class Step2 {
-
+public class Step2 implements Serializable {
+	private static final long serialVersionUID = 5L;
+	
+	
 	public JavaPairRDD<String, Graph> run( Dataset<Row> graphs ) {
 		
 		PairFunction<Row, String, Graph> pairFunction = new PairFunction<Row, String, Graph>() {
