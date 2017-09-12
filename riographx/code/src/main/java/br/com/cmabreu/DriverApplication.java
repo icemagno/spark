@@ -30,7 +30,7 @@ public class DriverApplication implements Serializable {
 
 		SparkConf sparkConf = new SparkConf();
 		sparkConf.setAppName("Portal RioGraphX");
-		sparkConf.setMaster("local[*]");
+		//sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		
