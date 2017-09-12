@@ -70,7 +70,7 @@ public class Step2 implements Serializable {
 				
 				
 				
-				String key = String.valueOf( row.getInt(2) ) + String.valueOf( row.getInt(3) ) + String.valueOf( row.getInt(4) );
+				String key = String.valueOf( row.getInt(2) ) + String.valueOf( row.getInt(3) ) /*+ String.valueOf( row.getInt(4) )*/;
 		        return new Tuple2<String, Graph>( key, graph );
 		    }
 			
