@@ -3,16 +3,12 @@ package br.com.cmabreu;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.VoidFunction;
+import org.apache.spark.api.java.function.ForeachPartitionFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-
-import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -51,35 +47,53 @@ public class DriverApplication implements Serializable {
 
 		// Segundo passo do workflow --------------------------------------------------------------------
 		// Cria um Pair RDD para possibilitar a paralelização dos grafos usando uma chave agrupadora
-		Step2 stp2 = new Step2();
-		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
+		//Step2 stp2 = new Step2();
+		//JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
+		
 		
 		
 		// Terceiro passo do workflow
 		// Particiona o RDD usando a chave como agrupador		
 		int numCores = context.sc().defaultParallelism();
 		int numExecs = context.sc().getExecutorMemoryStatus().size();
-		
 		System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
+
 		
-		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( 4 * numExecs ) );
+		Dataset<Row> repartRdd = graphs.repartition( numCores );
+		printDatasetPartitions( repartRdd );
+		//JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( 4 * numExecs ) );
 		
 		
 
 		// JavaPairRDD<String, Graph> parallelizedRdd = context.parallelizePairs( graphsPairRDD.collect() );
-		
-		
-		
-		printPartitions( partitionedRdd );
+		//printPartitions( partitionedRdd );
 
 		
 		spark.stop();
 		context.close();
 	}
 
+	private void printDatasetPartitions( Dataset<Row> repartRdd ){
+		
+		ForeachPartitionFunction<Row> f = new ForeachPartitionFunction<Row>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call( Iterator<Row> arg0) throws Exception {
+				System.out.println("--------------------------------------");
+				
+				while( arg0.hasNext() ) {
+					Row row = arg0.next();
+	                System.out.println( row.getAs("index_id") + "  " + row.getAs("grafo") );
+	            }				
+			}
+		};
+		
+		repartRdd.foreachPartition( f );
+	}
 	
-	
-	private void printPartitions( JavaPairRDD<String, Graph> theRdd ) {
+	/*
+	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
 			private static final long serialVersionUID = 1L;
@@ -99,6 +113,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
+	*/
 }
 
 
