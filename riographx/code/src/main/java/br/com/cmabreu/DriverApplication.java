@@ -36,14 +36,6 @@ public class DriverApplication implements Serializable {
 		
 
 		SparkSession spark = new SparkSession( context.sc() );
-		
-		/*
-		SparkSession spark = SparkSession
-				.builder()
-				.appName("Portal RioGraphX")
-				.config("driver", "org.postgresql.Driver")
-				.getOrCreate(); 		
-		*/
 
 		
 		// Primeiro passo do workflow -------------------------------------------------------------------
@@ -70,7 +62,7 @@ public class DriverApplication implements Serializable {
 		
 		System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
 		
-		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( numExecs ) );
+		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( 4 * numExecs ) );
 		
 		
 
