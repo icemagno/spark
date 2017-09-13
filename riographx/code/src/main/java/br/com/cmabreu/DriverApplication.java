@@ -39,7 +39,8 @@ public class DriverApplication implements Serializable {
 		//int numExecs = context.sc().getExecutorMemoryStatus().size();
 		//System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
 		
-		context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.jar");
+		//context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.jar");
+		context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.sh");
 		// ----------------------------------------------------------------------------------------------
 		
 		
@@ -73,7 +74,8 @@ public class DriverApplication implements Serializable {
 		// Quarto Passo do workflow
 		// Para cada elemento do RDD ...
 		
-		String external = "java -jar " + SparkFiles.get("teste.jar");
+		//String external = "java -jar " + SparkFiles.get("teste.jar");
+		String external = "sh " + SparkFiles.get("teste.sh");
 		
 		System.out.println( external );
 		
