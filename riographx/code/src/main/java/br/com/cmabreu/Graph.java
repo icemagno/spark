@@ -67,7 +67,10 @@ public class Graph implements Serializable {
 	
 	@Override
 	public String toString() {
-		return g6 + "," + ordem + "," + grauminimo + "," + graumaximo;
+		return index_id + "," + function + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
+				bipartite+ "," +parameter_id+ "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
+				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
+				clickb+ "," +largestdegree+ "," +numedges;
 	}
 	
 	

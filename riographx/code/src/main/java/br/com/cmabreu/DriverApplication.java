@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
+import org.apache.spark.SparkFiles;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -29,14 +30,16 @@ public class DriverApplication implements Serializable {
 		// Inicialização...
 		SparkConf sparkConf = new SparkConf();
 		sparkConf.setAppName("Portal RioGraphX");
-		sparkConf.setMaster("local[*]");
+		//sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
 		int numCores = context.sc().defaultParallelism();
-		int numExecs = context.sc().getExecutorMemoryStatus().size();
-		System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
+		//int numExecs = context.sc().getExecutorMemoryStatus().size();
+		//System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
+		
+		context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.jar");
 		// ----------------------------------------------------------------------------------------------
 		
 		
@@ -70,7 +73,12 @@ public class DriverApplication implements Serializable {
 		// Quarto Passo do workflow
 		// Para cada elemento do RDD ...
 		
-		JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
+		String external = "java -jar " + SparkFiles.get("teste.jar");
+		
+		System.out.println( external );
+		
+		//JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
+		JavaRDD<String> output = partitionedRdd.pipe( external );
 		VoidFunction<String> f = new VoidFunction<String>() {
 			private static final long serialVersionUID = 1L;
 			@Override
