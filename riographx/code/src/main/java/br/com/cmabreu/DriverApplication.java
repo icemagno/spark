@@ -1,18 +1,16 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
-import java.util.Iterator;
 
 import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-
-import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -71,9 +69,17 @@ public class DriverApplication implements Serializable {
 		
 		// Quarto Passo do workflow
 		// Para cada elemento do RDD ...
-		partitionedRdd.pipe(command)
-		foreachGraph( partitionedRdd );
+		JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
 		
+		VoidFunction<String> f = new VoidFunction<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call(String arg0) throws Exception {
+				System.out.println("Output RDD: " + arg0 );
+			}
+		};
+		output.foreach(f);
 		
 		// TESTES ---------------------------------------------------------------------------------------
 		// Dataset<Row> repartRdd = graphs.repartition( numCores );
@@ -106,7 +112,7 @@ public class DriverApplication implements Serializable {
 		
 		repartRdd.foreachPartition( f );
 	}
-	*/
+
 	
 	private void foreachGraph( JavaPairRDD<String, Graph> theRdd ) {
 		VoidFunction <Tuple2<String, Graph>> f = new VoidFunction < Tuple2<String, Graph> >() {
@@ -142,7 +148,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	
+	*/
 	
 }
 
