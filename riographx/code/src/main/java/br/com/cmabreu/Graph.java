@@ -32,10 +32,6 @@ public class Graph implements Serializable {
 	private String largestdegree;	
 	private String numedges;
 	
-	public Graph() {
-		
-	}
-	
 	public Graph(Integer index_id, String function, String g6, Integer ordem, Integer grauminimo, Integer graumaximo,
 			Integer trianglefree, Integer conexo, Integer bipartite, Integer parameter_id, String caixa1,
 			String adjacency, String laplacian, String slaplacian, String allowdiscgraphs, String biptonly,
@@ -68,6 +64,11 @@ public class Graph implements Serializable {
 		this.largestdegree = largestdegree;
 		this.numedges = numedges;
 	}	
+	
+	@Override
+	public String toString() {
+		return g6 + "," + ordem + "," + grauminimo + "," + graumaximo;
+	}
 	
 	
 	public Integer getIndex_id() {

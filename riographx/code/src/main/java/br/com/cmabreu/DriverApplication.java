@@ -69,11 +69,10 @@ public class DriverApplication implements Serializable {
 		
 		// Quarto Passo do workflow
 		// Para cada elemento do RDD ...
-		JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
 		
+		JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
 		VoidFunction<String> f = new VoidFunction<String>() {
 			private static final long serialVersionUID = 1L;
-
 			@Override
 			public void call(String arg0) throws Exception {
 				System.out.println("Output RDD: " + arg0 );
@@ -81,11 +80,13 @@ public class DriverApplication implements Serializable {
 		};
 		output.foreach(f);
 		
+		
+		
 		// TESTES ---------------------------------------------------------------------------------------
 		// Dataset<Row> repartRdd = graphs.repartition( numCores );
 		// printDatasetPartitions( repartRdd );
 		// JavaPairRDD<String, Graph> parallelizedRdd = context.parallelizePairs( graphsPairRDD.collect() );
-		//printPairRddPartitions( partitionedRdd );
+		// printPairRddPartitions( partitionedRdd );
 
 		
 		// ----------------------------------------------------------------------------------------------
