@@ -17,7 +17,7 @@ import csv
 import mathchem
 
 import sys
-#sys.path.append("/etc/teapot/wrappers")
+
 
 from sage.graphs.graph_coloring import chromatic_number
 
