@@ -68,7 +68,7 @@ public class Step2 implements Serializable {
 						maxresults, adjacencyb, laplacianb, slaplacianb, chromatic,
 						chromaticb, click, clickb, largestdegree, numedges );
 				
-				
+				System.out.println( graph.toString() );
 				
 				String key = String.valueOf( row.getInt(2) ) + String.valueOf( row.getInt(3) ) /*+ String.valueOf( row.getInt(4) )*/;
 		        return new Tuple2<String, Graph>( key, graph );

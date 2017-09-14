@@ -1,6 +1,22 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.UUID;
+
+/*
+//Para EIGSOLVE se: optifunc like '%lambda%' or sp.optifunc like '%mu%' or sp.optifunc like '%q!_%'
+if ( function.contains("lambda") || function.contains("mu") || function.contains("q_") ) {
+	System.out.println(" > Executar EIGSOLVE");	
+}
+
+//Para GENI   se: optifunc like '%omega%' or sp.optifunc like '%chi%' or sp.optifunc like '%SIZE%' or sp.optifunc like '%d!_%'
+if ( function.contains("omega") || function.contains("chi") || function.contains("SIZE") || function.contains("d_") ) {
+	System.out.println(" > EXECUTAR GENI");
+	//  geni('/home/magno/riographx_data/','graphtest.g6','-a -b -c -d -e 3 -g');
+	// ./rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
+}
+
+*/
 
 public class Graph implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +47,13 @@ public class Graph implements Serializable {
 	private String clickb;	
 	private String largestdegree;	
 	private String numedges;
+
+	/* Estes não pertencem ao grafo. São para controle do workflow. */
+	private Integer runGeni;
+	private Integer runEigsolve;
+	private String serial;
+	// --------------------------------------------------------------
+	
 	
 	public Graph(Integer index_id, String function, String g6, Integer ordem, Integer grauminimo, Integer graumaximo,
 			Integer trianglefree, Integer conexo, Integer bipartite, Integer parameter_id, String caixa1,
@@ -63,6 +86,25 @@ public class Graph implements Serializable {
 		this.clickb = clickb;
 		this.largestdegree = largestdegree;
 		this.numedges = numedges;
+
+		// Já deixa registrado no próprio grafo se ele será passado para o GENI e/ou EIGSOLVE
+		// dependendo da função. Obviamente todos os grafos terão os mesmos valores, mas
+		// fica mais prático marcar aqui. Não tenho habilidade suficiente para shell scripts complexos.
+		// No futuro pode-se passar a condicional para o script que vai decidir a execução ("sage.sh").
+		this.runEigsolve = 0;
+		this.runGeni = 0;
+		if ( this.function.contains("lambda") || this.function.contains("mu") || this.function.contains("q_") ) {
+			this.runEigsolve = 1;	
+		}	
+		
+		if ( this.function.contains("omega") || this.function.contains("chi") || this.function.contains("SIZE") || this.function.contains("d_") ) {
+			this.runGeni = 1;
+			//  geni('/home/magno/riographx_data/','graphtest.g6','-a -b -c -d -e 3 -g');
+			// ./rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
+		}		
+		
+		this.serial = UUID.randomUUID().toString().replaceAll("-", "");
+		
 	}	
 	
 	@Override
@@ -70,7 +112,7 @@ public class Graph implements Serializable {
 		return index_id + "," + function + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
 				bipartite+ "," +parameter_id+ "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
 				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
-				clickb+ "," +largestdegree+ "," +numedges;
+				clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
 	}
 	
 	
@@ -231,7 +273,16 @@ public class Graph implements Serializable {
 		this.numedges = numedges;
 	}	
 	
-
+	public Integer getRunGeni() {
+		return runGeni;
+	}
 	
-
+	public Integer getRunEigsolve() {
+		return runEigsolve;
+	}
+	
+	public String getSerial() {
+		return serial;
+	}
+	
 }

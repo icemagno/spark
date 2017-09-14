@@ -4,11 +4,8 @@ import java.io.Serializable;
 
 import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
-import org.apache.spark.SparkFiles;
 import org.apache.spark.api.java.JavaPairRDD;
-import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -30,76 +27,68 @@ public class DriverApplication implements Serializable {
 		// Inicialização...
 		SparkConf sparkConf = new SparkConf();
 		sparkConf.setAppName("Portal RioGraphX");
-		//sparkConf.setMaster("local[*]");
+		sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
 		int numCores = context.sc().defaultParallelism();
-		//int numExecs = context.sc().getExecutorMemoryStatus().size();
-		//System.out.println( "Cores: " + numCores + "   Executors: " + numExecs );
 		
-		//context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.jar");
-		context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.sh");
+		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
+		// context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
 		// ----------------------------------------------------------------------------------------------
+
+		/**
+		 * 			EXECUÇÃO DO WORKFLOW
+		 **/
 		
 		
-		// Primeiro passo do workflow -------------------------------------------------------------------
+		/** 			Primeiro passo do workflow 												**/
 		// Coleta os grafos do banco de dados usando o indice da tabela de parametros
+		// ----------------------------------------------------------------------------------------------
 		Step1 stp1 = new Step1();
 		Dataset<Row> graphs = stp1.run( spark, indexParameter );
-
-		if ( graphs.count() == 0 ) {
-			System.out.println("Nenhum grafo encontrado para os parametros fornecidos, ou parametros nao encontrados com indice " + indexParameter + "." );
-			System.exit(0);
-		}		
 		// ----------------------------------------------------------------------------------------------
-		
 
-		// Segundo passo do workflow --------------------------------------------------------------------
+
+		/** 			Segundo passo do workflow 												**/
 		// Cria um Pair RDD para possibilitar a paralelização dos grafos usando uma chave agrupadora
+		// 		e também para criar objetos Java com os dados dos grafos. Evita a maipulação dos atributos 
+		// 		individualmente. Cada objeto Graph é identificado unicamente pelo atributo "index_id".
+		// ----------------------------------------------------------------------------------------------
 		Step2 stp2 = new Step2();
 		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
 		// ----------------------------------------------------------------------------------------------
 		
 		
-		
-		// Terceiro passo do workflow
+		/** 			Terceiro passo do workflow 												**/
 		// Particiona o RDD usando a chave como agrupador		
-		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( new HashPartitioner( 2 * numCores ) );
+		// ----------------------------------------------------------------------------------------------
+		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( 
+			new HashPartitioner( 2 * numCores ) 
+		);
 		// ----------------------------------------------------------------------------------------------
 
 		
 		
-		// Quarto Passo do workflow
-		// Para cada elemento do RDD ...
-		
-		//String external = "java -jar " + SparkFiles.get("teste.jar");
-		String external = "sh " + SparkFiles.get("teste.sh");
-		
-		System.out.println( external );
-		
-		//JavaRDD<String> output = partitionedRdd.pipe("java -jar /usr/lib/riographx/teste.jar");
-		JavaRDD<String> output = partitionedRdd.pipe( external );
-		VoidFunction<String> f = new VoidFunction<String>() {
-			private static final long serialVersionUID = 1L;
-			@Override
-			public void call(String arg0) throws Exception {
-				System.out.println("Output RDD: " + arg0 );
-			}
-		};
-		output.foreach(f);
-		
-		
-		
-		// TESTES ---------------------------------------------------------------------------------------
-		// Dataset<Row> repartRdd = graphs.repartition( numCores );
-		// printDatasetPartitions( repartRdd );
-		// JavaPairRDD<String, Graph> parallelizedRdd = context.parallelizePairs( graphsPairRDD.collect() );
-		// printPairRddPartitions( partitionedRdd );
-
-		
+		/** 			Quarto passo do workflow 												**/
+		// Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo "sage.sh"
+		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
+		// 		passados pelo usuário.
+		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
+		//Step4 stp4 = new Step4();
+		//JavaRDD<String> output = stp4.run(partitionedRdd);
+		// ----------------------------------------------------------------------------------------------
+		
+		
+		
+		/** 			Fim do workflow															**/
+
+		partitionedRdd.collect();
+		//List<String> fim = output.collect();
+		//System.out.println( fim.toString() );
+		
 		spark.stop();
 		context.close();
 	}

@@ -1,0 +1,9 @@
+182,\lambda_2 + \chi + \overline{\lambda_2},EV~w,6,3,5,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,51aa11c545434902adba0707419e0e7a
+183,\lambda_2 + \chi + \overline{\lambda_2},E]zo,6,3,4,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,ce53b3b3aad24cb2bbbca96fc3cf4357
+184,\lambda_2 + \chi + \overline{\lambda_2},E]zg,6,2,4,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,f6a8efee8cd24c038de5c5ecef76ec26
+185,\lambda_2 + \chi + \overline{\lambda_2},E]yw,6,3,4,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,f9e726ad0a82460f88d73bb3b9325bdc
+186,\lambda_2 + \chi + \overline{\lambda_2},E]zw,6,3,5,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,cec6f6eb8d624c02903e7ae5805f2cfb
+187,\lambda_2 + \chi + \overline{\lambda_2},E]~o,6,4,4,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,50af4d78577a46ada9e212d6ffa93f7c
+188,\lambda_2 + \chi + \overline{\lambda_2},E]~w,6,4,5,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,4a30bf30d16e49d7b37088b12b303e16
+189,\lambda_2 + \chi + \overline{\lambda_2},E^~w,6,4,5,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,3e23cf9660c94c3485b488584e822d42
+190,\lambda_2 + \chi + \overline{\lambda_2},E~~w,6,5,5,0,1,0,591,min,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,648692d3071649e5a7063128dc994325

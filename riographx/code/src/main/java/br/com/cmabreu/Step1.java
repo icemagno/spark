@@ -58,7 +58,8 @@ public class Step1 implements Serializable {
 				.option("user", "postgres")
 				.option("password", "admin")
 				.option("driver", "org.postgresql.Driver")
-				.load(); 		
+				.load();
+		
 		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
 		graphDatabaseTable.createOrReplaceTempView("select_graphs");
 
