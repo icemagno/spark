@@ -1,5 +1,6 @@
 package br.com.cmabreu;
 
+import java.io.File;
 import java.io.Serializable;
 
 import org.apache.spark.SparkFiles;
@@ -19,7 +20,14 @@ public class Step4 implements Serializable {
 
 	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd ) {
 		
-		String external = "sh " + SparkFiles.get("teste.sh");
+		String sageSh = SparkFiles.get("sage.sh");
+		File fil = new File(sageSh);
+		
+		if ( !fil.exists() ) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Arquivo sage.sh não existe.");
+		}
+		
+		String external = "sh " + SparkFiles.get("sage.sh");
 		JavaRDD<String> output = partitionedRdd.pipe( external );
 		
 		// Printa o RDD. Somente para testes....
