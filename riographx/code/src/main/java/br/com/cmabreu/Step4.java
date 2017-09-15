@@ -19,7 +19,7 @@ public class Step4 implements Serializable {
 
 	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd ) {
 		
-		String external = "sh " + SparkFiles.get("teste.sh");
+		String external = "sh " + SparkFiles.get("sage.sh");
 		JavaRDD<String> output = partitionedRdd.pipe( external );
 		
 		// Printa o RDD. Somente para testes....
