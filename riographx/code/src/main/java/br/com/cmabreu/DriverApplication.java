@@ -38,7 +38,8 @@ public class DriverApplication implements Serializable {
 		int numCores = context.sc().defaultParallelism();
 		
 		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
-		context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
+		//context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
+		context.sc().addFile("/home/magno/riographx/sage.sh");
 		// ----------------------------------------------------------------------------------------------
 
 		/**
@@ -84,7 +85,8 @@ public class DriverApplication implements Serializable {
 		//JavaRDD<String> output = stp4.run( partitionedRdd );
 		
 		String external = "sh " + SparkFiles.get("sage.sh");
-		JavaRDD<String> output = partitionedRdd.pipe( "sh /home/magno/riographx/sage.sh" );		
+		JavaRDD<String> output = partitionedRdd.pipe( external );		
+		
 		// ----------------------------------------------------------------------------------------------
 		
 		
