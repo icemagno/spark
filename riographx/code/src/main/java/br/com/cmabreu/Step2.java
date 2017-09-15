@@ -68,7 +68,7 @@ public class Step2 implements Serializable {
 						maxresults, adjacencyb, laplacianb, slaplacianb, chromatic,
 						chromaticb, click, clickb, largestdegree, numedges );
 				
-				String key = ordem + String.valueOf( grauminimo ) /*  String.valueOf( row.getInt(4) )  */;
+				String key = String.valueOf( ordem ) + String.valueOf( grauminimo ) /*  String.valueOf( row.getInt(4) )  */;
 		        return new Tuple2<String, Graph>( key, graph );
 		    }
 			
