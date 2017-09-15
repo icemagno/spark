@@ -109,11 +109,13 @@ public class Graph implements Serializable {
 	
 	@Override
 	public String toString() {
-		String result = index_id + "," + function + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
+		String result = index_id + "," + getFunction() + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
 				bipartite+ "," +parameter_id+ "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
 				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
 				clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
-		System.out.println( "Requesting result: " + result );
+		
+		
+		
 		return result;
 	}
 	
