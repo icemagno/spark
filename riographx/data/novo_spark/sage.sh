@@ -45,16 +45,9 @@ sage -c 'load("'"$workdir/geni.py"'");geni("'"$graphsdir/"'","'"$sourceg6"'","'"
 
 sage -c 'load("'"$workdir/Eigenvalue.py"'");Eigenvalue("'"$graphsdir/"'","'"$sourceg6"'","'"-a -q -l -x -y -z"'")'
 
-
-function_new=${function//[[:blank:]]/}
-java -jar $workdir/evaluate.jar $graphsdir/ $function_new $parameter_id $maxresults $caixa1 $g6 $ordem
-#java -jar $workdir/evaluate.jar 
-
-echo "tudo,ok,com,$line"
-
-
-
-
+#function_new=${function//[[:blank:]]/}
+java -jar $workdir/evaluate.jar "$graphsdir/" "$function" "$index_id" "$maxresults" "$caixa1" "$g6" "$ordem" "$grauminimo" "$graumaximo"
+ 
 #	return index_id + "," + function + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
 #		bipartite+ "," +parameter_id+ "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
 #		biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
