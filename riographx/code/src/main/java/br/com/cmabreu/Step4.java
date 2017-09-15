@@ -1,6 +1,5 @@
 package br.com.cmabreu;
 
-import java.io.File;
 import java.io.Serializable;
 
 import org.apache.spark.SparkFiles;
@@ -19,15 +18,6 @@ public class Step4 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd ) {
-		
-		String sageSh = SparkFiles.get("sage.sh");
-		File fil = new File(sageSh);
-		
-		if ( !fil.exists() ) {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Arquivo sage.sh não existe.");
-		} else {
-			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Sage.sh existe !! .");
-		}
 		
 		String external = "sh " + SparkFiles.get("sage.sh");
 		JavaRDD<String> output = partitionedRdd.pipe( external );

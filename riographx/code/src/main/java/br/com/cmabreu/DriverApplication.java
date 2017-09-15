@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
+import org.apache.spark.SparkFiles;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -38,6 +39,7 @@ public class DriverApplication implements Serializable {
 		
 		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
 		context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
+		context.sc().addFile("hdfs://sparkmaster:9000/riographx/teste.sh");
 		// ----------------------------------------------------------------------------------------------
 
 		/**
@@ -79,8 +81,12 @@ public class DriverApplication implements Serializable {
 		// 		passados pelo usuário.
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
-		Step4 stp4 = new Step4();
-		JavaRDD<String> output = stp4.run( partitionedRdd );
+		//Step4 stp4 = new Step4();
+		//JavaRDD<String> output = stp4.run( partitionedRdd );
+		
+		String external = "sh " + SparkFiles.get("teste.sh");
+		JavaRDD<String> output = partitionedRdd.pipe( external );		
+		
 		// ----------------------------------------------------------------------------------------------
 		
 		
