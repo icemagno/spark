@@ -1,10 +1,12 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
+import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
@@ -27,7 +29,7 @@ public class DriverApplication implements Serializable {
 		// Inicialização...
 		SparkConf sparkConf = new SparkConf();
 		sparkConf.setAppName("Portal RioGraphX");
-		sparkConf.setMaster("local[*]");
+		//sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
@@ -35,7 +37,7 @@ public class DriverApplication implements Serializable {
 		int numCores = context.sc().defaultParallelism();
 		
 		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
-		// context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
+		context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
 		// ----------------------------------------------------------------------------------------------
 
 		/**
@@ -77,17 +79,16 @@ public class DriverApplication implements Serializable {
 		// 		passados pelo usuário.
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
-		//Step4 stp4 = new Step4();
-		//JavaRDD<String> output = stp4.run(partitionedRdd);
+		Step4 stp4 = new Step4();
+		JavaRDD<String> output = stp4.run(partitionedRdd);
 		// ----------------------------------------------------------------------------------------------
 		
 		
-		
 		/** 			Fim do workflow															**/
+		List<String> fim = output.collect();
+		System.out.println( fim.toString() );
 
-		partitionedRdd.collect();
-		//List<String> fim = output.collect();
-		//System.out.println( fim.toString() );
+		
 		
 		spark.stop();
 		context.close();

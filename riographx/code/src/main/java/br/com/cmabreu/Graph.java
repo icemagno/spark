@@ -123,7 +123,7 @@ public class Graph implements Serializable {
 		this.index_id = index_id;
 	}
 	public String getFunction() {
-		return function;
+		return function.replaceAll("\\\\", "\\\\\\\\");
 	}
 	public void setFunction(String function) {
 		this.function = function;
