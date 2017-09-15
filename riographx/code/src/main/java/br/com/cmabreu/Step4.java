@@ -25,6 +25,8 @@ public class Step4 implements Serializable {
 		
 		if ( !fil.exists() ) {
 			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Arquivo sage.sh não existe.");
+		} else {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   Sage.sh existe !! .");
 		}
 		
 		String external = "sh " + SparkFiles.get("sage.sh");
