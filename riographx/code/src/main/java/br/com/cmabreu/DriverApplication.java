@@ -92,8 +92,10 @@ public class DriverApplication implements Serializable {
 		
 		/** 			Fim do workflow															**/
 		List<String> fim = output.collect();
-		System.out.println( fim.toString() );
-
+		
+		for( String ss : fim ) {
+			System.out.println( ss );
+		}
 		
 		
 		spark.stop();
