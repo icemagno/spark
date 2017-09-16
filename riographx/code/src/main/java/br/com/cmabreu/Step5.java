@@ -23,11 +23,11 @@ public class Step5 implements Serializable {
 				String[] results = functionResult.split(",");
 				String key = results[0];
 				String value = results[1];
-				
+				/*
 				List<Graph> graphsByKey = grafos.lookup(key);
 				Graph graph = graphsByKey.get(0);
 				graph.setFunctionResult(value);
-				
+				*/
 				return new Tuple2<String, Graph>( key, graph );
 			}
 			
