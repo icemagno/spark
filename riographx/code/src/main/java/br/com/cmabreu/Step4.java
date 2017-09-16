@@ -19,7 +19,7 @@ public class Step4 implements Serializable {
 
 	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd ) {
 		
-		String external = "/usr/lib/riographx/sage.sh";
+		String external = "/usr/lib/riographx/echo.sh";
 		JavaRDD<String> output = partitionedRdd.pipe( external );	
 		
 		// Printa o RDD. Somente para testes....
