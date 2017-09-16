@@ -80,19 +80,14 @@ public class DriverApplication implements Serializable {
 		// 		passados pelo usuário.
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
-		//Step4 stp4 = new Step4();
-		//JavaRDD<String> output = stp4.run( partitionedRdd );
-		
-		//String external = SparkFiles.get("sage.sh");
-		String external = "/usr/lib/riographx/sage.sh";
-		JavaRDD<String> output = partitionedRdd.pipe( external );		
-		
+		Step4 stp4 = new Step4();
+		JavaRDD<String> output = stp4.run( partitionedRdd );
 		// ----------------------------------------------------------------------------------------------
+
 		
 		
 		/** 			Fim do workflow															**/
 		List<String> fim = output.collect();
-		
 		for( String ss : fim ) {
 			System.out.println( ss );
 		}
