@@ -99,8 +99,6 @@ public class Graph implements Serializable {
 		
 		if ( this.function.contains("omega") || this.function.contains("chi") || this.function.contains("SIZE") || this.function.contains("d_") ) {
 			this.runGeni = 1;
-			//  geni('/home/magno/riographx_data/','graphtest.g6','-a -b -c -d -e 3 -g');
-			// ./rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
 		}		
 		
 		this.serial = UUID.randomUUID().toString().replaceAll("-", "");
@@ -114,7 +112,7 @@ public class Graph implements Serializable {
 				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
 				clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
 		
-		
+		System.out.println("Solicitado grafo " + result);
 		
 		return result;
 	}
