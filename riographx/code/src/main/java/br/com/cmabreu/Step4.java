@@ -17,10 +17,11 @@ import org.apache.spark.api.java.function.VoidFunction;
 public class Step4 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd ) {
+	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd, String workDir, String sageScript ) {
 		
-		String external = "/usr/lib/riographx/echo.sh";
-		JavaRDD<String> output = partitionedRdd.pipe( external );	
+		String external = workDir + "/" + sageScript;
+		
+		JavaRDD<String> output = partitionedRdd.pipe( external.replace("//", "/") );	
 		
 		// Printa o RDD. Somente para testes....
 		VoidFunction<String> f = new VoidFunction<String>() {

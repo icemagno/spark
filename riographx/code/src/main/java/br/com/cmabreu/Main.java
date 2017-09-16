@@ -10,9 +10,11 @@ public class Main {
 			System.exit(0);
 		}
 		String indexParameter = String.valueOf( args[0] );
+		String workDir = String.valueOf( args[1] );
+		String sageScript = String.valueOf( args[2] );
 
 		DriverApplication da = new DriverApplication();
-		da.run(indexParameter);
+		da.run(indexParameter, workDir, sageScript);
 		
 	}	
 

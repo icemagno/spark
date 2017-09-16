@@ -15,7 +15,7 @@ import org.apache.spark.sql.SparkSession;
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public void run( String indexParameter ) {
+	public void run( String indexParameter, String workDir, String sageScript ) {
 		
 		// Carrega o driver PostgreSQL
 		try {
@@ -81,7 +81,7 @@ public class DriverApplication implements Serializable {
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
 		Step4 stp4 = new Step4();
-		JavaRDD<String> output = stp4.run( partitionedRdd );
+		JavaRDD<String> output = stp4.run( partitionedRdd, workDir, sageScript );
 		// ----------------------------------------------------------------------------------------------
 
 		
