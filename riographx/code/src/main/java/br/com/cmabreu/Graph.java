@@ -54,6 +54,13 @@ public class Graph implements Serializable {
 	private String serial;
 	// --------------------------------------------------------------
 	
+
+	// Este só é preenchido quando a função é avaliada (depois do pipe() )
+	private String functionResult;
+	
+	public Graph() {
+		super();
+	}
 	
 	public Graph(Integer index_id, String function, String g6, Integer ordem, Integer grauminimo, Integer graumaximo,
 			Integer trianglefree, Integer conexo, Integer bipartite, Integer parameter_id, String caixa1,
@@ -112,7 +119,7 @@ public class Graph implements Serializable {
 				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
 				clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
 		
-		System.out.println("Solicitado grafo " + result);
+		//System.out.println("Solicitado grafo " + result);
 		
 		return result;
 	}
@@ -285,6 +292,14 @@ public class Graph implements Serializable {
 	
 	public String getSerial() {
 		return serial;
+	}
+	
+	public void setFunctionResult(String functionResult) {
+		this.functionResult = functionResult;
+	}
+	
+	public String getFunctionResult() {
+		return functionResult;
 	}
 	
 }

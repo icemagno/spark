@@ -12,6 +12,8 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import scala.Tuple2;
+
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -28,13 +30,14 @@ public class DriverApplication implements Serializable {
 
 		// Inicialização...
 		SparkConf sparkConf = new SparkConf();
-		sparkConf.setAppName("Portal RioGraphX");
+		sparkConf.setAppName("Portal RioGraphX v1.0");
 		//sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
-		int numCores = context.sc().defaultParallelism();
+		//int numCores = context.sc().defaultParallelism();
+		int numWorkers = context.sc().executorMemory();
 		
 		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
 		// context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
@@ -60,7 +63,7 @@ public class DriverApplication implements Serializable {
 		// 		individualmente. Cada objeto Graph é identificado unicamente pelo atributo "index_id".
 		// ----------------------------------------------------------------------------------------------
 		Step2 stp2 = new Step2();
-		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
+		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs ).cache();
 		// ----------------------------------------------------------------------------------------------
 		
 		
@@ -68,7 +71,7 @@ public class DriverApplication implements Serializable {
 		// Particiona o RDD usando a chave como agrupador		
 		// ----------------------------------------------------------------------------------------------
 		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( 
-			new HashPartitioner( 2 * numCores ) 
+			new HashPartitioner( numWorkers -1 ) 
 		);
 		// ----------------------------------------------------------------------------------------------
 
@@ -81,15 +84,24 @@ public class DriverApplication implements Serializable {
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
 		Step4 stp4 = new Step4();
-		JavaRDD<String> output = stp4.run( partitionedRdd, workDir, sageScript );
+		JavaRDD<String> functionResults = stp4.run( partitionedRdd, workDir, sageScript );
 		// ----------------------------------------------------------------------------------------------
 
 		
 		
+		/** 			Quinto passo do workflow 												**/
+		// Insere o resultado da função de avaliação no objeto do grafo já existente no RDD
+		// graphsPairRDD 
+		Step5 stp5 = new Step5();
+		JavaPairRDD<String, Graph> results = stp5.run(functionResults, graphsPairRDD);
+		// ----------------------------------------------------------------------------------------------
+		
+		
+		
 		/** 			Fim do workflow															**/
-		List<String> fim = output.collect();
-		for( String ss : fim ) {
-			System.out.println( ss );
+		List< Tuple2<String, Graph> > fim = results.collect();
+		for( Tuple2<String, Graph> ss : fim ) {
+			System.out.println( ss._2.getG6() + " = " + ss._2.getFunctionResult() );
 		}
 		
 		

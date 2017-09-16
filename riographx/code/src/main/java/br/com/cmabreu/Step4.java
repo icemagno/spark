@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.function.VoidFunction;
 
 /** 			Quarto passo do workflow 												**/
 // Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo "sage.sh"
@@ -24,6 +23,7 @@ public class Step4 implements Serializable {
 		JavaRDD<String> output = partitionedRdd.pipe( external.replace("//", "/") );	
 		
 		// Printa o RDD. Somente para testes....
+		/*
 		VoidFunction<String> f = new VoidFunction<String>() {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -32,6 +32,7 @@ public class Step4 implements Serializable {
 			}
 		};
 		output.foreach(f);		
+		*/
 		
 		return output;
 	}
