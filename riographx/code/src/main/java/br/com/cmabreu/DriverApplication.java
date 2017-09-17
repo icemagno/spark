@@ -63,7 +63,7 @@ public class DriverApplication implements Serializable {
 		// 		individualmente. Cada objeto Graph é identificado unicamente pelo atributo "index_id".
 		// ----------------------------------------------------------------------------------------------
 		Step2 stp2 = new Step2();
-		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs ).cache();
+		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
 		// ----------------------------------------------------------------------------------------------
 		
 		
