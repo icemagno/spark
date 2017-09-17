@@ -1,0 +1,1 @@
+spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591 /usr/lib/riographx sage.sh

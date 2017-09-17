@@ -43,6 +43,8 @@ while read tline; do
 	graphsdir="$workdir/grafos/$serial"
 	sourceg6="$graphsdir/graph.g6"
 
+	testline="$workdir/textline.txt"
+	echo "$line" >> "$testline"
 
 	mkdir -p "$graphsdir"
 
@@ -52,9 +54,8 @@ while read tline; do
 
 	sage -c 'load("'"$workdir/Eigenvalue.py"'");Eigenvalue("'"$graphsdir/"'","'"$sourceg6"'","'"-a -q -l -x -y -z"'")'
 
-	java -jar "$workdir/evaluate.jar" "$graphsdir/" "$line" 
-
-	rm -r "$graphsdir" 
+	java -jar "$workdir/evaluate.jar" "$graphsdir/" "$function" "$index_id" "$maxresults" "$caixa1" "$g6" "$ordem" "$grauminimo" "$graumaximo" "$rddkey"
+ 
 
 done
 
