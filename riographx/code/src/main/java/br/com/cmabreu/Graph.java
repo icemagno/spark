@@ -302,4 +302,8 @@ public class Graph implements Serializable {
 		return functionResult;
 	}
 	
+	public void setSerial(String serial) {
+		this.serial = serial;
+	}
+	
 }

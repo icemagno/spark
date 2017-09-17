@@ -1,15 +1,13 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
-import java.util.Iterator;
-import java.util.List;
 
 import org.apache.spark.HashPartitioner;
+import org.apache.spark.Partitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -92,21 +90,73 @@ public class DriverApplication implements Serializable {
 		
 		
 		/** 			Quinto passo do workflow 												**/
-		// Insere o resultado da função de avaliação no objeto do grafo já existente no RDD
-		// graphsPairRDD 
+		// Insere o resultado da função de avaliação no objeto do grafo  
 		Step5 stp5 = new Step5();
-		JavaPairRDD<String, Graph> results = stp5.run(functionResults);
+		JavaPairRDD<Integer, Graph> results = stp5.run(functionResults);
 		// ----------------------------------------------------------------------------------------------
+
 		
-		printPairRddPartitions( results );
+		
+		
+		/** 			Sexto passo do workflow 												**/
+		// Agrupa o RDD usando a ordem do grafo (chave do RDD) como indice		
+		// ----------------------------------------------------------------------------------------------
+		JavaPairRDD<Integer, Iterable<Graph> > agrupadoPorOrdemRdd = results.groupByKey( 
+			new HashPartitioner( numWorkers -1 ) 
+		);
+		// ----------------------------------------------------------------------------------------------		
+		
+		
+		
+		
+		
+		final int partitions = agrupadoPorOrdemRdd.partitions().size();
+		Partitioner pp = new Partitioner() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public int getPartition(Object obj) {
+				Tuple2<Integer, Graph> group = (Tuple2<Integer, Graph>) obj;
+				Float value = Float.valueOf( group._2.getFunctionResult() );
+				return value % partitions;
+			}
+
+			@Override
+			public int numPartitions() {
+				 return partitions;
+			}
+			
+		};
+		
+		
+		agrupadoPorOrdemRdd.repartitionAndSortWithinPartitions( pp );
+		
+		/*		
+				
+		insert into select_out ( id_instance, id_experiment, id_activity, optifunc, evaluatedvalue, maxresults, caixa1, gorder, function, paramid, grafo ) 
+			select  optifunc, evaluatedvalue, maxresults, caixa1, gorder, function, paramid, grafo from
+			( WITH l AS 
+				( SELECT CASE WHEN caixa1 = 'min' THEN maxresults ELSE 0 END AS lim_a, CASE WHEN caixa1 = 'max' THEN maxresults ELSE 0 END AS lim_d FROM 
+					evaluate_out where id_experiment = %ID_EXP% LIMIT 1 )
+				( select * from ( select eo.*, sp.id_instance, row_number() over ( partition by eo.gorder order by CAST( eo.evaluatedvalue as float) asc) 
+					as rownum from evaluate_out eo join spectral_parameters sp on sp.id_instance = eo.paramid and sp.gorder::text = eo.gorder::text where 
+					eo.id_experiment = %ID_EXP% ) tmp where rownum <= ( SELECT lim_a FROM l ) ) union all ( select * from ( select eo.*, sp.id_instance, 
+					row_number() over (partition by eo.gorder order by CAST(eo.evaluatedvalue as float) desc) as rownum from evaluate_out eo join 
+					spectral_parameters sp on sp.id_instance = eo.paramid and sp.gorder::text = eo.gorder::text where eo.id_experiment = %ID_EXP% ) 
+					tmp where rownum <= (SELECT lim_d FROM l) ) ) as t1 where id_experiment = %ID_EXP%  
+				
+		*/		
+
+		
+		
+		
 		
 		/** 			Fim do workflow															**/
-		List< Tuple2<String, Graph> > fim = results.collect();
-		/*
-		for( Tuple2<String, Graph> ss : fim ) {
-			System.out.println( ss._2.getG6() + " = " + ss._2.getFunctionResult() );
-		}
-		*/
+		//List< Tuple2<Integer, Graph> > fim = results.collect();
+		//for( Tuple2<Integer, Graph> ss : fim ) {
+		//	System.out.println( ( (Graph) ss._2 ).toString() );
+		//}
+		
 		
 		
 		spark.stop();
@@ -148,6 +198,8 @@ public class DriverApplication implements Serializable {
 		
 	}
 	*/
+	
+	/*
 	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
@@ -168,7 +220,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	
+	*/
 	
 }
 
