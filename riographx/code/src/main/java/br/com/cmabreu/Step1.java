@@ -64,7 +64,7 @@ public class Step1 implements Serializable {
 		graphDatabaseTable.createOrReplaceTempView("select_graphs");
 
 		// Seleciona os grafos de acordo com os parametros do usuario
-		String sql = "select * from select_graphs where parameter_id = " + indexParameter + " limit 2"; 			
+		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 
 		return graphs;
