@@ -1,7 +1,6 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
-import java.util.List;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -13,7 +12,7 @@ public class Step5 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	public JavaPairRDD<String, Graph> run( JavaRDD<String> functionResults, JavaPairRDD<String, Graph> grafos ) {
+	public JavaPairRDD<String, Graph> run( JavaRDD<String> functionResults ) {
 		
 		PairFunction<String, String, Graph> pairFunction = new PairFunction<String, String, Graph>() {
 			private static final long serialVersionUID = 1L;
@@ -28,6 +27,11 @@ public class Step5 implements Serializable {
 				Graph graph = graphsByKey.get(0);
 				graph.setFunctionResult(value);
 				*/
+				
+				Graph graph = new Graph();
+				graph.setG6( key );
+				graph.setFunctionResult( value );
+				
 				return new Tuple2<String, Graph>( key, graph );
 			}
 			

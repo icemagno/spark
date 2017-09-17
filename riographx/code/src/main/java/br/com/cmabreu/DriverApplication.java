@@ -93,7 +93,7 @@ public class DriverApplication implements Serializable {
 		// Insere o resultado da função de avaliação no objeto do grafo já existente no RDD
 		// graphsPairRDD 
 		Step5 stp5 = new Step5();
-		JavaPairRDD<String, Graph> results = stp5.run(functionResults, graphsPairRDD);
+		JavaPairRDD<String, Graph> results = stp5.run(functionResults);
 		// ----------------------------------------------------------------------------------------------
 		
 		
