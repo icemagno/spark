@@ -1,6 +1,7 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.spark.HashPartitioner;
@@ -8,6 +9,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -96,13 +98,15 @@ public class DriverApplication implements Serializable {
 		JavaPairRDD<String, Graph> results = stp5.run(functionResults);
 		// ----------------------------------------------------------------------------------------------
 		
-		
+		printPairRddPartitions( results );
 		
 		/** 			Fim do workflow															**/
 		List< Tuple2<String, Graph> > fim = results.collect();
+		/*
 		for( Tuple2<String, Graph> ss : fim ) {
 			System.out.println( ss._2.getG6() + " = " + ss._2.getFunctionResult() );
 		}
+		*/
 		
 		
 		spark.stop();
@@ -143,7 +147,7 @@ public class DriverApplication implements Serializable {
 		
 		
 	}
-	
+	*/
 	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
@@ -164,7 +168,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	*/
+	
 	
 }
 

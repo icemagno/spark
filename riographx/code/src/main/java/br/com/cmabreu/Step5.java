@@ -22,8 +22,6 @@ public class Step5 implements Serializable {
 				String[] results = functionResult.split(",");
 				String key = results[0];
 				String value = results[1];
-
-				System.out.println( functionResult );
 				
 				Graph graph = new Graph();
 				graph.setG6( key );
