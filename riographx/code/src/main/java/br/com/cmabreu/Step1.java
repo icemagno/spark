@@ -63,6 +63,13 @@ public class Step1 implements Serializable {
 		SQLContext graphDatabaseContext = graphDatabaseTable.sqlContext();
 		graphDatabaseTable.createOrReplaceTempView("select_graphs");
 
+		
+		os parametros eram agrupados pelo experiment_id podendo diferenciar na faixa de 
+		ordem ( varia entre um maximo e um minimo) então vão entrar mais de um parametro 
+		por vez...
+		
+		
+		
 		// Seleciona os grafos de acordo com os parametros do usuario
 		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);

@@ -24,7 +24,7 @@ public class Step4 implements Serializable {
 		JavaRDD<String> output = partitionedRdd.pipe( external.replace("//", "/") );	
 		
 		// Printa o RDD. Somente para testes....
-		
+		/*
 		VoidFunction<String> f = new VoidFunction<String>() {
 			private static final long serialVersionUID = 1L;
 			@Override
@@ -33,7 +33,7 @@ public class Step4 implements Serializable {
 			}
 		};
 		output.foreach(f);		
-		
+		*/
 		
 		return output;
 	}

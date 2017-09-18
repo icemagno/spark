@@ -29,10 +29,9 @@ public class Step6 implements Serializable {
 				public int compare(Graph paramT1, Graph paramT2) {
 			        if (paramT1 == null) {
 			            if (paramT2 == null) {
-			                return 0; // Both students are null
+			                return 0; 
 			            } else {
-			                return -1; // paramT1 is NULL, so put paramT1 in the end of
-			                // the sorted list
+			                return -1; 
 			            }
 			        } else {
 			            if (paramT2 == null) {
