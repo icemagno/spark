@@ -1,13 +1,15 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
 import org.apache.spark.HashPartitioner;
-import org.apache.spark.Partitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
@@ -107,29 +109,13 @@ public class DriverApplication implements Serializable {
 		// ----------------------------------------------------------------------------------------------		
 		
 		
-		
-		
-		
-		final int partitions = agrupadoPorOrdemRdd.partitions().size();
-		Partitioner pp = new Partitioner() {
-			private static final long serialVersionUID = 1L;
 
-			@Override
-			public int getPartition(Object obj) {
-				Tuple2<Integer, Graph> group = (Tuple2<Integer, Graph>) obj;
-				Float value = Float.valueOf( group._2.getFunctionResult() );
-				return value % partitions;
-			}
-
-			@Override
-			public int numPartitions() {
-				 return partitions;
-			}
-			
-		};
 		
+		Step6 stp6 = new Step6();
+		JavaPairRDD<Integer, List<Graph> > temp = stp6.run( agrupadoPorOrdemRdd );
 		
-		agrupadoPorOrdemRdd.repartitionAndSortWithinPartitions( pp );
+		printEvaluatedRDD( temp );
+		
 		
 		/*		
 				
@@ -163,6 +149,59 @@ public class DriverApplication implements Serializable {
 		context.close();
 	}
 
+
+	
+	private void printEvaluatedRDD( JavaPairRDD<Integer, List<Graph> > theRdd ) {
+		
+		VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > > f = new VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > >() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call( Iterator< Tuple2<Integer, List<Graph>> > arg0 ) throws Exception {
+				System.out.println("------------   NEW PARTITION --------------------------");
+				
+				while( arg0.hasNext() ) {
+					Tuple2<Integer, List<Graph> > tuple = arg0.next();
+					for( Graph grafo : tuple._2 ) {
+		                System.out.println( "Ordem: " + tuple._1 + " Valor: " + grafo.getFunctionResult() );
+					}
+	            }
+				
+			}
+			
+		};
+		theRdd.foreachPartition(f);
+		
+	}
+	
+	
+	
+	/*
+	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
+		
+		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call( Iterator< Tuple2<String, Graph> > arg0 ) throws Exception {
+				System.out.println("--------------------------------------");
+				
+				while( arg0.hasNext() ) {
+					Tuple2<String, Graph> tuple = arg0.next();
+	                System.out.println( tuple._1 + "  " + tuple._2.getG6() );
+	            }
+				
+			}
+			
+		};
+		theRdd.foreachPartition(f);
+		
+	}
+	*/
+	
+	
+	
+	
 	/*
 	private void printDatasetPartitions( Dataset<Row> repartRdd ){
 		
@@ -199,28 +238,7 @@ public class DriverApplication implements Serializable {
 	}
 	*/
 	
-	/*
-	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
-		
-		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void call( Iterator< Tuple2<String, Graph> > arg0 ) throws Exception {
-				System.out.println("--------------------------------------");
-				
-				while( arg0.hasNext() ) {
-					Tuple2<String, Graph> tuple = arg0.next();
-	                System.out.println( tuple._1 + "  " + tuple._2.getG6() );
-	            }
-				
-			}
-			
-		};
-		theRdd.foreachPartition(f);
-		
-	}
-	*/
+	
 	
 }
 

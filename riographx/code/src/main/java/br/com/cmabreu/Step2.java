@@ -26,7 +26,6 @@ import scala.Tuple2;
 public class Step2 implements Serializable {
 	private static final long serialVersionUID = 5L;
 	
-	
 	public JavaPairRDD<String, Graph> run( Dataset<Row> graphs ) {
 		
 		PairFunction<Row, String, Graph> pairFunction = new PairFunction<Row, String, Graph>() {
