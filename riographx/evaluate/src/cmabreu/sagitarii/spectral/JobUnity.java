@@ -27,6 +27,10 @@ public class JobUnity {
 	private String kLargestDegree;
 	private String numEdges;
 
+	private String grauMin;
+	private String grauMax;
+	private String rddKey;
+	
 	public String getGrafo() {
 		return grafo;
 	}
@@ -235,4 +239,30 @@ public class JobUnity {
 	public String getOmegaBar() {
 		return omegaBar;
 	}
+
+	public void setGrauMin(String grauMin ) {
+		this.grauMin = grauMin;
+		
+	}
+	
+	public String getGrauMin() {
+		return grauMin;
+	}
+
+	public void setGrauMax(String grauMax) {
+		this.grauMax = grauMax;		
+	}
+
+	public void setRddKey(String rddKey) {
+		this.rddKey = rddKey;
+	}
+	
+	public String getGrauMax() {
+		return grauMax;
+	}
+	
+	public String getRddKey() {
+		return rddKey;
+	}
+	
 }

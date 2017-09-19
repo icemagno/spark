@@ -2,23 +2,19 @@ package cmabreu.sagitarii.spectral;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import br.cefetrj.parser.FormulaEvaluator;
 
 public class Main {
-	private static List<String> outputData = new ArrayList<String>();
 	private static String sourceFolder;
+	private static String LINE_PARAMETERS;
 
 	public static FunctionResult evaluateOptimizationFunction(EvaluationInfo evalInfo) {
 
 		String optimizationFunction = evalInfo.optimizationFunction;
-		System.out.println("Original optimization function: " + optimizationFunction);
-
 		String tmpStr;
 
 		int order = Integer.valueOf( evalInfo.gorder );
@@ -29,80 +25,81 @@ public class Main {
 	
 				tmpStr = "\\overline{q_" + Integer.toString(i + 1) + "}";
 				if (evalInfo.valuesSgnlapBars.length > 0) {
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesSgnlapBars[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesSgnlapBars[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr,	evalInfo.valuesSgnlapBars[index].toString());
 				}
 	
 				tmpStr = "\\overline{\\mu_" + Integer.toString(i + 1) + "}";
 				if (evalInfo.valuesLapBars.length > 0) {
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesLapBars[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesLapBars[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr, evalInfo.valuesLapBars[index].toString());
 				}
 	
 				tmpStr = "\\overline{\\lambda_" + Integer.toString(i + 1) + "}";
 				if (evalInfo.valuesAdjBars.length > 0) {
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesAdjBars[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesAdjBars[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr,	evalInfo.valuesAdjBars[index].toString());			
 				}
 				
 				tmpStr = "q_" + Integer.toString(i + 1);
 				if (evalInfo.valuesSgnlaps.length > 0) {
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesSgnlaps[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesSgnlaps[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr, "" + evalInfo.valuesSgnlaps[index]);
 				}
 	
 				tmpStr = "\\mu_" + Integer.toString(i + 1);
 				if (evalInfo.valuesLaps.length > 0) {
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesLaps[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesLaps[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr, "" + evalInfo.valuesLaps[index]);
 				}
 	
 				tmpStr = "\\lambda_" + Integer.toString(i + 1);
 				if (evalInfo.valuesAdjs.length > 0) { 
-					System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesAdjs[index].toString() );
+					//System.out.println("replacing " + tmpStr + " by " + evalInfo.valuesAdjs[index].toString() );
 					optimizationFunction = optimizationFunction.replace(tmpStr, "" + evalInfo.valuesAdjs[index]);
 				}
 			}
 		}
+		
 		tmpStr = "\\overline{\\chi}";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.valueChiAdjBar );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.valueChiAdjBar );
 			optimizationFunction = optimizationFunction.replace(tmpStr, evalInfo.valueChiAdjBar);
 		} catch ( Exception ignored ) { }
 
 		tmpStr = "\\chi";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.valueChiAdj );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.valueChiAdj );
 			optimizationFunction = optimizationFunction.replace(tmpStr, evalInfo.valueChiAdj);
 		} catch ( Exception ignored ) { }
 
 		tmpStr = "\\overline{\\omega}";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.valueOmegaAdjBar );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.valueOmegaAdjBar );
 			optimizationFunction = optimizationFunction.replace(tmpStr,	evalInfo.valueOmegaAdjBar);
 		} catch ( Exception ignored ) { }
 
 		tmpStr = "\\omega";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.valueOmegaAdj );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.valueOmegaAdj );
 			optimizationFunction = optimizationFunction.replace(tmpStr, evalInfo.valueOmegaAdj);
 		} catch ( Exception ignored ) { }
 
 
 		tmpStr = "ORDER";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.gorder );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.gorder );
 			optimizationFunction = optimizationFunction.replace(tmpStr, "" + evalInfo.gorder);
 		} catch ( Exception ignored ) { }
 		
 		
 		try {
-			System.out.println("Largest Degree Vector: " + evalInfo.kLargestDegree );
+			//System.out.println("Largest Degree Vector: " + evalInfo.kLargestDegree );
 			String[] degrees = evalInfo.kLargestDegree.trim().split("[|]");
 			int x = 1;
 			for ( String degree : degrees ) {
 				tmpStr = "d_" + x;
-				System.out.println("replacing " + tmpStr + " by " + degree );
+				//System.out.println("replacing " + tmpStr + " by " + degree );
 				optimizationFunction = optimizationFunction.replaceAll(tmpStr, degree);
 				x++;
 			}
@@ -111,11 +108,11 @@ public class Main {
 
 		tmpStr = "SIZE";
 		try {
-			System.out.println("replacing " + tmpStr + " by " + evalInfo.numEdges );
+			//System.out.println("replacing " + tmpStr + " by " + evalInfo.numEdges );
 			optimizationFunction = optimizationFunction.replace(tmpStr, "" + evalInfo.numEdges);
 		} catch ( Exception ignored ) { }
 			
-		System.out.println("optimization function: " + optimizationFunction);
+		//System.out.println("optimization function: " + optimizationFunction);
 
 		FunctionResult result = new FunctionResult();
 		result.evaluatedValue = 0.0;
@@ -126,10 +123,8 @@ public class Main {
 			FormulaEvaluator eval = new FormulaEvaluator(inputStream);
 			result.evaluatedValue = eval.evaluate();
 		} catch (Throwable e) {
-			System.out.println("FUNCTION ERROR: " + e.getMessage() );
+			//System.out.println("FUNCTION ERROR: " + e.getMessage() );
 		}
-
-		System.out.println("optimization function result: "	+ result.evaluatedValue);
 
 		return result;
 
@@ -149,7 +144,7 @@ public class Main {
 		if (job.isAdj()) {
 			String adjFile = sourceFolder + job.getAdjFile();
 			convertedAdj = CsvReader.readFile(adjFile);
-			System.out.println( "Adj size: " + convertedAdj.size() );
+			//System.out.println( "Adj size: " + convertedAdj.size() );
 		}
 
 		if (job.isLap()) {
@@ -217,82 +212,95 @@ public class Main {
 						job.getOmegaBar(),
 						job.getGorder() ) );
 
+		System.out.println( LINE_PARAMETERS + "," + evaluatedValue.evaluatedValue );		
 		
-		outputData.add("optifunc,paramid,evaluatedvalue,maxresults,caixa1,gorder,function,grafo");
-		outputData.add(job.getOptimizationFunction() + "," + job.getParamId() + 
-				"," + evaluatedValue.evaluatedValue + "," + job.getMaxResults() + "," + job.getCaixa1() + "," + job.getGorder() + 
-				"," + evaluatedValue.function + "," + job.getGrafo() );
-		
-		saveOutput();
 	}
 	
-	public static void saveOutput() throws FileNotFoundException {
-		PrintWriter pw = new PrintWriter(new FileOutputStream( sourceFolder	+ "/sagi_output.txt"));
-		for (String line : outputData) {
-			pw.println(line);
-		}
-		pw.close();
-	}	
-
-
-	// java -jar evaluate.jar /home/magno/riographx/grafos/xxxx optimizationFunction paramId maxResults caixa1 gorder
+	// java -jar evaluate.jar /home/magno/riographx/grafos/xxxx optimizationFunction paramId maxResults caixa1 gorder grauminimo graumaximo rddKey
 	public static void main( String[] args ) throws Exception {
-		
 		sourceFolder = args[0];
 		
 		File dir = new File( sourceFolder );
 		File[] directoryListing = dir.listFiles();
 		if (directoryListing != null) {
-			
 			JobUnity job = new JobUnity();
 	
-			/*
-			String optimizationFunction = lineData[CsvReader.getIndex("optifunc", header)];
-			String paramId = lineData[CsvReader.getIndex("paramid", header)];
-			String maxResults = lineData[CsvReader.getIndex("maxresults", header)];
-			String caixa1 = lineData[CsvReader.getIndex("caixa1", header)];
-			String gorder = lineData[CsvReader.getIndex("gorder", header)];
-			String grafo = lineData[CsvReader.getIndex("grafo", header)];
-			*/
+			String line = args[1];
+			String[] parameters = line.split(",");
+			LINE_PARAMETERS = line;
 
-			job.setOptimizationFunction( args[1] );
-			job.setParamId( args[2] );
-			job.setMaxResults( args[3] );
-			job.setCaixa1( args[4] );
-			job.setGrafo( args[5] );
-			job.setGorder( args[6] );
+			String rddkey = parameters[0];
+			String index_id = parameters[1];
+			String function = parameters[2];
+			String g6 = parameters[3];
+			String ordem = parameters[4];
+			String grauminimo = parameters[5];
+			String graumaximo = parameters[6];
+			String trianglefree = parameters[7];
+			String conexo = parameters[8];
+			String bipartite = parameters[9];
+			String parameter_id = parameters[10];
+			String caixa1 = parameters[11];
+			String adjacency = parameters[12];
+			String laplacian = parameters[13];
+			String slaplacian = parameters[14];
+			String allowdiscgraphs = parameters[15];
+			String biptonly = parameters[16];
+			String maxresults = parameters[17];
+			String adjacencyb = parameters[18];
+			String laplacianb = parameters[19];
+			String slaplacianb = parameters[20];
+			String chromatic = parameters[21];
+			String chromaticb = parameters[22];
+			String click = parameters[23];
+			String clickb = parameters[24];
+			String largestdegree = parameters[25];
+			String numedges = parameters[26];
+			String runGeni = parameters[27];
+			String runEigsolve = parameters[28];
+			String serial = parameters[29];
+
+			job.setOptimizationFunction( function.replaceAll( Pattern.quote("+"), " + ") );
+			job.setParamId( parameter_id );
+			job.setMaxResults( maxresults );
+			job.setCaixa1( caixa1 );
+			job.setGrafo( g6 );
+			job.setGorder( ordem );
+			job.setGrauMin( grauminimo );
+			job.setGrauMax( graumaximo );
+			job.setRddKey( rddkey );
 			
 			for (File file : directoryListing) {
 				String fileName = file.getName();
 				String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
 
 				if (ext.equals("lap")) {
-					System.out.println(" > is a lap file " + fileName );
+					//System.out.println(" > is a lap file " + fileName );
 					job.setLapFile(fileName);
 				}
 				if (ext.equals("adj")) {
-					System.out.println(" > is a adj file " + fileName );
+					//System.out.println(" > is a adj file " + fileName );
 					job.setAdjFile(fileName);
 				}
 				if (ext.equals("sgnlap")) {
-					System.out.println(" > is a sgnlap file " + fileName );
+					//System.out.println(" > is a sgnlap file " + fileName );
 					job.setSgnLapFile(fileName);
 				}
 
 				if (ext.equals("lapb")) {
-					System.out.println(" > is a lapb file " + fileName );
+					//System.out.println(" > is a lapb file " + fileName );
 					job.setLapBarFile(fileName);
 				}
 				if (ext.equals("adjb")) {
-					System.out.println(" > is a adjb file " + fileName );
+					//System.out.println(" > is a adjb file " + fileName );
 					job.setAdjBarFile(fileName);
 				}
 				if (ext.equals("sgnlapb")) {
-					System.out.println(" > is a sgnlapb file " + fileName );
+					//System.out.println(" > is a sgnlapb file " + fileName );
 					job.setSgnLapBarFile(fileName);
 				}
 				if (ext.equals("csv")) {
-					System.out.println(" > is a inv file " + fileName );
+					//System.out.println(" > is a inv file " + fileName );
 					job.setInvariantsFile(sourceFolder, fileName);
 				}
 				
@@ -301,37 +309,5 @@ public class Main {
 			processJob(job);
 		}
 		
-		/*
-		List<String> inputData = CsvReader.readFile(workFolder + "/" + "sagi_input.txt");
-		if (inputData.size() > 1) {
-			String header = inputData.get(0); // Get the CSV header
-
-			
-
-			System.out.println("Input files: ");
-			for (int x = 1; x < inputData.size(); x++) { // REDUCE read all
-				// lines
-				String line = inputData.get(x);
-				String[] lineData = line.split(",");
-
-				//Get tEigSolve file
-				String inputFile = lineData[CsvReader.getIndex("workfile",	header)];
-
-				
-
-				String ext = inputFile.substring(inputFile.lastIndexOf(".") + 1);
-				
-				System.out.println("Ext: " + ext);
-				
-
-			}
-			
-			
-
-		} else {
-			System.out.println("Empty input data file.");
-		}
-		*/
-
 	}
 }
