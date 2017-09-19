@@ -1,1 +1,0 @@
-sage -> /home/sagitarii/sage-6.8-x86_64-Linux/sage
