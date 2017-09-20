@@ -28,17 +28,18 @@ import org.apache.spark.sql.SparkSession;
 	drop view if exists select_graphs;
 	create or replace view select_graphs as (
 			select 
-					gd.*,sp.index_id as parameter_id, sp.optifunc, sp.caixa1, 
+					gd.*,sp.index_id as parameter_id, sp.optifunc, sp.caixa1, sp.order_max, sp.order_min, 
 					sp.adjacency, sp.laplacian, sp.slaplacian,sp.allowdiscgraphs,
 					sp.biptonly,sp.maxresults,sp.adjacencyb,sp.laplacianb,sp.slaplacianb,
 					sp.chromatic,sp.chromaticb,sp.click,sp.clickb,sp.largestdegree,sp.numedges 
 			from 
 					graphdatabase gd, spectral_parameters sp 
 			where  
-					cast(sp.gorder as integer) = gd.ordem and gd.grauminimo >= cast(sp.mindegree as integer) and 
+					gd.grauminimo >= cast(sp.mindegree as integer) and 
 					gd.graumaximo <= cast(sp.maxdegree as integer) and  
 					cast(sp.trianglefree as integer) = gd.trianglefree and cast(sp.biptonly as integer) = gd.bipartite and 
-					( (sp.allowdiscgraphs = '0' and gd.conexo = 1 ) or (sp.allowdiscgraphs = '1'))
+					( (sp.allowdiscgraphs = '0' and gd.conexo = 1 ) or (sp.allowdiscgraphs = '1')) and
+					( ( gd.ordem >= sp.order_min ) and ( gd.ordem <= sp.order_max ) )
 	);
 	
 	-- select * from select_graphs where parameter_id = 591
@@ -64,12 +65,6 @@ public class Step1 implements Serializable {
 		graphDatabaseTable.createOrReplaceTempView("select_graphs");
 
 		
-		os parametros eram agrupados pelo experiment_id podendo diferenciar na faixa de 
-		ordem ( varia entre um maximo e um minimo) então vão entrar mais de um parametro 
-		por vez...
-		
-		
-		
 		// Seleciona os grafos de acordo com os parametros do usuario
 		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
@@ -81,11 +76,11 @@ public class Step1 implements Serializable {
 
 /*
 Tabela de parametros
-+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
-|index_id|adjacency|laplacian|slaplacian|            optifunc|caixa1|gorder|mindegree|maxdegree|trianglefree|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
-+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
-|     591|       on|      off|       off|\lambda_2 + \chi ...|   min|     6|        0|        5|         off|            off|     off|        10|        on|       off|        off|       on|       off|  off|   off|          off|     off|
-+--------+---------+---------+----------+--------------------+------+------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+	 
++--------+---------+---------+----------+--------------------+------+---------+---------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
+|index_id|adjacency|laplacian|slaplacian|            optifunc|caixa1|order_min|order_max|mindegree|maxdegree|trianglefree|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
++--------+---------+---------+----------+--------------------+------+---------+---------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
+|     591|       on|      off|       off|\lambda_2 + \chi ...|   min|        6|        8|        0|        5|         off|            off|     off|        10|        on|       off|        off|       on|       off|  off|   off|          off|     off|
++--------+---------+---------+----------+--------------------+------+---------+---------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+	 
 
 Retorno da função "select_graphs" 
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+

@@ -41,10 +41,6 @@ public class DriverApplication implements Serializable {
 		//int numCores = context.sc().defaultParallelism();
 		int numWorkers = context.sc().executorMemory();
 		
-		// Adiciona o script sage.sh ao cluster. Já deverá existir no caminho HDFS abaixo.
-		// context.sc().addFile("hdfs://sparkmaster:9000/riographx/sage.sh");
-		// context.sc().addFile("/usr/lib/riographx/sage.sh"); 
-		// ----------------------------------------------------------------------------------------------
 
 		/**
 		 * 			EXECUÇÃO DO WORKFLOW
@@ -113,6 +109,23 @@ public class DriverApplication implements Serializable {
 		
 		Step6 stp6 = new Step6();
 		JavaPairRDD<Integer, List<Graph> > temp = stp6.run( agrupadoPorOrdemRdd );
+		
+		
+		// PASSO 7: SHOWG
+		
+		// pipe("/usr/lib/riographx/nauty24r2/showg -A -q");
+		// Input (stdin):
+		//  	E?bw ( o grafo )
+		// Output (stdout):
+		/*
+				6
+				0 0 0 0 1 1
+				0 0 0 0 0 1
+				0 0 0 0 0 1
+				0 0 0 0 0 1
+				1 0 0 0 0 1
+				1 1 1 1 1 0
+		 */
 		
 		printEvaluatedRDD( temp );
 		
