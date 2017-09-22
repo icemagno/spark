@@ -2,9 +2,7 @@ package br.com.cmabreu;
 
 import java.io.Serializable;
 
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.function.VoidFunction;
 
 /** 			Quarto passo do workflow 												**/
 // Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo "sage.sh"
@@ -17,11 +15,11 @@ import org.apache.spark.api.java.function.VoidFunction;
 public class Step4 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public JavaRDD<String> run( JavaPairRDD<String, Graph> partitionedRdd, String workDir, String sageScript ) {
+	public JavaRDD<String> run( JavaRDD<String> graphs, String workDir, String sageScript ) {
 		
 		String external = workDir + "/" + sageScript;
 		
-		JavaRDD<String> output = partitionedRdd.pipe( external.replace("//", "/") );	
+		JavaRDD<String> output = graphs.pipe( external.replace("//", "/") );	
 		
 		// Printa o RDD. Somente para testes....
 		/*

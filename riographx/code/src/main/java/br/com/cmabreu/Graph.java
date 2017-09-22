@@ -119,8 +119,6 @@ public class Graph implements Serializable {
 				biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
 				clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
 		
-		//System.out.println("Solicitado grafo " + result);
-		
 		return result;
 	}
 	

@@ -66,7 +66,7 @@ public class Step1 implements Serializable {
 
 		
 		// Seleciona os grafos de acordo com os parametros do usuario
-		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
+		String sql = "select * from select_graphs where parameter_id = " + indexParameter + " limit 20"; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 
 		return graphs;
@@ -82,7 +82,7 @@ Tabela de parametros
 |     591|       on|      off|       off|\lambda_2 + \chi ...|   min|        6|        8|        0|        5|         off|            off|     off|        10|        on|       off|        off|       on|       off|  off|   off|          off|     off|
 +--------+---------+---------+----------+--------------------+------+---------+---------+---------+---------+------------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+	 
 
-Retorno da função "select_graphs" 
+Retorno da função "select_graphs"
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+
 |index_id|grafo|ordem|grauminimo|graumaximo|trianglefree|conexo|bipartite|parameter_id|            optifunc|caixa1|adjacency|laplacian|slaplacian|allowdiscgraphs|biptonly|maxresults|adjacencyb|laplacianb|slaplacianb|chromatic|chromaticb|click|clickb|largestdegree|numedges|
 +--------+-----+-----+----------+----------+------------+------+---------+------------+--------------------+------+---------+---------+----------+---------------+--------+----------+----------+----------+-----------+---------+----------+-----+------+-------------+--------+

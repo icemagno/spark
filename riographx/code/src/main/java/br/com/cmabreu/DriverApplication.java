@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -50,47 +49,64 @@ public class DriverApplication implements Serializable {
 		/** 			Primeiro passo do workflow 												**/
 		// Coleta os grafos do banco de dados usando o indice da tabela de parametros
 		// ----------------------------------------------------------------------------------------------
-		Step1 stp1 = new Step1();
-		Dataset<Row> graphs = stp1.run( spark, indexParameter );
+		Dataset<Row> graphs = new Step1().run( spark, indexParameter );
 		// ----------------------------------------------------------------------------------------------
 
 
+		
+		// Passo 2 : Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
+		JavaRDD<String> preparedGraphs = new Step2().run(graphs);		
+		preparedGraphs.collect();
+		
+		
+		
 		/** 			Segundo passo do workflow 												**/
 		// Cria um Pair RDD para possibilitar a paralelização dos grafos usando uma chave agrupadora
 		// 		e também para criar objetos Java com os dados dos grafos. Evita a maipulação dos atributos 
 		// 		individualmente. Cada objeto Graph é identificado unicamente pelo atributo "index_id".
 		// ----------------------------------------------------------------------------------------------
-		Step2 stp2 = new Step2();
-		JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
+		//Step2 stp2 = new Step2();
+		//JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
 		// ----------------------------------------------------------------------------------------------
 		
 		
 		/** 			Terceiro passo do workflow 												**/
 		// Particiona o RDD usando a chave como agrupador		
 		// ----------------------------------------------------------------------------------------------
-		JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( 
-			new HashPartitioner( numWorkers -1 ) 
-		);
+		//JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( 
+		//	new HashPartitioner( numWorkers -1 ) 
+		//);
 		// ----------------------------------------------------------------------------------------------
 
 		
 		
 		/** 			Quarto passo do workflow 												**/
-		// Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo "sage.sh"
+		// Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo passado no terceiro parâmetro.
 		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
 		// 		passados pelo usuário.
 		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
 		// ----------------------------------------------------------------------------------------------
 		Step4 stp4 = new Step4();
-		JavaRDD<String> functionResults = stp4.run( partitionedRdd, workDir, sageScript );
+		JavaRDD<String> functionResults = stp4.run( preparedGraphs, workDir, sageScript );
 		// ----------------------------------------------------------------------------------------------
 
+		
+		functionResults.collect();
+		functionResults.foreach( new VoidFunction<String>(){
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call(String t) throws Exception {
+				System.out.println( t );
+			}
+			
+		});
 		
 		
 		/** 			Quinto passo do workflow 												**/
 		// Insere o resultado da função de avaliação no objeto do grafo  
-		Step5 stp5 = new Step5();
-		JavaPairRDD<Integer, Graph> results = stp5.run(functionResults);
+		//Step5 stp5 = new Step5();
+		//JavaPairRDD<Integer, Graph> results = stp5.run(functionResults);
 		// ----------------------------------------------------------------------------------------------
 
 		
@@ -99,16 +115,16 @@ public class DriverApplication implements Serializable {
 		/** 			Sexto passo do workflow 												**/
 		// Agrupa o RDD usando a ordem do grafo (chave do RDD) como indice		
 		// ----------------------------------------------------------------------------------------------
-		JavaPairRDD<Integer, Iterable<Graph> > agrupadoPorOrdemRdd = results.groupByKey( 
-			new HashPartitioner( numWorkers -1 ) 
-		);
+		//JavaPairRDD<Integer, Iterable<Graph> > agrupadoPorOrdemRdd = results.groupByKey( 
+		//	new HashPartitioner( numWorkers -1 ) 
+		//);
 		// ----------------------------------------------------------------------------------------------		
 		
 		
 
 		
-		Step6 stp6 = new Step6();
-		JavaPairRDD<Integer, List<Graph> > temp = stp6.run( agrupadoPorOrdemRdd );
+		//Step6 stp6 = new Step6();
+		//JavaPairRDD<Integer, List<Graph> > temp = stp6.run( agrupadoPorOrdemRdd );
 		
 		
 		// PASSO 7: SHOWG
@@ -127,7 +143,7 @@ public class DriverApplication implements Serializable {
 				1 1 1 1 1 0
 		 */
 		
-		printEvaluatedRDD( temp );
+		//printEvaluatedRDD( temp );
 		
 		
 		/*		
