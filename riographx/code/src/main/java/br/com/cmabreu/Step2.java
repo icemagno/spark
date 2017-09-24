@@ -59,7 +59,10 @@ public class Step2 implements Serializable {
 				Integer trianglefree = row.getAs("trianglefree"); 
 				Integer conexo = row.getAs("conexo"); 
 				Integer bipartite = row.getAs("bipartite"); 
-				Integer parameter_id = row.getAs("parameter_id"); 
+				Integer parameter_id = row.getAs("parameter_id");
+				
+				Integer order_min = row.getAs("order_min"); 
+				Integer order_max = row.getAs("order_max"); 
 				
 				int runEigsolve = 0;
 				int runGeni = 0;
@@ -71,11 +74,12 @@ public class Step2 implements Serializable {
 					runGeni = 1;
 				}					
 
-				String result = index_id + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
+				String key = "G" + ordem + order_min + order_max;
+				
+				String result = key + "," + index_id + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
 						bipartite+ "," +parameter_id + "," + function.replaceAll("\\\\", "\\\\\\\\") + "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
 						biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
-						clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial;
-				
+						clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial+","+order_min+","+order_max;
 				
 				return result;
 			}

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.spark.api.java.JavaRDD;
 
-/** 			Quarto passo do workflow 												**/
+/** 			Terceiro passo do workflow 												**/
 // Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo "sage.sh"
 //		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
 // 		passados pelo usuário.
@@ -12,26 +12,14 @@ import org.apache.spark.api.java.JavaRDD;
 // ----------------------------------------------------------------------------------------------
 
 
-public class Step4 implements Serializable {
+public class Step3 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public JavaRDD<String> run( JavaRDD<String> graphs, String workDir, String sageScript ) {
 		
 		String external = workDir + "/" + sageScript;
 		
-		JavaRDD<String> output = graphs.pipe( external.replace("//", "/") );	
-		
-		// Printa o RDD. Somente para testes....
-		/*
-		VoidFunction<String> f = new VoidFunction<String>() {
-			private static final long serialVersionUID = 1L;
-			@Override
-			public void call(String arg0) throws Exception {
-				System.out.println("Output RDD: " + arg0 );
-			}
-		};
-		output.foreach(f);		
-		*/
+		JavaRDD<String> output = graphs.pipe( external );	
 		
 		return output;
 	}

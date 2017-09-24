@@ -31,7 +31,7 @@ import org.apache.spark.sql.SparkSession;
 					gd.*,sp.index_id as parameter_id, sp.optifunc, sp.caixa1, sp.order_max, sp.order_min, 
 					sp.adjacency, sp.laplacian, sp.slaplacian,sp.allowdiscgraphs,
 					sp.biptonly,sp.maxresults,sp.adjacencyb,sp.laplacianb,sp.slaplacianb,
-					sp.chromatic,sp.chromaticb,sp.click,sp.clickb,sp.largestdegree,sp.numedges 
+					sp.chromatic,sp.chromaticb,sp.click,sp.clickb,sp.largestdegree,sp.numedges
 			from 
 					graphdatabase gd, spectral_parameters sp 
 			where  
@@ -66,7 +66,7 @@ public class Step1 implements Serializable {
 
 		
 		// Seleciona os grafos de acordo com os parametros do usuario
-		String sql = "select * from select_graphs where parameter_id = " + indexParameter + " limit 20"; 			
+		String sql = "select * from select_graphs where parameter_id = " + indexParameter; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 
 		return graphs;

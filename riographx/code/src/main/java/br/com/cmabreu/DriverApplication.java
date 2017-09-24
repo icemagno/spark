@@ -1,19 +1,14 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
-import java.util.Iterator;
-import java.util.List;
 
 import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
-
-import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +33,7 @@ public class DriverApplication implements Serializable {
 		SparkSession spark = new SparkSession( context.sc() );
 
 		//int numCores = context.sc().defaultParallelism();
-		int numWorkers = context.sc().executorMemory();
+		//int numWorkers = context.sc().executorMemory();
 		
 
 		/**
@@ -54,53 +49,37 @@ public class DriverApplication implements Serializable {
 
 
 		
-		// Passo 2 : Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
-		JavaRDD<String> preparedGraphs = new Step2().run(graphs);		
-		preparedGraphs.collect();
-		
-		
-		
 		/** 			Segundo passo do workflow 												**/
-		// Cria um Pair RDD para possibilitar a paralelização dos grafos usando uma chave agrupadora
-		// 		e também para criar objetos Java com os dados dos grafos. Evita a maipulação dos atributos 
-		// 		individualmente. Cada objeto Graph é identificado unicamente pelo atributo "index_id".
+		// Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
 		// ----------------------------------------------------------------------------------------------
-		//Step2 stp2 = new Step2();
-		//JavaPairRDD<String, Graph> graphsPairRDD = stp2.run( graphs );
+		JavaRDD<String> preparedGraphs = new Step2().run(graphs);		
 		// ----------------------------------------------------------------------------------------------
 		
 		
 		/** 			Terceiro passo do workflow 												**/
-		// Particiona o RDD usando a chave como agrupador		
+		// Para cada grafo chama o programa externo passado no terceiro parâmetro (sage.sh).
+		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
+		// 		passados pelo usuário.
 		// ----------------------------------------------------------------------------------------------
-		//JavaPairRDD<String, Graph> partitionedRdd = graphsPairRDD.partitionBy( 
-		//	new HashPartitioner( numWorkers -1 ) 
-		//);
+		Step3 stp4 = new Step3();
+		JavaRDD<String> functionResults = stp4.run( preparedGraphs, workDir, sageScript );
+		
+		
+			functionResults.foreach( new VoidFunction<String>(){
+				private static final long serialVersionUID = 1L;
+				@Override
+				public void call(String t) throws Exception {
+					System.out.println( "Resultado functionResults: " + t );
+				}
+			});
+		
 		// ----------------------------------------------------------------------------------------------
 
 		
 		
 		/** 			Quarto passo do workflow 												**/
-		// Para cada elemento do RDD ( um grafo "Graph" ) chama o programa externo passado no terceiro parâmetro.
-		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
-		// 		passados pelo usuário.
-		// O resultado é um conjunto de arquivos que serão usados pelo "evaluate". 
-		// ----------------------------------------------------------------------------------------------
-		Step4 stp4 = new Step4();
-		JavaRDD<String> functionResults = stp4.run( preparedGraphs, workDir, sageScript );
-		// ----------------------------------------------------------------------------------------------
 
 		
-		functionResults.collect();
-		functionResults.foreach( new VoidFunction<String>(){
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void call(String t) throws Exception {
-				System.out.println( t );
-			}
-			
-		});
 		
 		
 		/** 			Quinto passo do workflow 												**/
@@ -179,7 +158,7 @@ public class DriverApplication implements Serializable {
 	}
 
 
-	
+	/*
 	private void printEvaluatedRDD( JavaPairRDD<Integer, List<Graph> > theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > > f = new VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > >() {
@@ -202,7 +181,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	
+	*/
 	
 	
 	/*
