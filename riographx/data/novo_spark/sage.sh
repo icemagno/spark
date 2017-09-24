@@ -5,7 +5,7 @@ while read tline; do
 	tempstring=${tline#"("}
 	line=${tempstring%")"}
 
-	IFS=',' read -r -a array <<< "$line"
+	IFS=',' read -r -a array <<< "$tline"
 
 	rddkey=${array[0]}
 
@@ -38,6 +38,8 @@ while read tline; do
 	runGeni=${array[27]}
 	runEigsolve=${array[28]}
 	serial=${array[29]}
+	order_min=${array[30]}
+	order_max=${array[31]}
 
 	workdir="/usr/lib/riographx"
 	graphsdir="$workdir/grafos/$serial"
@@ -47,6 +49,8 @@ while read tline; do
 	mkdir -p "$graphsdir"
 
 	echo "$g6" > "$sourceg6"
+
+#	echo "$rddkey  $serial"
 
 	sage -c 'load("'"$workdir/geni.py"'");geni("'"$graphsdir/"'","'"$sourceg6"'","'"-a -b -c -d -e 3 -g"'")'
 
