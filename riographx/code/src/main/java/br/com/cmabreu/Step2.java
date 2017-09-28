@@ -76,12 +76,50 @@ public class Step2 implements Serializable {
 
 				String key = String.valueOf( ordem );
 				
-				String result = key + "," + index_id + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
-						bipartite+ "," +parameter_id + "," + function.replaceAll("\\\\", "\\\\\\\\") + "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
+				// 5,12,DC{,5,1,4,0,1,0,591,\lambda_2 + \chi + \overline{\lambda_2},max,1,0,0,0,0,10,1,0,0,1,0,0,0,0,0,1,1,1d02feb2575946bb9dc478b6f1b3adbc,4,7
+				
+				String result = key + "," + index_id + "," + function.replaceAll("\\\\", "\\\\\\\\") + "," + g6 + "," + ordem + "," + grauminimo + "," + 
+						graumaximo+ "," +trianglefree+ "," +conexo+ "," +
+						bipartite+ "," +parameter_id + "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
 						biptonly+ "," +maxresults+ "," +adjacencyb+ "," +laplacianb+ "," +slaplacianb+ "," +chromatic+ "," +chromaticb+ "," +click+ "," +
 						clickb+ "," +largestdegree+ "," +numedges+","+runGeni+","+runEigsolve+","+serial+","+order_min+","+order_max;
 				
 				return result;
+				
+				/*
+			        rddkey=${array[0]}
+			        index_id=${array[1]}
+			        function=${array[2]}
+			        g6=${array[3]}
+			        ordem=${array[4]}
+			        grauminimo=${array[5]}
+			        graumaximo=${array[6]}
+			        trianglefree=${array[7]}
+			        conexo=${array[8]}
+			        bipartite=${array[9]}
+			        parameter_id=${array[10]}
+			        caixa1=${array[11]}
+			        adjacency=${array[12]}
+			        laplacian=${array[13]}
+			        slaplacian=${array[14]}
+			        allowdiscgraphs=${array[15]}
+			        biptonly=${array[16]}
+			        maxresults=${array[17]}
+			        adjacencyb=${array[18]}
+			        laplacianb=${array[19]}
+			        slaplacianb=${array[20]}
+			        chromatic=${array[21]}
+			        chromaticb=${array[22]}
+			        click=${array[23]}
+			        clickb=${array[24]}
+			        largestdegree=${array[25]}
+			        numedges=${array[26]}
+			        runGeni=${array[27]}
+			        runEigsolve=${array[28]}
+			        serial=${array[29]}
+			        order_min=${array[30]}
+			        order_max=${array[31]}
+				*/
 			}
 			
 			

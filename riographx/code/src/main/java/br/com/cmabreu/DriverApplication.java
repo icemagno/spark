@@ -55,11 +55,17 @@ public class DriverApplication implements Serializable {
 
 
 		
+		
+		
 		/** 			Segundo passo do workflow 												**/
 		// Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
 		// ----------------------------------------------------------------------------------------------
 		JavaRDD<String> preparedGraphs = new Step2().run(graphs);		
 		// ----------------------------------------------------------------------------------------------
+		
+		
+		
+		
 		
 		
 		/** 			Terceiro passo do workflow 												**/
@@ -74,9 +80,15 @@ public class DriverApplication implements Serializable {
 		
 		
 		
+		
 		/** 			Quarto passo do workflow 												**/
 		// Cria um PairRDD com os grafos usando o numero de ordem como chave.
 		JavaPairRDD<Integer, String> rddMapeado = new Step4().run(functionResults);
+		
+		
+		
+		
+		
 		
 		
 		
@@ -88,17 +100,10 @@ public class DriverApplication implements Serializable {
 		);
 		// ----------------------------------------------------------------------------------------------		
 
+
 		
-		/*
-		functionResults.foreach( new VoidFunction<String>(){
-			private static final long serialVersionUID = 1L;
-			@Override
-			public void call(String t) throws Exception {
-				System.out.println( "Resultado functionResults: " + t );
-			}
-		});		
-		*/
 		
+	
 		/** 			Sexto passo do workflow 												**/
 		// Seleciona os K-Melhores grafos por grupo
 		Step6 stp6 = new Step6();
@@ -108,7 +113,6 @@ public class DriverApplication implements Serializable {
 		
 		
 		// PASSO 7: SHOWG
-		
 		// pipe("/usr/lib/riographx/nauty24r2/showg -A -q");
 		// Input (stdin):
 		//  	E?bw ( o grafo )
@@ -123,8 +127,13 @@ public class DriverApplication implements Serializable {
 				1 1 1 1 1 0
 		 */
 		
-		//printEvaluatedRDD( temp );
+
+		// PASSO 8: TXT2DOT
+		// Usar o wrapper TXT2DOT antigo em Java.
 		
+		
+		// PASSO 9: GRAPHVIZ
+		// "dot -Tgif -O " + dotInput
 		
 
 		

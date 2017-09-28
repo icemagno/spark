@@ -19,7 +19,7 @@ public class Step6 implements Serializable {
 		
 		PairFunction<Tuple2<Integer, Iterable<String>>, Integer, List<String> > pf = new PairFunction<Tuple2<Integer, Iterable<String>>, Integer, List<String> >(){
 			private static final long serialVersionUID = 1L;
-			private String ordem = "min"; 
+			private String sortOrder = "min"; 
 			private Integer maxresults = 10;
 			
 			class GraphComparator implements Comparator<String> {
@@ -41,10 +41,14 @@ public class Step6 implements Serializable {
 			        String[] parameters1 = paramT1.split(",");
 			        String[] parameters2 = paramT2.split(",");
 			        
-			        Float result1 = Float.valueOf( parameters1[30] );
-			        Float result2 = Float.valueOf( parameters2[30] );			        
+			        int resultPosition = parameters1.length - 1; // O valor do resultado da funcao eh o ultimo.
 			        
-			        if ( ordem.equals("min") ) 
+			        System.out.println("Comparando " + parameters1[resultPosition] + " contra " + parameters2[resultPosition] );
+			        
+			        Float result1 = Float.valueOf( parameters1[resultPosition] );
+			        Float result2 = Float.valueOf( parameters2[resultPosition] );			        
+			        
+			        if ( sortOrder.equals("min") ) 
 			        	return result1.compareTo( result2 ); 
 			        else 
 			        	return result2.compareTo( result1 );
@@ -62,7 +66,7 @@ public class Step6 implements Serializable {
 				
 				for( String grafo : grafos ) {
 					String[] parameters = grafo.split(",");
-					ordem = parameters[11];
+					sortOrder = parameters[11];
 					maxresults = Integer.valueOf( parameters[17] );
 					graphList.add( grafo );
 				}
