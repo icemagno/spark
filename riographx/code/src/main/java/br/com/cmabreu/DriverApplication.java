@@ -1,14 +1,20 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.Iterator;
+import java.util.List;
 
+import org.apache.spark.HashPartitioner;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
+
+import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -32,7 +38,7 @@ public class DriverApplication implements Serializable {
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
-		//int numCores = context.sc().defaultParallelism();
+		int numCores = context.sc().defaultParallelism();
 		//int numWorkers = context.sc().executorMemory();
 		
 
@@ -61,49 +67,44 @@ public class DriverApplication implements Serializable {
 		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
 		// 		passados pelo usuário.
 		// ----------------------------------------------------------------------------------------------
-		Step3 stp4 = new Step3();
-		JavaRDD<String> functionResults = stp4.run( preparedGraphs, workDir, sageScript );
-		
-		
-			functionResults.foreach( new VoidFunction<String>(){
-				private static final long serialVersionUID = 1L;
-				@Override
-				public void call(String t) throws Exception {
-					System.out.println( "Resultado functionResults: " + t );
-				}
-			});
-		
+		Step3 stp3 = new Step3();
+		JavaRDD<String> functionResults = stp3.run( preparedGraphs, workDir, sageScript );
 		// ----------------------------------------------------------------------------------------------
 
 		
 		
+		
 		/** 			Quarto passo do workflow 												**/
-
+		// Cria um PairRDD com os grafos usando o numero de ordem como chave.
+		JavaPairRDD<Integer, String> rddMapeado = new Step4().run(functionResults);
 		
 		
 		
 		/** 			Quinto passo do workflow 												**/
-		// Insere o resultado da função de avaliação no objeto do grafo  
-		//Step5 stp5 = new Step5();
-		//JavaPairRDD<Integer, Graph> results = stp5.run(functionResults);
-		// ----------------------------------------------------------------------------------------------
-
-		
-		
-		
-		/** 			Sexto passo do workflow 												**/
 		// Agrupa o RDD usando a ordem do grafo (chave do RDD) como indice		
 		// ----------------------------------------------------------------------------------------------
-		//JavaPairRDD<Integer, Iterable<Graph> > agrupadoPorOrdemRdd = results.groupByKey( 
-		//	new HashPartitioner( numWorkers -1 ) 
-		//);
+		JavaPairRDD<Integer, Iterable<String> > agrupadoPorOrdemRdd = rddMapeado.groupByKey( 
+			new HashPartitioner( numCores ) 
+		);
 		// ----------------------------------------------------------------------------------------------		
-		
-		
 
 		
-		//Step6 stp6 = new Step6();
-		//JavaPairRDD<Integer, List<Graph> > temp = stp6.run( agrupadoPorOrdemRdd );
+		/*
+		functionResults.foreach( new VoidFunction<String>(){
+			private static final long serialVersionUID = 1L;
+			@Override
+			public void call(String t) throws Exception {
+				System.out.println( "Resultado functionResults: " + t );
+			}
+		});		
+		*/
+		
+		/** 			Sexto passo do workflow 												**/
+		// Seleciona os K-Melhores grafos por grupo
+		Step6 stp6 = new Step6();
+		JavaPairRDD<Integer, List<String> > kBestGraphs = stp6.run( agrupadoPorOrdemRdd );
+		
+		printEvaluatedRDD( kBestGraphs );
 		
 		
 		// PASSO 7: SHOWG
@@ -125,23 +126,7 @@ public class DriverApplication implements Serializable {
 		//printEvaluatedRDD( temp );
 		
 		
-		/*		
-				
-		insert into select_out ( id_instance, id_experiment, id_activity, optifunc, evaluatedvalue, maxresults, caixa1, gorder, function, paramid, grafo ) 
-			select  optifunc, evaluatedvalue, maxresults, caixa1, gorder, function, paramid, grafo from
-			( WITH l AS 
-				( SELECT CASE WHEN caixa1 = 'min' THEN maxresults ELSE 0 END AS lim_a, CASE WHEN caixa1 = 'max' THEN maxresults ELSE 0 END AS lim_d FROM 
-					evaluate_out where id_experiment = %ID_EXP% LIMIT 1 )
-				( select * from ( select eo.*, sp.id_instance, row_number() over ( partition by eo.gorder order by CAST( eo.evaluatedvalue as float) asc) 
-					as rownum from evaluate_out eo join spectral_parameters sp on sp.id_instance = eo.paramid and sp.gorder::text = eo.gorder::text where 
-					eo.id_experiment = %ID_EXP% ) tmp where rownum <= ( SELECT lim_a FROM l ) ) union all ( select * from ( select eo.*, sp.id_instance, 
-					row_number() over (partition by eo.gorder order by CAST(eo.evaluatedvalue as float) desc) as rownum from evaluate_out eo join 
-					spectral_parameters sp on sp.id_instance = eo.paramid and sp.gorder::text = eo.gorder::text where eo.id_experiment = %ID_EXP% ) 
-					tmp where rownum <= (SELECT lim_d FROM l) ) ) as t1 where id_experiment = %ID_EXP%  
-				
-		*/		
 
-		
 		
 		
 		
@@ -158,20 +143,20 @@ public class DriverApplication implements Serializable {
 	}
 
 
-	/*
-	private void printEvaluatedRDD( JavaPairRDD<Integer, List<Graph> > theRdd ) {
+	
+	private void printEvaluatedRDD( JavaPairRDD<Integer, List<String> > theRdd ) {
 		
-		VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > > f = new VoidFunction <Iterator< Tuple2<Integer, List<Graph>> > >() {
+		VoidFunction <Iterator< Tuple2<Integer, List<String>> > > f = new VoidFunction <Iterator< Tuple2<Integer, List<String>> > >() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void call( Iterator< Tuple2<Integer, List<Graph>> > arg0 ) throws Exception {
+			public void call( Iterator< Tuple2<Integer, List<String>> > arg0 ) throws Exception {
 				System.out.println("------------   NEW PARTITION --------------------------");
 				
 				while( arg0.hasNext() ) {
-					Tuple2<Integer, List<Graph> > tuple = arg0.next();
-					for( Graph grafo : tuple._2 ) {
-		                System.out.println( "Ordem: " + tuple._1 + " Valor: " + grafo.getFunctionResult() );
+					Tuple2<Integer, List<String> > tuple = arg0.next();
+					for( String grafo : tuple._2 ) {
+		                System.out.println( "Ordem: " + tuple._1 + " Valor: " + grafo );
 					}
 	            }
 				
@@ -181,22 +166,22 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	*/
+	
 	
 	
 	/*
-	private void printPairRddPartitions( JavaPairRDD<String, Graph> theRdd ) {
+	private void printPairRddPartitions( JavaPairRDD<Integer, String> theRdd ) {
 		
-		VoidFunction <Iterator< Tuple2<String, Graph> > > f = new VoidFunction <Iterator< Tuple2<String, Graph> > >() {
+		VoidFunction <Iterator< Tuple2<Integer, String> > > f = new VoidFunction <Iterator< Tuple2<Integer, String> > >() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void call( Iterator< Tuple2<String, Graph> > arg0 ) throws Exception {
+			public void call( Iterator< Tuple2<Integer, String> > arg0 ) throws Exception {
 				System.out.println("--------------------------------------");
 				
 				while( arg0.hasNext() ) {
-					Tuple2<String, Graph> tuple = arg0.next();
-	                System.out.println( tuple._1 + "  " + tuple._2.getG6() );
+					Tuple2<Integer, String> tuple = arg0.next();
+	                System.out.println( tuple._1 + "  " + tuple._2 );
 	            }
 				
 			}

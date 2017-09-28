@@ -15,18 +15,17 @@ import scala.Tuple2;
 public class Step6 implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	public JavaPairRDD<Integer, List<Graph> > run( JavaPairRDD<Integer, Iterable<Graph> > agrupadoPorOrdemRdd ) {
+	public JavaPairRDD<Integer, List<String> > run( JavaPairRDD<Integer, Iterable<String> > agrupadoPorOrdemRdd ) {
 		
-		
-		PairFunction<Tuple2<Integer, Iterable<Graph>>, Integer, List<Graph> > pf =	new PairFunction<Tuple2<Integer, Iterable<Graph>>, Integer, List<Graph> >(){
+		PairFunction<Tuple2<Integer, Iterable<String>>, Integer, List<String> > pf = new PairFunction<Tuple2<Integer, Iterable<String>>, Integer, List<String> >(){
 			private static final long serialVersionUID = 1L;
 			private String ordem = "min"; 
 			private Integer maxresults = 10;
 			
-			class GraphComparator implements Comparator<Graph> {
+			class GraphComparator implements Comparator<String> {
 
 				@Override
-				public int compare(Graph paramT1, Graph paramT2) {
+				public int compare(String paramT1, String paramT2) {
 			        if (paramT1 == null) {
 			            if (paramT2 == null) {
 			                return 0; 
@@ -39,8 +38,11 @@ public class Step6 implements Serializable {
 			            }
 			        }					
 					
-			        Float result1 = Float.valueOf( paramT1.getFunctionResult() );
-			        Float result2 = Float.valueOf( paramT2.getFunctionResult() );			        
+			        String[] parameters1 = paramT1.split(",");
+			        String[] parameters2 = paramT2.split(",");
+			        
+			        Float result1 = Float.valueOf( parameters1[30] );
+			        Float result2 = Float.valueOf( parameters2[30] );			        
 			        
 			        if ( ordem.equals("min") ) 
 			        	return result1.compareTo( result2 ); 
@@ -54,20 +56,21 @@ public class Step6 implements Serializable {
 			
 			
 			@Override
-			public Tuple2<Integer, List<Graph> > call(Tuple2<Integer, Iterable<Graph> > t) throws Exception {
-				Iterable<Graph> grafos = t._2;
-				List<Graph> graphList = new ArrayList<Graph>();
+			public Tuple2<Integer, List<String> > call(Tuple2<Integer, Iterable<String> > t) throws Exception {
+				Iterable<String> grafos = t._2;
+				List<String> graphList = new ArrayList<String>();
 				
-				for( Graph grafo : grafos ) {
-					ordem = grafo.getCaixa1();
-					maxresults = Integer.valueOf( grafo.getMaxresults() );
+				for( String grafo : grafos ) {
+					String[] parameters = grafo.split(",");
+					ordem = parameters[11];
+					maxresults = Integer.valueOf( parameters[17] );
 					graphList.add( grafo );
 				}
 				Collections.sort( graphList, new GraphComparator() );
 				
-				List<Graph> resultGraphList = graphList.stream().limit( maxresults ).collect(Collectors.toList());
+				List<String> resultGraphList = graphList.stream().limit( maxresults ).collect(Collectors.toList());
 				
-				return new Tuple2<Integer, List<Graph>>( t._1, resultGraphList );
+				return new Tuple2<Integer, List<String>>( t._1, resultGraphList );
 			}
 			
 			

@@ -8,7 +8,7 @@ import org.apache.spark.api.java.function.PairFunction;
 
 import scala.Tuple2;
 
-public class Step5 implements Serializable {
+public class Temp1 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	

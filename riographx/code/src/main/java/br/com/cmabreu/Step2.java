@@ -74,7 +74,7 @@ public class Step2 implements Serializable {
 					runGeni = 1;
 				}					
 
-				String key = "G" + ordem + order_min + order_max;
+				String key = String.valueOf( ordem );
 				
 				String result = key + "," + index_id + "," + g6 + "," + ordem + "," + grauminimo + "," + graumaximo+ "," +trianglefree+ "," +conexo+ "," +
 						bipartite+ "," +parameter_id + "," + function.replaceAll("\\\\", "\\\\\\\\") + "," +caixa1+ "," +adjacency+ "," +laplacian+ "," +slaplacian+ "," +allowdiscgraphs+ "," +
