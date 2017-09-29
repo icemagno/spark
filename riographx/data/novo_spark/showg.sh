@@ -46,20 +46,15 @@ while read tline; do
 
 	graphsdir="$workdir/grafos/$serial"
 	sourceg6="$graphsdir/graph.g6"
-
+	targetfile="$graphsdir/matrix.txt"
 
 	mkdir -p "$graphsdir"
 
 	echo "$g6" > "$sourceg6"
 
-	echo "$line" > "$graphsdir/inputline.txt"
+	echo "$line" > "$graphsdir/inputlineshowg.txt"
 
-	sage -c 'load("'"$workdir/geni.py"'");geni("'"$graphsdir/"'","'"$sourceg6"'","'"-a -b -c -d -e 3 -g"'")'
-
-	sage -c 'load("'"$workdir/Eigenvalue.py"'");Eigenvalue("'"$graphsdir/"'","'"$sourceg6"'","'"-a -q -l -x -y -z"'")'
-
-	java -jar "$workdir/evaluate.jar" "$graphsdir/" "$line" 
-
+	/usr/lib/riographx/nauty24r2/showg -A -q "$sourceg6" "$targetfile"
 
 done
 
