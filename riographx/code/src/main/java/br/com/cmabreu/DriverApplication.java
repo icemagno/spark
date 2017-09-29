@@ -19,7 +19,7 @@ import scala.Tuple2;
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public void run( String indexParameter, String workDir, String sageScript ) {
+	public void run( String indexParameter, String workDir, String sageScript, String showgScript ) {
 		
 		// Carrega o driver PostgreSQL
 		try {
@@ -39,7 +39,7 @@ public class DriverApplication implements Serializable {
 		SparkSession spark = new SparkSession( context.sc() );
 
 		int numCores = context.sc().defaultParallelism();
-		//int numWorkers = context.sc().executorMemory();
+		int numWorkers = context.sc().executorMemory();
 		
 
 		/**
@@ -60,12 +60,11 @@ public class DriverApplication implements Serializable {
 		/** 			Segundo passo do workflow 												**/
 		// Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
 		// ----------------------------------------------------------------------------------------------
-		JavaRDD<String> preparedGraphs = new Step2().run(graphs);		
+		JavaRDD<String> preparedGraphs = new Step2().run(graphs);
 		// ----------------------------------------------------------------------------------------------
 		
 		
-		
-		
+		preparedGraphs.repartition( numWorkers );
 		
 		
 		/** 			Terceiro passo do workflow 												**/
@@ -88,8 +87,7 @@ public class DriverApplication implements Serializable {
 		
 		
 		
-		
-		
+
 		
 		
 		/** 			Quinto passo do workflow 												**/
@@ -103,14 +101,38 @@ public class DriverApplication implements Serializable {
 
 		
 		
+		
+		
 	
 		/** 			Sexto passo do workflow 												**/
 		// Seleciona os K-Melhores grafos por grupo
 		Step6 stp6 = new Step6();
 		JavaPairRDD<Integer, List<String> > kBestGraphs = stp6.run( agrupadoPorOrdemRdd );
 		
+
+		
 		printEvaluatedRDD( kBestGraphs );
 		
+		
+		
+		/** 			Sétimo passo do workflow 												**/
+		// Executa o programa externo SHOWG ( nauty )
+		// Não aproveita o resultado. Já sei onde o arquivo será gravado:
+		// Na pasta definida pelo numero de serie
+		//Step7 stp7 = new Step7();
+		//JavaRDD<String> showgResult = stp7.run( preparedGraphs, workDir, showgScript );
+		
+		/*
+		VoidFunction<String> ff = new VoidFunction<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void call(String t) throws Exception {
+				System.out.println( t );
+			}
+		};
+		showgResult.foreach( ff );
+		*/
 		
 		// PASSO 7: SHOWG
 		// pipe("/usr/lib/riographx/nauty24r2/showg -A -q");

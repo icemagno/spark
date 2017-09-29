@@ -11,10 +11,15 @@ public class Main {
 		}
 		String indexParameter = String.valueOf( args[0] );
 		String workDir = String.valueOf( args[1] );
-		String sageScript = String.valueOf( args[2] );
+		
+		String sageScript = "sage.sh";
+		String showgScript = "showg.sh";
+		
+		try { sageScript = String.valueOf( args[2] ); } catch ( Exception e ) {}
+		try { showgScript = String.valueOf( args[3] ); } catch ( Exception e ) {}
 
 		DriverApplication da = new DriverApplication();
-		da.run(indexParameter, workDir, sageScript);
+		da.run( indexParameter, workDir, sageScript, showgScript );
 		
 	}	
 
