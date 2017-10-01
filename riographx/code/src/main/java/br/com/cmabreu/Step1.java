@@ -66,7 +66,7 @@ public class Step1 implements Serializable {
 
 		
 		// Seleciona os grafos de acordo com os parametros do usuario
-		String sql = "select * from select_graphs where parameter_id = " + indexParameter + " limit 40"; 			
+		String sql = "select * from select_graphs where parameter_id = " + indexParameter + " limit 140"; 			
 		Dataset<Row> graphs = graphDatabaseContext.sql(sql);
 
 		return graphs;

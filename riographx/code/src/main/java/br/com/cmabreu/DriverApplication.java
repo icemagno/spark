@@ -1,7 +1,6 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.spark.HashPartitioner;
@@ -9,16 +8,13 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import br.com.cmabreu.functions.DatasetToPairRDD;
 import br.com.cmabreu.functions.KBestGraphs;
-import br.com.cmabreu.functions.LineToGraphObject;
 import br.com.cmabreu.functions.ToOrderPairRDD;
-import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -39,6 +35,8 @@ public class DriverApplication implements Serializable {
 		sparkConf.setAppName("Portal RioGraphX v1.0");
 		//sparkConf.setMaster("local[*]");
 		sparkConf.set("driver", "org.postgresql.Driver");
+		sparkConf.set("spark.executor.instances", "7");
+		sparkConf.set("spark.executor.cores", "2");
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
@@ -46,6 +44,9 @@ public class DriverApplication implements Serializable {
 		int numWorkers = context.sc().executorMemory();
 		
 
+		System.out.println("Cores:     " + numCores );
+		System.out.println("Executors: " + numWorkers );
+		
 		/**
 		 * 			EXECUÇÃO DO WORKFLOW
 		 **/
@@ -54,10 +55,11 @@ public class DriverApplication implements Serializable {
 		/** 			Primeiro passo do workflow 												**/
 		// Coleta os grafos do banco de dados usando o indice da tabela de parametros
 		// ----------------------------------------------------------------------------------------------
-		Dataset<Row> graphs = new Step1().run( spark, indexParameter );
+		Dataset<Row> graphs = new Step1().run( spark, indexParameter ).repartition( 20 );
 		// ----------------------------------------------------------------------------------------------
 
 
+		System.out.println("  >>>>>>    Numero de partições do passo 1 : " + graphs.rdd().getNumPartitions() );
 		
 		
 		
@@ -67,6 +69,7 @@ public class DriverApplication implements Serializable {
 		JavaRDD<String> preparedGraphs = graphs.toJavaRDD().map( new DatasetToPairRDD() );
 		// ----------------------------------------------------------------------------------------------
 		
+		System.out.println("  >>>>>>    Numero de partições do passo 2 : " + preparedGraphs.getNumPartitions() );
 		
 		//preparedGraphs.repartition( numWorkers );
 		
@@ -81,6 +84,7 @@ public class DriverApplication implements Serializable {
 		// ----------------------------------------------------------------------------------------------
 
 		
+		System.out.println("  >>>>>>    Numero de partições do passo 3 : " + functionResults.getNumPartitions() );
 		
 		
 		
@@ -89,6 +93,7 @@ public class DriverApplication implements Serializable {
 		JavaPairRDD<Integer, String> rddMapeado = functionResults.mapToPair( new ToOrderPairRDD() );
 		
 		
+		System.out.println("  >>>>>>    Numero de partições do passo 4 : " + rddMapeado.getNumPartitions() );
 		
 		
 
@@ -104,6 +109,7 @@ public class DriverApplication implements Serializable {
 
 
 		
+		System.out.println("  >>>>>>    Numero de partições do passo 5 : " + agrupadoPorOrdemRdd.getNumPartitions() );
 		
 		
 		
@@ -114,7 +120,7 @@ public class DriverApplication implements Serializable {
 		
 
 		
-		
+		kBestGraphs.collect();
 		
 		
 		
@@ -128,32 +134,6 @@ public class DriverApplication implements Serializable {
 		
 		
 		
-		/*
-		VoidFunction<String> ff = new VoidFunction<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public void call(String t) throws Exception {
-				System.out.println( t );
-			}
-		};
-		showgResult.foreach( ff );
-		*/
-		
-		// PASSO 7: SHOWG
-		// pipe("/usr/lib/riographx/nauty24r2/showg -A -q");
-		// Input (stdin):
-		//  	E?bw ( o grafo )
-		// Output (stdout):
-		/*
-				6
-				0 0 0 0 1 1
-				0 0 0 0 0 1
-				0 0 0 0 0 1
-				0 0 0 0 0 1
-				1 0 0 0 0 1
-				1 1 1 1 1 0
-		 */
 		
 
 		// PASSO 8: TXT2DOT
@@ -180,7 +160,7 @@ public class DriverApplication implements Serializable {
 	}
 
 
-	
+	/*
 	private void printEvaluatedRDD( JavaPairRDD<Integer, List<String> > theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<Integer, List<String>> > > f = new VoidFunction <Iterator< Tuple2<Integer, List<String>> > >() {
@@ -203,7 +183,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	
+	*/	
 	
 	
 	/*
