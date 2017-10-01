@@ -1,0 +1,21 @@
+spark-submit --class br.com.cmabreu.Main  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/riographx/riographx.jar $param_index $workDir $sageScript
+
+{
+  "action" : "CreateSubmissionResponse",
+  "message" : "Driver successfully submitted as driver-20170930235117-0001",
+  "serverSparkVersion" : "2.2.0",
+  "submissionId" : "driver-20170930235117-0001",
+  "success" : true
+}
+
+ --status driver-20170930235117-0001 --master spark://sparkmaster:6066
+ 
+ {
+  "action" : "SubmissionStatusResponse",
+  "driverState" : "RUNNING",
+  "serverSparkVersion" : "2.2.0",
+  "submissionId" : "driver-20170930235117-0001",
+  "success" : true,
+  "workerHostPort" : "192.168.25.101:40326",
+  "workerId" : "worker-20170930232939-192.168.25.101-40326"
+}
