@@ -14,6 +14,10 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
+import br.com.cmabreu.functions.DatasetToPairRDD;
+import br.com.cmabreu.functions.KBestGraphs;
+import br.com.cmabreu.functions.LineToGraphObject;
+import br.com.cmabreu.functions.ToOrderPairRDD;
 import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
@@ -60,11 +64,11 @@ public class DriverApplication implements Serializable {
 		/** 			Segundo passo do workflow 												**/
 		// Acrescenta um numero de série e informações de execução do SAGE/EIGEN na linha de parametros.
 		// ----------------------------------------------------------------------------------------------
-		JavaRDD<String> preparedGraphs = new Step2().run(graphs);
+		JavaRDD<String> preparedGraphs = graphs.toJavaRDD().map( new DatasetToPairRDD() );
 		// ----------------------------------------------------------------------------------------------
 		
 		
-		preparedGraphs.repartition( numWorkers );
+		//preparedGraphs.repartition( numWorkers );
 		
 		
 		/** 			Terceiro passo do workflow 												**/
@@ -72,8 +76,8 @@ public class DriverApplication implements Serializable {
 		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
 		// 		passados pelo usuário.
 		// ----------------------------------------------------------------------------------------------
-		Step3 stp3 = new Step3();
-		JavaRDD<String> functionResults = stp3.run( preparedGraphs, workDir, sageScript );
+		String external = workDir + "/" + sageScript;
+		JavaRDD<String> functionResults = preparedGraphs.pipe( external );
 		// ----------------------------------------------------------------------------------------------
 
 		
@@ -82,7 +86,7 @@ public class DriverApplication implements Serializable {
 		
 		/** 			Quarto passo do workflow 												**/
 		// Cria um PairRDD com os grafos usando o numero de ordem como chave.
-		JavaPairRDD<Integer, String> rddMapeado = new Step4().run(functionResults);
+		JavaPairRDD<Integer, String> rddMapeado = functionResults.mapToPair( new ToOrderPairRDD() );
 		
 		
 		
@@ -106,21 +110,23 @@ public class DriverApplication implements Serializable {
 	
 		/** 			Sexto passo do workflow 												**/
 		// Seleciona os K-Melhores grafos por grupo
-		Step6 stp6 = new Step6();
-		JavaPairRDD<Integer, List<String> > kBestGraphs = stp6.run( agrupadoPorOrdemRdd );
+		JavaPairRDD<Integer, List<String> > kBestGraphs = agrupadoPorOrdemRdd.mapToPair( new KBestGraphs() );
 		
 
 		
-		printEvaluatedRDD( kBestGraphs );
+		
+		
 		
 		
 		
 		/** 			Sétimo passo do workflow 												**/
-		// Executa o programa externo SHOWG ( nauty )
-		// Não aproveita o resultado. Já sei onde o arquivo será gravado:
-		// Na pasta definida pelo numero de serie
-		//Step7 stp7 = new Step7();
-		//JavaRDD<String> showgResult = stp7.run( preparedGraphs, workDir, showgScript );
+		// Converte a String contendo os parâmetros do grafo em uma lista
+		// de objetos tipo Graph
+		//JavaPairRDD<Integer, Graph> graphsPairRDD = functionResults.mapToPair( new LineToGraphObject() );
+		
+		
+		
+		
 		
 		/*
 		VoidFunction<String> ff = new VoidFunction<String>() {
