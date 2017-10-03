@@ -30,8 +30,6 @@ public class GraphComparator implements Comparator<String>, Serializable {
         
         int resultPosition = parameters1.length - 1; // O valor do resultado da funcao eh o ultimo.
         
-        System.out.println("Comparando " + parameters1[resultPosition] + " contra " + parameters2[resultPosition] );
-        
         Float result1 = Float.valueOf( parameters1[resultPosition] );
         Float result2 = Float.valueOf( parameters2[resultPosition] );			        
         

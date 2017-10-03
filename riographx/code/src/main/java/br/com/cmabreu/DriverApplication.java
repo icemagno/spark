@@ -1,6 +1,7 @@
 package br.com.cmabreu;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.spark.HashPartitioner;
@@ -8,18 +9,21 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.api.java.function.VoidFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 
 import br.com.cmabreu.functions.DatasetToPairRDD;
+import br.com.cmabreu.functions.Flatenize;
 import br.com.cmabreu.functions.KBestGraphs;
 import br.com.cmabreu.functions.ToOrderPairRDD;
+import scala.Tuple2;
 
 public class DriverApplication implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	public void run( String indexParameter, String workDir, String sageScript, String showgScript ) {
+	public void run( String indexParameter, String workDir, String sageScript, String showgScript, int numCores ) {
 		
 		// Carrega o driver PostgreSQL
 		try {
@@ -40,12 +44,8 @@ public class DriverApplication implements Serializable {
 		JavaSparkContext context = new JavaSparkContext(sparkConf);		
 		SparkSession spark = new SparkSession( context.sc() );
 
-		int numCores = context.sc().defaultParallelism();
-		int numWorkers = context.sc().executorMemory();
-		
+	
 
-		System.out.println("Cores:     " + numCores );
-		System.out.println("Executors: " + numWorkers );
 		
 		/**
 		 * 			EXECUÇÃO DO WORKFLOW
@@ -55,11 +55,10 @@ public class DriverApplication implements Serializable {
 		/** 			Primeiro passo do workflow 												**/
 		// Coleta os grafos do banco de dados usando o indice da tabela de parametros
 		// ----------------------------------------------------------------------------------------------
-		Dataset<Row> graphs = new Step1().run( spark, indexParameter ).repartition( 20 );
+		Dataset<Row> graphs = new Step1().run( spark, indexParameter ).repartition( numCores );
 		// ----------------------------------------------------------------------------------------------
 
 
-		System.out.println("  >>>>>>    Numero de partições do passo 1 : " + graphs.rdd().getNumPartitions() );
 		
 		
 		
@@ -69,9 +68,7 @@ public class DriverApplication implements Serializable {
 		JavaRDD<String> preparedGraphs = graphs.toJavaRDD().map( new DatasetToPairRDD() );
 		// ----------------------------------------------------------------------------------------------
 		
-		System.out.println("  >>>>>>    Numero de partições do passo 2 : " + preparedGraphs.getNumPartitions() );
 		
-		//preparedGraphs.repartition( numWorkers );
 		
 		
 		/** 			Terceiro passo do workflow 												**/
@@ -79,21 +76,18 @@ public class DriverApplication implements Serializable {
 		//		que é encarregado de executar o GENI e/ou o EIGSOLVE dependendo dos parametros
 		// 		passados pelo usuário.
 		// ----------------------------------------------------------------------------------------------
-		String external = workDir + "/" + sageScript;
-		JavaRDD<String> functionResults = preparedGraphs.pipe( external );
+		String sage = workDir + "/" + sageScript;
+		JavaRDD<String> sageResults = preparedGraphs.pipe( sage );
 		// ----------------------------------------------------------------------------------------------
 
 		
-		System.out.println("  >>>>>>    Numero de partições do passo 3 : " + functionResults.getNumPartitions() );
 		
 		
 		
 		/** 			Quarto passo do workflow 												**/
 		// Cria um PairRDD com os grafos usando o numero de ordem como chave.
-		JavaPairRDD<Integer, String> rddMapeado = functionResults.mapToPair( new ToOrderPairRDD() );
+		JavaPairRDD<Integer, String> rddMapeado = sageResults.mapToPair( new ToOrderPairRDD() );
 		
-		
-		System.out.println("  >>>>>>    Numero de partições do passo 4 : " + rddMapeado.getNumPartitions() );
 		
 		
 
@@ -109,9 +103,6 @@ public class DriverApplication implements Serializable {
 
 
 		
-		System.out.println("  >>>>>>    Numero de partições do passo 5 : " + agrupadoPorOrdemRdd.getNumPartitions() );
-		
-		
 		
 	
 		/** 			Sexto passo do workflow 												**/
@@ -120,12 +111,29 @@ public class DriverApplication implements Serializable {
 		
 
 		
-		kBestGraphs.collect();
-		
-		
 		
 		
 		/** 			Sétimo passo do workflow 												**/
+		// Converte a lista de grupo para um array de Strings ( flatenize )
+		JavaPairRDD<Integer,String> splitedGroup = kBestGraphs.mapToPair( new Flatenize() );
+
+		
+		printPairRddPartitions( splitedGroup );
+		
+		// ----------------------------------------------------------------------------------------------		
+		
+		
+		//String showg = workDir + "/" + showgScript;
+		//JavaRDD<String> showgResults = kBestGraphs.pipe(showg);
+		//List<String> wfResult = showgResults.collect();
+		
+		List<Tuple2<Integer,String> > wfResult = splitedGroup.collect();
+		
+		for( Tuple2<Integer,String> ss : wfResult ) {
+			System.out.println("Conteudo do grupo " + ss._1 + " : " +  ss._2 );
+		}
+		
+		
 		// Converte a String contendo os parâmetros do grafo em uma lista
 		// de objetos tipo Graph
 		//JavaPairRDD<Integer, Graph> graphsPairRDD = functionResults.mapToPair( new LineToGraphObject() );
@@ -186,7 +194,7 @@ public class DriverApplication implements Serializable {
 	*/	
 	
 	
-	/*
+	
 	private void printPairRddPartitions( JavaPairRDD<Integer, String> theRdd ) {
 		
 		VoidFunction <Iterator< Tuple2<Integer, String> > > f = new VoidFunction <Iterator< Tuple2<Integer, String> > >() {
@@ -207,7 +215,7 @@ public class DriverApplication implements Serializable {
 		theRdd.foreachPartition(f);
 		
 	}
-	*/
+	
 	
 	
 	
