@@ -46,6 +46,7 @@ while read tline; do
 
 	graphsdir="$workdir/grafos/$serial"
 	sourceg6="$graphsdir/graph.g6"
+	targetfile="$graphsdir/matrix.txt"
 
 
 	mkdir -p "$graphsdir"
@@ -59,6 +60,8 @@ while read tline; do
 	sage -c 'load("'"$workdir/Eigenvalue.py"'");Eigenvalue("'"$graphsdir/"'","'"$sourceg6"'","'"-a -q -l -x -y -z"'")'
 
 	java -jar "$workdir/evaluate.jar" "$graphsdir/" "$line" 
+
+	#/usr/lib/riographx/nauty24r2/showg -A -q "$sourceg6" "$targetfile"
 
 
 done
