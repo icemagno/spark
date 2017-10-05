@@ -115,22 +115,25 @@ public class DriverApplication implements Serializable {
 		
 		/** 			Sétimo passo do workflow 												**/
 		// Converte a lista de grupo para um array de Strings ( flatenize )
-		JavaPairRDD<Integer,String> splitedGroup = kBestGraphs.mapToPair( new Flatenize() );
+		JavaPairRDD<Integer,String> flattenGroup = kBestGraphs.mapToPair( new Flatenize() );
 
 		
-		printPairRddPartitions( splitedGroup );
+		//printPairRddPartitions( splitedGroup );
 		
 		// ----------------------------------------------------------------------------------------------		
 		
 		
-		//String showg = workDir + "/" + showgScript;
-		//JavaRDD<String> showgResults = kBestGraphs.pipe(showg);
-		//List<String> wfResult = showgResults.collect();
+		String showg = workDir + "/" + showgScript;
+		JavaRDD<String> showgResults = flattenGroup.pipe(showg);
+		List<String> wfResult = showgResults.collect();
 		
-		List<Tuple2<Integer,String> > wfResult = splitedGroup.collect();
 		
-		for( Tuple2<Integer,String> ss : wfResult ) {
-			System.out.println("Conteudo do grupo " + ss._1 + " : " +  ss._2 );
+		//List<Tuple2<Integer,String> > wfResult = splitedGroup.collect();
+		
+		//for( Tuple2<Integer,String> ss : wfResult ) {
+		for( String ss : wfResult ) {
+			//System.out.println("Conteudo do grupo " + ss._1 + " : " +  ss._2 );
+			System.out.println("Retorno do Showg == " + ss );
 		}
 		
 		

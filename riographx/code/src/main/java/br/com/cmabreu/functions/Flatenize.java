@@ -18,8 +18,10 @@ public class Flatenize implements PairFunction< Tuple2<Integer, List<String> >, 
 		String prefix = "";
 		
 		for( String ss : lista  ) {
-			sb.append( prefix + ss.toString().replaceAll("\\\\", "\\\\\\\\") );
-			prefix = "|||" ;
+			// .substring(2) vai remover a chave do RDD da frente da String e sua virgula.
+			// O proximo elemento ja eh a ordem do grafo entao eh reduntante.
+			sb.append( prefix + ss.toString().replaceAll("\\\\", "\\\\\\\\").substring(2) );
+			prefix = ":" ;
 		}
 		
 		

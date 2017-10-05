@@ -15,7 +15,6 @@ public class LineToGraphObject implements PairFunction<String, Integer, Graph> {
 		
 		String[] parameters = line.split(",");
 
-		//String rddKey = parameters[0];
 		Integer index_id = Integer.valueOf( parameters[1] );
 		String function = parameters[2];
 		String g6 = parameters[3];

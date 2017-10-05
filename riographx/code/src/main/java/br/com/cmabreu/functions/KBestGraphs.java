@@ -23,13 +23,13 @@ public class KBestGraphs implements PairFunction<Tuple2<Integer, Iterable<String
 		List<String> graphList = new ArrayList<String>();
 		
 		
-		
 		for( String grafo : grafos ) {
 			String[] parameters = grafo.split(",");
 			sortOrder = parameters[11];
 			maxresults = Integer.valueOf( parameters[17] );
 			graphList.add( grafo );
 		}
+		
 		Collections.sort( graphList, new GraphComparator( sortOrder ) );
 		
 		List<String> resultGraphList = graphList.stream().limit( maxresults ).collect(Collectors.toList());
