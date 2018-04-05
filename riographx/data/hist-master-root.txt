@@ -1,0 +1,203 @@
+    1  vim /etc/network/interfaces
+    2  ifconfig
+    3  route -n
+    4  vim /etc/network/interfaces
+    5  ping google.com
+    6  apt-get update
+    7  apt-get upgrade
+    8  shutdown now
+    9  ifconfig
+   10  ping 10.20.0.1
+   11  shutdown now
+   12  vim /etc/network/interfaces
+   13  vim /etc/hostname
+   14  shutdown now
+   15  ping sparkmaster
+   16  vim /etc/hosts
+   17  vim /etc/hostname 
+   18  ls -lh
+   19  cd /home/magno
+   20  ls -lh
+   21  add-apt-repository ppa:webupd8team/java
+   22  apt-get update
+   23  apt-get install oracle-java8-installer
+   24  java -version
+   25  wget https://downloads.lightbend.com/scala/2.12.3/scala-2.12.3.tgz
+   26  ls -lh
+   27  tar xvf scala-2.12.3.tgz 
+   28  ls -lh
+   29  mv scala-2.12.3 /usr/local/scala
+   30  ls -lh
+   31  vim /etc/environment
+   32  scala -version
+   33  exit
+   34  export
+   35  shutdown -r now
+   36  clear
+   37  ifconfig
+   38  ping 192.168.25.1
+   39  ssh
+   40  apt-get install openssh
+   41  apt-get install openssh-server
+   42  apt-get update
+   43  vim /etc/network/interfaces
+   44  ping google.com
+   45  ifdown enp0s3
+   46  ifup enp0s3
+   47  ifconfig
+   48  ping google.com
+   49  apt-get update
+   50  apt-get install openssh-server
+   51  apt-get install openssh-client
+   52  export
+   53  vim ~/.bashrc
+   54  exit
+   55  vim ~/.bashrc
+   56  exit
+   57  export
+   58  scala -version
+   59  cd /home/magno
+   60  wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
+   61  tar xvf spark-2.2.0-bin-hadoop2.7.tgz 
+   62  mv spark-2.2.0-bin-hadoop2.7 /usr/local/spark
+   63  vim ~/.bashrc
+   64  spark-shell
+   65  source ~/.bashrc
+   66  spark-shell
+   67  shutdown now
+   68  vim /etc/hosts
+   69  ping sparknode01
+   70  shutdown now
+   71  spark-shell
+   72  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+   73  spark-submit .class org.apache.spark.examples.SparkPi .master local[*] lib/spark-example* 10
+   74  spark-submit --class org.apache.spark.examples.SparkPi --master spark://sparkmaster:7077  lib/spark-example* 10
+   75  spark-submit --class org.apache.spark.examples.SparkPi --master spark://sparkmaster:7077  $SPARK_HOME/lib/spark-example*.jar 10
+   76  spark-submit --class org.apache.spark.examples.SparkPi --master spark://sparkmaster:7077  $SPARK_HOME/lib/spark-examples*.jar 10
+   77  ls $SPARK_HOME/lib/
+   78  ls $SPARK_HOMElib/
+   79  ls $SPARK_HOME/lib/
+   80  ls $SPARK_HOME
+   81  mkdir $SPARK_HOME/lib/
+   82  cd $SPARK_HOME/lib/
+   83  wget http://central.maven.org/maven2/org/apache/spark/spark-examples_2.10/0.9.0-incubating/spark-examples_2.10-0.9.0-incubating.jar
+   84  spark-submit --class org.apache.spark.examples.SparkPi --master spark://sparkmaster:7077  $SPARK_HOME/lib/spark-examples*.jar 10
+   85  exit
+   86  ping sparknode02
+   87  vim ~/.bashrc
+   88  source ~/.bashrc
+   89  cd $SPARK_HOME
+   90  cd conf
+   91  cp spark-env.sh.template spark-env.sh
+   92  vim spark-env.sh
+   93  cp slaves.template slaves
+   94  vim slaves
+   95  vim spark-defaults.conf.template 
+   96  mkdir /home/magno/sparkdata
+   97  cd ..
+   98  cd bin
+   99  ls
+  100  cd ..
+  101  ls
+  102  ls sbin
+  103  sbin/start-master.sh 
+  104  sbin/start-slaves.sh 
+  105  ssh-keygen -t rsa -P ""
+  106  cp /root/.ssh/id_rsa.pub /home/magno
+  107  cd /home/magno
+  108  cp id_rsa.pub ~/.ssh/authorized_keys
+  109  ls
+  110  ls lh
+  111  ls -lh
+  112  chown magno:magno id_rsa.pub 
+  113  sbin/start-slaves.sh 
+  114  $SPARK_HOME/sbin/start-slaves.sh
+  115  jsp
+  116  jps
+  117  spark-shell 
+  118  hdfs
+  119  cd $SPARK_HOME
+  120  ls
+  121  cd sbin
+  122  ls
+  123  cd .
+  124  cd ..
+  125  ls bin
+  126  ls yarn
+  127  spark-shell 
+  128  cd /home/magno
+  129  wget http://mirror.nbtelecom.com.br/apache/hadoop/common/hadoop-3.0.0-alpha4/hadoop-3.0.0-alpha4.tar.gz
+  130  ls
+  131  ls lh
+  132  ls -lh
+  133  tar xvf hadoop-3.0.0-alpha4.tar.gz 
+  134  cd /usr/local/hadoop
+  135  ls
+  136  ls bin
+  137  ls etc
+  138  ls etc/hadoop/
+  139  vim ~/.bashrc
+  140  ls etc/hadoop
+  141  ls
+  142  ls /home/magno
+  143  ls /home/magno/sparkdata/
+  144  mkdir /home/magno/hadoopdata
+  145  vim /usr/local/hadoop/etc/hadoop/core-site.xml
+  146  clear
+  147  source ~/.bashrc
+  148  mkdir /home/magno/hdfs
+  149  vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+  150  cd etc/hadoop
+  151  vim masters
+  152  vim slaves
+  153  cd ..
+  154  ls
+  155  ls sbin
+  156  vim ~/.bashrc
+  157  ls bin
+  158  source ~/.bashrc
+  159  hdfs namenode -format
+  160  hadoop fs -ls
+  161  start-dfs.sh
+  162  sbin/start-dfs.sh
+  163  chown magno:magno -R /home/magno/hadoopdata/
+  164  ls /home/magno/hadoopdata/
+  165  chown magno:magno -R /usr/local/hadoop/
+  166  exit
+  167  cd /home/magno
+  168  ls -lh
+  169  ls ~/.ssh/authorized_keys 
+  170  cat >>  ~/.ssh/authorized_keys 
+  171  exit
+  172  history > /home/magno/hist-root.txt
+  173  chown magno /home/magno/hist-root.txt
+  174  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  175  vim ~/.bashrc
+  176  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  177  source ~/.bashrc
+  178  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  179  export
+  180  vim ~/.bashrc
+  181  source ~/.bashrc
+  182  export
+  183  vim ~/.bashrc
+  184  source ~/.bashrc
+  185  export
+  186  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  187  shutdown now
+  188  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  189  start-yarn.sh
+  190  ls -lh /usr/local/hadoop/
+  191  ls -lh /usr/local/hadoop/etc/hadoop/
+  192  ls $HADOOP_CONF_DIR
+  193  chown magno:magno /usr/local/spark/ -R
+  194  exit
+  195  ls
+  196  cd /home/magno/install-stuff/
+  197  history > hist-root.txt 
+  198  exit
+  199  ls ~/.local/lib/python2.7/site-packages/
+  200  ls ~/.local/lib/python2.7/
+  201  exit
+  202  hist-master-root.txt
+  203  history > hist-master-root.txt

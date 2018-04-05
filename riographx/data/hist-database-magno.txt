@@ -1,0 +1,1000 @@
+  330  ./build.sh
+  331  ./deploy.sh
+  332  chmod 0775 deploy.sh
+  333  ./deploy.sh
+  334  hdfs dfs -ls /
+  335  hdfs dfs -ls /riographx
+  336  hdfs dfs -rm /riographx/riographx-0.1.jar
+  337  ./build.sh
+  338  vim build.sh
+  339  chmod 0775 build.sh
+  340  ./build.sh
+  341  ./deploy.sh 
+  342  ./run.sh 596
+  343  ./run.sh 591
+  344  ls
+  345  cd ..
+  346  ls
+  347  mkdir riographx_data
+  348  cd riographx_data/
+  349  svn co https://github.com/icemagno/spark/trunk/riographx/data .
+  350  chmod 0775 rungeni.sh 
+  351  ./rungeni.sh 
+  352  apt-add-repository -y ppa:aims/sagemath
+  353  sudo apt-add-repository -y ppa:aims/sagemath
+  354  sudo apt-get update
+  355  sudo apt-get install sagemath-upstream-binary
+  356  htop
+  357  clear
+  358  history | grep psql
+  359  history | grep pgdump
+  360  ls
+  361  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres" --password admin  --verbose --format=t --blobs "spectral_parameters"
+  362  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres"  --verbose --format=t --blobs "spectral_parameters"
+  363  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres"  --verbose --format=t --blobs "graphx"
+  364  ls
+  365  clear
+  366  ls
+  367  cd riographx_data/
+  368  LS
+  369  ls
+  370  clear
+  371  ls
+  372  history | grep geni
+  373  geni.py
+  374  python geni.py 
+  375  vim geni.py
+  376  svn update
+  377  ls
+  378  svn update
+  379  chmod 0775 rungeni.sh
+  380  ./rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g"
+  381  ls PYTHOMPATH
+  382  ls $PYTHOMPATH
+  383  pythom -V
+  384  python -V
+  385  python -c "print __import__('sys').version"
+  386  pip install mathchem
+  387  sudo apt install python-pip
+  388  pip install mathchem
+  389  sudo apt install python-pip
+  390  clear
+  391  ./rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g"
+  392  pythom
+  393  python
+  394  which python
+  395  vim geni.py
+  396  ./rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g"
+  397  cat rungeni.sh 
+  398  sage
+  399  wget http://mathchem.iam.upr.si/downloads/mathchem-1.1.3.spkg
+  400  sage -f ./mathchem-1.1.3.spkg
+  401  ls /usr/lib/sagemath/local/lib/python2.7/site-packages/
+  402  ls /usr/lib/sagemath/
+  403  ls /usr/lib/sagemath/local
+  404  ls /usr/lib/sagemath/
+  405  ls -lh
+  406  cp mathchem-1.1.3.spkg /usr/lib/sagemath/
+  407  sudo cp mathchem-1.1.3.spkg /usr/lib/sagemath/
+  408  sudo sage -f mathchem-1.1.3.spkg
+  409  pip install mathchem
+  410  sudo pip install mathchem
+  411  ls /usr/local/bin/python
+  412  ls /usr/local/
+  413  which python
+  414  export PYTHONPATH=/usr/bin/python
+  415  ls $PYTHONPATH
+  416  ls PYTHONPATH
+  417  ls /usr/bin/python
+  418  ls /usr/bin/python/python2.7
+  419  /usr/bin/python
+  420  ls /usr/local/bin/
+  421  make
+  422  ls /usr/bin/python -lh
+  423  ls /usr/bin/python/python2.7
+  424  ls /usr/bin/python2.7
+  425  ls /usr/bin/python2.7 -lh
+  426  /usr/bin/python2.7
+  427  ls /usr/lib/sagemath/local/lib/python2.7/
+  428  ls /usr/lib/sagemath/local/lib/python
+  429  ls /usr/lib/sagemath/local/lib/
+  430  ls /usr/lib/sagemath/
+  431  ls /usr/lib/sagemath/local/
+  432  ls /usr/lib/sagemath/local/lib
+  433  ls /usr/lib/sagemath/local/
+  434  ls /usr/lib/sagemath/local/bin
+  435  ls /usr/lib/sagemath/local/bin/python2.7
+  436  /usr/lib/sagemath/local/bin/python2.7
+  437  /usr/lib/sagemath/local/bin/python2.7 get-pip.py
+  438  /usr/lib/sagemath/local/bin/python2.7 -m pip install mathchem
+  439  ls /usr/lib/sagemath/local/lib/python
+  440  ls /usr/lib/sagemath/local/bin/
+  441  ls /usr/lib/sagemath/local/
+  442  ls /usr/lib/sagemath/local/lib/python2.7/site-packages/
+  443  ls /home/magno/.local/lib/python2.7/site-packages
+  444  cp -r /home/magno/.local/lib/python2.7/site-packages/* /home/magno/.local/lib/python2.7/site-packages
+  445  cp -r /home/magno/.local/lib/python2.7/site-packages/* /usr/lib/sagemath/local/lib/python2.7/site-packages/
+  446  sudo cp -r /home/magno/.local/lib/python2.7/site-packages/* /usr/lib/sagemath/local/lib/python2.7/site-packages/
+  447  sage
+  448  ls -lh
+  449  export | grep PYTHON
+  450  sudo shutdown now
+  451  ls
+  452  cd riographx
+  453  ls -lh
+  454  ./build.sh
+  455  ./deploy.sh
+  456  ./run.sh 597
+  457  history | grep dump
+  458  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres"  --verbose --format=t --blobs "graphx"
+  459  ls
+  460  rm spectral.backup 
+  461  ./build.sh
+  462  ./deploy.sh
+  463  ./run.sh
+  464  ./run.sh 591
+  465  ,.build.sh
+  466  ./build.sh
+  467  ls -lh
+  468  ./deploy.sh
+  469  ./run.sh 
+  470  ./run.sh 591
+  471  ./build.sh
+  472  ./deploy.sh
+  473  ./run.sh 591
+  474  ./build.sh
+  475  ./deploy.sh
+  476  ./run.sh
+  477  ./run.sh 591
+  478  ./build.sh
+  479  ./deploy.sh
+  480  ./run.sh 591
+  481  ./build.sh
+  482  ./deploy.sh
+  483  ./run.sh 591
+  484  ./deploy.sh
+  485  ./run.sh 591
+  486  ./deploy.sh
+  487  ./run.sh 591
+  488  ./deploy.sh
+  489  ./run.sh 591
+  490  ./deploy.sh
+  491  ./run.sh 591
+  492  ./deploy.sh
+  493  ./run.sh 591
+  494  ./deploy.sh
+  495  ./run.sh 591
+  496  ./deploy.sh
+  497  ./run.sh 591
+  498  ls -lh
+  499  cd ..
+  500  ls -lh
+  501  riographx_data/
+  502  ls -lh
+  503  cd riographx_data/
+  504  ls -lh
+  505  cat rungeni.sh 
+  506  ./rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g
+  507  quit()
+  508  ./rungeni.sh ./geni.py ./output.txt ./graphtest.g6 "-a -b -c -d -e 3 -g
+  509  quit();
+  510  ./rungeni.sh
+  511  vim rungeni.sh
+  512  ./rungeni.sh
+  513  cat rungeni.sh 
+  514  ./rungeni.sh geni.py output.txt graphtest.g6 "-a -b -c -d -e 3 -g
+  515  ls -lh
+  516  cat rungeni.sh 
+  517  sage
+  518  ls -lh
+  519  cat saida.csv
+  520  rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
+  521  ./rungeni.sh ./geni.py ./ ./graphtest.g6 "-a -b -c -d -e 3 -g"
+  522  vim geni.ppy
+  523  vim geni.py
+  524  cat graphtest.g6 
+  525  ./rungeni.sh ./geni.py ./ D?? "-a -b -c -d -e 3 -g"
+  526  vim geni.py
+  527  sudo shutdown now
+  528  ls -lh
+  529  cd riographx
+  530  ls
+  531  ./build.sh
+  532  ./deploy.sh
+  533  ./run.sh 591
+  534  cat run.sh
+  535  ls
+  536  cd riographx
+  537  ls
+  538  ./build.sh
+  539  ./deploy.sh
+  540  ./run.sh 591
+  541  ./build.sh
+  542  ./deploy.sh
+  543  ./run.sh 591
+  544  ./build.sh && ./deploy.sh && ./run.sh 591
+  545  sudo shutdown now
+  546  ls
+  547  ls -lh | java -jar teste.jar
+  548  mkdir /etc/riographx
+  549  mkdir /opt/riographx
+  550  mkdir /usr/lib/riographx
+  551  sudo mkdir /usr/lib/riographx
+  552  sudo chown magno /usr/lib/riographx
+  553  cp teste.jar /usr/lib/riographx
+  554  ls
+  555  cd riographx
+  556  ls
+  557  ./build.sh
+  558  ./deploy.sh
+  559  ./run.sh 591
+  560  ./build.sh && ./deploy.sh && ./run.sh 591
+  561  cat run.sh
+  562  hdfs dfs -lh /
+  563  hdfs dfs -ls /
+  564  hdfs dfs -rm -r /user
+  565  cat deploy.sh
+  566  hdfs dfs -put /usr/lib/riographx/teste.jar /riographx/
+  567  rm -r /usr/lib/riographx/
+  568  sudo rm -r /usr/lib/riographx/
+  569  ./build.sh && ./deploy.sh && ./run.sh 591
+  570  ls
+  571  vim teste.sh
+  572  ls -lh | sh teste.sh
+  573  ls -lh | teste.sh
+  574  ls -lh | ./teste.sh
+  575  chmod 0777 teste.sh
+  576  ls -lh | ./teste.sh
+  577  hdfs dfs -put teste.sh /riographx/
+  578  ./build.sh && ./deploy.sh && ./run.sh 591
+  579  sudo shutdown now
+  580  cd riographx
+  581  ls
+  582  cat teste.sh 
+  583  echo "ghghg" |  teste.sh 
+  584  echo "ghghg" |  ./teste.sh 
+  585  vim teste.sh
+  586  ls
+  587  echo "fdsfsdf" | ./teste.sh
+  588  ls -lh
+  589  cat teste.txt
+  590  vim teste.sh
+  591  echo "fdsfsdf" | ./teste.sh
+  592  vim teste.sh
+  593  echo "kkk,rrrn,yyy" | ./teste.sh
+  594  vim teste.sh
+  595  echo "kkk,rrrn,yyy" | ./teste.sh
+  596  vim teste.sh
+  597  echo "kkk,rrrn,yyy" | ./teste.sh
+  598  ls -lh
+  599  cat kkk.txt
+  600  vim teste.sh
+  601  cp teste.sh sage.sh
+  602  rm teste.sh
+  603  ls -lh
+  604  vim sage.sh
+  605  sage
+  606  mkdir grafos
+  607  ls -lh
+  608  vim sage.sh
+  609  vim grafo.txt
+  610  cat grafo.txt | ./sage.sh
+  611  ls grafos
+  612  vim sage.sh
+  613  cat grafo.txt | ./sage.sh
+  614  ls grafos
+  615  cat grafos/51aa11c545434902adba0707419e0e7a.g6 
+  616  ls 
+  617  vim sage.sh
+  618  cat grafo.txt | ./sage.sh
+  619  ls grafos
+  620  rm grafos/0.g6 
+  621  cat grafos/saida.csv 
+  622  clear
+  623  ls -lh
+  624  vim sage.sh
+  625  rm -r grafos
+  626  cat grafo.txt | ./sage.sh
+  627  ls grafos
+  628  ls grafos/51aa11c545434902adba0707419e0e7a/
+  629  vim sage.sh
+  630  cat grafo.txt | ./sage.sh
+  631  vim sage.sh
+  632  vim Eigenvalue.py 
+  633  cat grafo.txt | ./sage.sh
+  634  ls grafos
+  635  ls grafos/51aa11c545434902adba0707419e0e7a/
+  636  vim sage.sh
+  637  cat grafo.txt | ./sage.sh
+  638  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a lambda_2 + chi + overline{lambda_2} 591 10 min 6
+  639  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ lambda_2 + chi + overline{lambda_2} 591 10 min 6
+  640  vim sage.sh
+  641  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ lambda_2 + chi + overline{lambda_2} 591 10 min 6
+  642  clear
+  643  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ "lambda_2 + chi + overline{lambda_2}" 591 10 min 6
+  644  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ lambda_2 + chi + overline{lambda_2} 591 10 min 6
+  645  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ lambda_2+chi+overline{lambda_2} 591 10 min 6
+  646  vim sage.sh
+  647  cat grafo.txt | ./sage.sh
+  648  java -jar /home/magno/riographx/evaluate.jar /home/magno/riographx/grafos/51aa11c545434902adba0707419e0e7a/ lambda_2+chi+overline{lambda_2} 591 10 min EV~w 6
+  649  vim sage.sh
+  650  cat grafo.txt | ./sage.sh
+  651  vim sage.sh
+  652  cat grafo.txt | ./sage.sh
+  653  vim sage.sh
+  654  cat grafo.txt | ./sage.sh
+  655  sudo shutdown now
+  656  cd riographx
+  657  ls
+  658  cat grafo.txt | ./sage.sh
+  659  clear
+  660  cat grafo.txt | ./sage.sh
+  661  clear
+  662  cat grafo.txt | ./sage.sh
+  663  cat grafo.txt
+  664  vim sage.sh
+  665  cat grafo.txt | ./sage.sh
+  666  vim sage.sh
+  667  cat grafo.txt | ./sage.sh
+  668  vim sage.sh
+  669  cat grafo.txt 
+  670  vim grafo.txt 
+  671  vim grafo.txt
+  672  cat grafo.txt | ./sage.sh
+  673  ls grafos/51aa11c545434902adba0707419e0e7a/
+  674  cat grafos/51aa11c545434902adba0707419e0e7a/sagi_output.txt 
+  675  cat grafo.txt | ./sage.sh
+  676  vim sage.sh
+  677  cat grafo.txt | ./sage.sh
+  678  cat grafo.txt 
+  679  vim sage.sh
+  680  cat grafo.txt | ./sage.sh
+  681  clear
+  682  cat grafo.txt | ./sage.sh
+  683  vim sage.sh
+  684  cat grafo.txt | ./sage.sh
+  685  vim sage.sh
+  686  cat grafo.txt | ./sage.sh
+  687  cat grafo.txt
+  688  clear
+  689  cat grafo.txt | ./sage.sh
+  690  ./build.sh
+  691  vim deploy.sh 
+  692  ls
+  693  ./deploy.sh
+  694  history | grep pip install mathchem
+  695  history | grep mathchem
+  696  /usr/lib/sagemath/local/bin/python2.7 -m pip install mathchem
+  697  ls -lh /usr/lib/sagemath/local/bin/
+  698  ls -lh /usr/lib/sagemath/local/bin/p*
+  699  clear
+  700  ./build.sh
+  701  ./deploy.sh
+  702  ls
+  703  ./run.sh
+  704  history | run.sh
+  705  history | grep run.sh
+  706  ./run.sh 591
+  707  vim sage.sh
+  708  ./build.sh && ./deploy.sh && ./run.sh 591
+  709  vim deploy.sh 
+  710  ./build.sh
+  711  cat deploy.sh
+  712  vim deploy.sh 
+  713  ./deploy.sh
+  714  ./run.sh 591
+  715  ./build.sh && ./deploy.sh && ./run.sh 591
+  716  vim sage.sh
+  717  echo "sdsds" | ./teste.sh
+  718  chmod 0777 teste.sh
+  719  echo "sdsds" | ./teste.sh
+  720  cat deploy.sh
+  721  ./build.sh
+  722  ./deploy.sh
+  723  ./run.sh 591
+  724  ls /home/magno/riographx/
+  725  vim sage.sh
+  726  ./build.sh
+  727  ./deploy.sh
+  728  ./run.sh 591
+  729  ./build.sh
+  730  ./deploy.sh
+  731  ./run.sh 591
+  732  sudo shutdown now
+  733  cd riographx
+  734  ls
+  735  vim echo.sh
+  736  chmod 0777 echo.sh
+  737  cat deploy.sh 
+  738  hdfs dfs -put echo.sh /riographx/
+  739  spark
+  740  scala
+  741  spark-shell -h
+  742  cat run.sh
+  743  spark-shell 
+  744  cat run.sh
+  745  spark-shell  --master local[*]
+  746  spark-shell  
+  747  exit
+  748  /home/magno/riographx/echo.sh
+  749  history | grep /usr/
+  750  ls /usr/lib/riographx
+  751  mkdir /usr/lib/riographx
+  752  sudo mkdir /usr/lib/riographx
+  753  sudo chmod 0777 /usr/lib/riographx
+  754  ls
+  755  cd riographx
+  756  ls
+  757  cp *sh /usr/lib/riographx/
+  758  ls /usr/lib/riographx/
+  759  cat echo.sh 
+  760  cat deploy.sh
+  761  vim echo.sh
+  762  ./echo.sh
+  763  vim echo.sh
+  764  cp echo.sh /usr/lib/riographx/
+  765  cp * /usr/lib/riographx/
+  766  vim sage.sh
+  767  cat deploy.sh
+  768  dfs -rm /riographx/sage.sh
+  769  hdfs dfs -rm /riographx/sage.sh
+  770  hdfs dfs -put sage.sh /riographx/
+  771  cat sage.sh
+  772  vim sage.sh
+  773  clear
+  774  ./build.sh
+  775  ./deploy.sh
+  776  cat run.sh
+  777  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  778  vim sage.sh
+  779  hdfs dfs -rm /riographx/sage.sh
+  780  hdfs dfs -put sage.sh /riographx/
+  781  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  782  vim sage.sh
+  783  hdfs dfs -rm /riographx/sage.sh
+  784  hdfs dfs -put sage.sh /riographx/
+  785  vim sage.sh
+  786  hdfs dfs -rm /riographx/sage.sh
+  787  hdfs dfs -put sage.sh /riographx/
+  788  cp sage.sh /usr/lib/riographx/
+  789  ./build.sh
+  790  ./deploy.sh
+  791  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  792  ls /usr/lib/riographx/
+  793  ls /usr/lib/riographx/ -lh
+  794  ls /usr/lib/riographx/grafos -lh
+  795  ls /usr/lib/riographx/grafos/1 -lh
+  796  vim sage.sh
+  797  ./build.sh
+  798  ./deploy.sh
+  799  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  800  cd /usr/lib/riographx/
+  801  ls -lh
+  802  cat grafo.txt
+  803  rm -r grafos
+  804  cat grafo.txt | ./sage.sh
+  805  vim sage.sh
+  806  cat grafo.txt | ./sage.sh
+  807  cd /home/magno/riographx
+  808  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  809  vim /usr/lib/riographx/sage.sh 
+  810  ./build.sh
+  811  ./deploy.sh 
+  812  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  813  ls /usr/lib/riographx/grafos
+  814  rm -r /usr/lib/riographx/grafos
+  815  vim /usr/lib/riographx/sage.sh 
+  816  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  817  ls /usr/lib/riographx/grafos
+  818  rm -r /usr/lib/riographx/grafos
+  819  vim sage.sh
+  820  vim /usr/lib/riographx/sage.sh 
+  821  ls /usr/lib/riographx/grafos
+  822  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  823  ls /usr/lib/riographx/grafos
+  824  ls /usr/lib/riographx/
+  825  cat /usr/lib/riographx/textline.txt 
+  826  vim /usr/lib/riographx/sage.sh 
+  827  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  828  vim /usr/lib/riographx/sage.sh 
+  829  cat /usr/lib/riographx/textline.txt 
+  830  vim /usr/lib/riographx/sage.sh 
+  831  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  832  cp /usr/lib/riographx/sage.sh .
+  833  ./run.sh 591
+  834  vim /usr/lib/riographx/sage.sh 
+  835  cp /usr/lib/riographx/sage.sh .
+  836  vim /usr/lib/riographx/sage.sh 
+  837  ls /usr/lib/riographx/
+  838  ls /usr/lib/riographx/grafos
+  839  rm -r /usr/lib/riographx/grafos
+  840  ./build.sh
+  841  ./deploy.sh
+  842  ./run.sh 591
+  843  ./build.sh
+  844  ./deploy.sh
+  845  ./run.sh 591
+  846  ls -lh /usr/lib/riographx/grafos
+  847  ls -lh /usr/lib/riographx/
+  848  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  849  ls -lh /usr/lib/riographx/grafos
+  850  ls -lh /usr/lib/riographx/
+  851  ./build.sh 
+  852  ./deploy.sh 
+  853  vim /usr/lib/riographx/run.sh
+  854  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591
+  855  vim run.sh
+  856  ./build.sh 
+  857  chmod 0777 execute.sh 
+  858  ./execute.sh
+  859  vim /usr/lib/riographx/sage.sh 
+  860  cp /usr/lib/riographx/sage.sh .
+  861  cp sage.sh /usr/lib/riographx/
+  862  vim /usr/lib/riographx/sage.sh 
+  863  vim execute.sh
+  864  ./execute.sh
+  865  ls
+  866  ls riographx
+  867  ls /usr/lib/riographx/grafos
+  868  rm -r /usr/lib/riographx/grafos
+  869  cd /usr/lib/riographx/
+  870  ls
+  871  vim sage.sh
+  872  cd /home/magno/riographx
+  873  ls -lh
+  874  ./build.sh
+  875  ./deploy.sh
+  876  ./run.sh
+  877  ./execute.sh
+  878  ./build.sh
+  879  ./deploy.sh
+  880  spark-submit --class br.com.cmabreu.Main  --master local[*] 591 hdfs://sparkmaster:9000/riographx/riographx.jar sage.sh
+  881  cat execute.sh
+  882  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591 /usr/lib/riographx sage.sh
+  883  ./build.sh
+  884  ./deploy.sh
+  885  spark-submit --class br.com.cmabreu.Main  --master local[*]  hdfs://sparkmaster:9000/riographx/riographx.jar 591 /usr/lib/riographx sage.sh
+  886  ./execute.sh
+  887  sudo shutdown now
+  888  cd riographx
+  889  ls -lh
+  890  ./execute.sh
+  891  cat execute.sh
+  892  sudo shutdown now
+  893  ls -lh
+  894  rm spectral.backup 
+  895  history | grep pg_dump
+  896  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres"  --verbose --format=t --blobs "graphx"
+  897  ls -lh
+  898  sudo shutdown now
+  899  sudo -i
+  900  ls
+  901  cd riographx
+  902  ls target/
+  903  ls target/ -lh
+  904  ./deploy.sh
+  905  cat execute.sh 
+  906  ls /usr/lib/riographx/ -lh
+  907  cat  /usr/lib/riographx/echo.sh 
+  908  ./run.sh 591 /usr/lib/riographx echo.sh
+  909  ./deploy.sh
+  910  ./run.sh 591 /usr/lib/riographx echo.sh
+  911  ./deploy.sh
+  912  ./run.sh 591 /usr/lib/riographx echo.sh
+  913  ./deploy.sh
+  914  ./run.sh 591 /usr/lib/riographx echo.sh
+  915  sudo shutdown now
+  916  cd /usr/lib/riographx/
+  917  chmod 0777 broadcast.sh 
+  918  ./broadcast.sh echo.sh
+  919  cd ~
+  920  cd riographx
+  921  ls -lh
+  922  ls -lh target/
+  923  ./deploy.sh
+  924  cat execute.sh 
+  925  ./run.sh 591 /usr/lib/riographx echo.sh
+  926  ls /usr/lib/riographx/ -lh
+  927  cat /usr/lib/riographx/ echo.sh
+  928  cat /usr/lib/riographx/echo.sh
+  929  ls -lh
+  930  vim /usr/lib/riographx/echo.sh
+  931  ./broadcast.sh echo.sh
+  932  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/echo.sh
+  933  ./deploy.sh
+  934  ./run.sh 591 /usr/lib/riographx echo.sh
+  935  ls /usr/lib/riographx/ -lh
+  936  vim /usr/lib/riographx/echo.sh
+  937  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/echo.sh
+  938  ./deploy.sh
+  939  ./run.sh 591 /usr/lib/riographx echo.sh
+  940  vim /usr/lib/riographx/echo.sh
+  941  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/echo.sh
+  942  ./run.sh 591 /usr/lib/riographx echo.sh
+  943  vim /usr/lib/riographx/echo.sh
+  944  ./run.sh 591 /usr/lib/riographx sage.sh
+  945  vim /usr/lib/riographx/sage.sh
+  946  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/sage.sh
+  947  vim /usr/lib/riographx/echo.sh
+  948  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/echo.sh
+  949  ./run.sh 591 /usr/lib/riographx echo.sh
+  950  vim /usr/lib/riographx/sage.sh
+  951  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/sage.sh
+  952  ./deploy.sh
+  953  ./run.sh 591 /usr/lib/riographx sage.sh
+  954  vim /usr/lib/riographx/sage.sh
+  955  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/sage.sh
+  956  rm -r /usr/lib/riographx/grafos
+  957  ./run.sh 591 /usr/lib/riographx sage.sh
+  958  ./deploy.sh
+  959  ./run.sh 591 /usr/lib/riographx sage.sh
+  960  history | grep dump
+  961  pg_dump --file "spectral.backup" --host "localhost" --port "5432" --username "postgres"  --verbose --format=t --blobs "graphx"
+  962  rm -r /usr/lib/riographx/grafos
+  963  hdfs dfs -ls /
+  964  hdfs dfs -ls /tmp
+  965  hdfs dfs -ls /tmp/hive
+  966  hdfs dfs -ls /tmp/hive/magno
+  967  hdfs dfs -rm -r /tmp
+  968  hdfs dfs -ls /
+  969  hdfs dfs -ls /riographx
+  970  hdfs dfs -rm /riographx/echo.sh
+  971  hdfs dfs -rm /riographx/sage.sh
+  972  hdfs dfs -rm /riographx/teste.jar
+  973  hdfs dfs -rm /riographx/teste.sh
+  974  hdfs dfs -expunge
+  975  vim deploy.sh 
+  976  ls -lh
+  977  vim deploy.sh 
+  978  cd riographx
+  979  ./deploy.sh
+  980  ./run.sh 591 /usr/lib/riographx sage.sh
+  981  ./deploy.sh
+  982  ./run.sh 591 /usr/lib/riographx sage.sh
+  983  ssh sparknode01
+  984  vim /usr/lib/riographx/sage.sh 
+  985  ls -lh
+  986  ./deploy.sh sage.sh
+  987  cd ~
+  988  cd riographx
+  989  ls -lh
+  990  cd /usr/lib/riographx/
+  991  ./broadcast.sh sage.sh
+  992  rm -r /usr/lib/riographx/grafos
+  993  cd 
+  994  cd ~~ 
+  995  cd ~
+  996  cd riographx
+  997  ./run.sh 591 /usr/lib/riographx sage.sh
+  998  ./deploy.sh
+  999  ls -lh
+ 1000  ./deploy.sh
+ 1001  ./run.sh 591 /usr/lib/riographx sage.sh
+ 1002  vim /usr/lib/riographx/sage.sh 
+ 1003  ./deploy.sh
+ 1004  ./run.sh 591 /usr/lib/riographx sage.sh
+ 1005  ls -lh /usr/lib/riographx/
+ 1006  vim /usr/lib/riographx/sage.sh 
+ 1007  ls
+ 1008  cd ~
+ 1009  ls
+ 1010  cd riographx
+ 1011  cd /usr/lib/riographx/
+ 1012  ls
+ 1013  ./broadcast.sh sage.sh
+ 1014  cd ~/riographx
+ 1015  ./deploy.sh
+ 1016  ./run.sh 591 /usr/lib/riographx sage.sh
+ 1017  cd /usr/lib/riographx/
+ 1018  ls
+ 1019  cd grafos/
+ 1020  ls
+ 1021  ls 64c1bf6a47724a738656dd84ee3d84ea/
+ 1022  cd ..
+ 1023  vim sage.sh 
+ 1024  cd ~/riographx
+ 1025  ./deploy.sh 
+ 1026  ./run.sh 591 /usr/lib/riographx sage.sh
+ 1027  ./deploy.sh 
+ 1028  ./run.sh 591 /usr/lib/riographx sage.sh
+ 1029  dot
+ 1030  sudo apt install graphviz
+ 1031  +
+ 1032  cd /usr/lib/riographx/
+ 1033  cp sage.sh showg.sh
+ 1034  vim showg.sh
+ 1035  vim sage.sh
+ 1036  ./broadcast.sh sage.sh
+ 1037  ./broadcast.sh showg.sh
+ 1038  cd ~/riographx
+ 1039  ls -lh
+ 1040  ls -lh /usr/lib/riographx/
+ 1041  ls -lh
+ 1042  ./deploy.sh
+ 1043  ./run.sh 591 /usr/lib/riographx 
+ 1044  ./deploy.sh
+ 1045  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1046  ./deploy.sh
+ 1047  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1048  ./deploy.sh
+ 1049  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1050  vim sage.sh
+ 1051  vim /usr/lib/riographx/sage.sh
+ 1052  cp /usr/lib/riographx/sage.sh /usr/lib/riographx/showg.sh
+ 1053  vim /usr/lib/riographx/showg.sh
+ 1054  /usr/lib/riographx/nauty24r2/showg
+ 1055  /usr/lib/riographx/nauty24r2/showg --help
+ 1056  vim /usr/lib/riographx/showg.sh
+ 1057  vim /usr/lib/riographx/sage.sh
+ 1058  vim /usr/lib/riographx/showg.sh
+ 1059  cd /usr/lib/riographx/
+ 1060  ./broadcast.sh showg.sh
+ 1061  ./broadcast.sh sage.sh
+ 1062  cd ~/riographx
+ 1063  ls
+ 1064  ./deploy.sh 
+ 1065  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1066  sudo chmod 0777 /usr/lib/riographx/nauty24r2/showg
+ 1067  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1068  rm -r /usr/lib/riographx/grafos
+ 1069  cd /usr/lib/riographx/
+ 1070  ls -lh
+ 1071  vim showg.sh 
+ 1072  vim sage.sh 
+ 1073  ./broadcast.sh sage.sh
+ 1074  ~/riographx
+ 1075  cd ~/riographx
+ 1076  ./deploy.sh
+ 1077  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1078  ./deploy.sh
+ 1079  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1080  sudo shutdown now
+ 1081  cd riographx
+ 1082  ./deploy.sh
+ 1083  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1084  cat run.sh
+ 1085  spark-submit --help
+ 1086  cat run.sh
+ 1087  spark-submit --help
+ 1088  ./deploy.sh
+ 1089  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1090  spark-submit --help
+ 1091  cat run.sh
+ 1092  spark-submit --status driver-20170930235117-0001 --master spark://sparkmaster:6066
+ 1093  ./deploy.sh
+ 1094  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1095  ./deploy.sh
+ 1096  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1097  ./deploy.sh
+ 1098  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1099  htop
+ 1100  rm -r /usr/lib/riographx/grafos
+ 1101  cd /usr/lib/riographx/
+ 1102  ls -lh
+ 1103  cat sage.sh
+ 1104  ls -lh
+ 1105  rm showg.sh
+ 1106  cp sage.sh showg.sh
+ 1107  vim sage.sh
+ 1108  ./broadcast.sh sage.sh
+ 1109  vim showg.sh
+ 1110  ./broadcast.sh showg.sh
+ 1111  cd 
+ 1112  cd ~
+ 1113  cd riographx
+ 1114  ls
+ 1115  ./deploy.sh
+ 1116  ./run.sh 591 /usr/lib/riographx sage.sh showg.sh
+ 1117  cat /usr/lib/riographx/sage.sh
+ 1118  cat run.sh
+ 1119  vim run.sh
+ 1120  ./deploy.sh
+ 1121  ./run.sh 591 /usr/lib/riographx 
+ 1122  ls -lh
+ 1123  vim sample-showg-data.txt
+ 1124  cp /usr/lib/riographx/showg.sh .
+ 1125  vim showg.sh
+ 1126  cat sample-showg-data.txt > showg.sh
+ 1127  echo sample-showg-data.txt > showg.sh
+ 1128  vim showg.sh
+ 1129  cp /usr/lib/riographx/showg.sh .
+ 1130  vim showg.sh
+ 1131  ./showg.sh
+ 1132  ./deploy.sh
+ 1133  ./run.sh 591 /usr/lib/riographx 
+ 1134  ./deploy.sh
+ 1135  ./run.sh 591 /usr/lib/riographx 
+ 1136  ls -lh
+ 1137  cd riographx
+ 1138  ls -lh
+ 1139  cp echo.sh run-all.sh
+ 1140  vim run-all.sh 
+ 1141  rm echo.sh
+ 1142  rm run-all.sh 
+ 1143  cp run.sh multi-run.sh
+ 1144  vim multi-run.sh 
+ 1145  ./multi-run.sh 
+ 1146  vim multi-run.sh 
+ 1147  ./multi-run.sh 
+ 1148  vim multi-run.sh 
+ 1149  ./multi-run.sh 
+ 1150  ls -lh
+ 1151  rm sage.sh
+ 1152  rm showg.sh 
+ 1153  rm teste.sh
+ 1154  cd /usr/lib/riographx/
+ 1155  ls
+ 1156  vim showg.sh 
+ 1157  ./broadcast.sh showg.sh 
+ 1158  ./deploy.sh
+ 1159  ls -lh
+ 1160  rm deploy.sh
+ 1161  cd ~/riographx
+ 1162  ./deploy.sh
+ 1163  ./run.sh 591 /usr/lib/riographx 
+ 1164  vim /usr/lib/riographx/showg.sh 
+ 1165  ./deploy.sh
+ 1166  ./run.sh 591 /usr/lib/riographx 
+ 1167  vim /usr/lib/riographx/showg.sh 
+ 1168  vim /usr/lib/riographx/sage.sh
+ 1169  vim /usr/lib/riographx/showg.sh 
+ 1170  vim /usr/lib/riographx/sage.sh
+ 1171  vim /usr/lib/riographx/showg.sh 
+ 1172  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1173  cat /usr/lib/riographx/broadcast.sh 
+ 1174  ./deploy.sh
+ 1175  ./run.sh 591 /usr/lib/riographx 
+ 1176  vim /usr/lib/riographx/showg.sh 
+ 1177  vim /usr/lib/riographx/sage.sh
+ 1178  vim /usr/lib/riographx/showg.sh 
+ 1179  ls -lh
+ 1180  rm -r grafos
+ 1181  cd /usr/lib/riographx/
+ 1182  ls -lh
+ 1183  vim teste.txt
+ 1184  cp showg.sh showg-bkp.sh
+ 1185  cat teste.txt | ./showg.sh
+ 1186  vim showg.sh
+ 1187  cat teste.txt | ./showg.sh
+ 1188  vim showg.sh
+ 1189  cat teste.txt | ./showg.sh
+ 1190  vim showg.sh
+ 1191  cat teste.txt | ./showg.sh
+ 1192  vim showg.sh
+ 1193  cat teste.txt | ./showg.sh
+ 1194  cat teste.txt | ./showg-bkp.sh
+ 1195  vim showg-bkp.sh
+ 1196  vim showg.sh
+ 1197  cat teste.txt | ./showg.sh
+ 1198  vim showg.sh
+ 1199  cat teste.txt | ./showg.sh
+ 1200  cat teste.txt
+ 1201  vim showg.sh
+ 1202  cat teste.txt | ./showg.sh
+ 1203  vim showg.sh
+ 1204  cat teste.txt | ./showg.sh
+ 1205  vim showg.sh
+ 1206  cat teste.txt | ./showg.sh
+ 1207  vim showg-bkp.sh
+ 1208  vim showg.sh
+ 1209  cat teste.txt | ./showg.sh
+ 1210  vim showg.sh
+ 1211  cat teste.txt | ./showg.sh
+ 1212  vim showg.sh
+ 1213  ls grafos
+ 1214  rm -r grafos
+ 1215  ls grafos
+ 1216  cat teste.txt | ./showg.sh
+ 1217  vim showg.sh
+ 1218  cat teste.txt | ./showg.sh
+ 1219  ls grafos
+ 1220  ls grafos/1aefcbf0c09244bdad7ef6a7e52b2406/
+ 1221  cat grafos/1aefcbf0c09244bdad7ef6a7e52b2406/matrix.txt 
+ 1222  vim showg.sh
+ 1223  cat teste.txt | ./showg.sh
+ 1224  cat teste.txt
+ 1225  vim teste.txt
+ 1226  cat teste.txt | ./showg.sh
+ 1227  vim showg.sh
+ 1228  cat teste.txt | ./showg.sh
+ 1229  vim showg.sh
+ 1230  ./broadcast.sh showg.sh
+ 1231  cd ~/riographx
+ 1232  ./deploy.sh
+ 1233  history | grep run.sh
+ 1234  ./run.sh 591 /usr/lib/riographx
+ 1235  graphviz
+ 1236  vim showg.sh
+ 1237  vim /usr/lib/riographx/showg.sh
+ 1238  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1239  ./run.sh 591 /usr/lib/riographx
+ 1240  vim /usr/lib/riographx/showg.sh
+ 1241  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1242  ./run.sh 591 /usr/lib/riographx
+ 1243  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/txt2dot.jar 
+ 1244  vim /usr/lib/riographx/showg.sh
+ 1245  ls -lh
+ 1246  ./multi-run.sh 
+ 1247  ./run.sh 591 /usr/lib/riographx
+ 1248  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/txt2dot.jar 
+ 1249  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1250  ls /usr/lib/riographx/grafos
+ 1251  ls /usr/lib/riographx/grafos/0e347e4c28a946c19cd9a5208d2ac751/
+ 1252  vim /usr/lib/riographx/showg.sh
+ 1253  find /usr/lib/riographx/grafos -name "matrix*"
+ 1254  find /usr/lib/riographx/grafos -name "matrix.txt"
+ 1255  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/txt2dot.jar 
+ 1256  ./multi-run.sh 
+ 1257  vim /usr/lib/riographx/showg.sh
+ 1258  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1259  ./multi-run.sh 
+ 1260  ./run.sh 591 /usr/lib/riographx
+ 1261  find /usr/lib/riographx/grafos -name "matrix.txt"
+ 1262  vim /usr/lib/riographx/showg.sh
+ 1263  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1264  vim /usr/lib/riographx/showg.sh
+ 1265  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1266  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/pdfcreator.jar 
+ 1267  ./multi-run.sh 
+ 1268  ./run.sh 591 /usr/lib/riographx
+ 1269  htop
+ 1270  vim /usr/lib/riographx/showg.sh
+ 1271  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1272  ./multi-run.sh 
+ 1273  ./run.sh 591 /usr/lib/riographx
+ 1274  find /usr/lib/riographx/grafos -name "matrix.txt"
+ 1275  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/pdfcreator.jar 
+ 1276  vim /usr/lib/riographx/showg.sh
+ 1277  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh 
+ 1278  ./multi-run.sh 
+ 1279  ./run.sh 591 /usr/lib/riographx
+ 1280  ./multi-run.sh 
+ 1281  vim /usr/lib/riographx/showg.sh
+ 1282  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh 
+ 1283  ./run.sh 591 /usr/lib/riographx
+ 1284  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/pdfcreator.jar 
+ 1285  vim /usr/lib/riographx/showg.sh
+ 1286  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1287  vim /usr/lib/riographx/showg.sh
+ 1288  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/pdfcreator.jar 
+ 1289  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1290  ./multi-run.sh 
+ 1291  ./run.sh 591 /usr/lib/riographx
+ 1292  vim /usr/lib/riographx/showg.sh
+ 1293  ./multi-run.sh 
+ 1294  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1295  ./run.sh 591 /usr/lib/riographx
+ 1296  find /usr/lib/riographx/grafos -name "matrix.txt"
+ 1297  find /usr/lib/riographx/grafos -name "*pdf"
+ 1298  vim /usr/lib/riographx/showg.sh
+ 1299  find /usr/lib/riographx/grafos -name "*csv"
+ 1300  java -jar pdfcreator.jar  /usr/lib/riographx/grafos/125da246-c680-4f99-85ac-6d058053c50d/pdfjobs.csv  result-$ordem.pdf
+ 1301  java -jar /usr/lib/riographx/pdfcreator.jar  /usr/lib/riographx/grafos/125da246-c680-4f99-85ac-6d058053c50d/pdfjobs.csv  result-cat $ordem.pdf
+ 1302  cat /usr/lib/riographx/grafos/125da246-c680-4f99-85ac-6d058053c50d/pdfjobs.csv
+ 1303  vim /usr/lib/riographx/showg.sh
+ 1304  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1305  ./multi-run.sh 
+ 1306  ./run.sh 591 /usr/lib/riographx
+ 1307  vim /usr/lib/riographx/showg.sh
+ 1308  ./multi-run.sh 
+ 1309  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/showg.sh
+ 1310  ./run.sh 591 /usr/lib/riographx
+ 1311  find /usr/lib/riographx/grafos -name "*pdf"
+ 1312  vim /usr/lib/riographx/sage.sh
+ 1313  /usr/lib/riographx/broadcast.sh /usr/lib/riographx/sage.sh
+ 1314  ./multi-run.sh 
+ 1315  sudo shutdown now
+ 1316  ifconfig
+ 1317  ping google.com
+ 1318  cat  /etc/hosts
+ 1319  ping sparknodedatabase
+ 1320  ping 192.168.25.1
+ 1321  cat /etc/networks
+ 1322  cat /etc/network/interfaces
+ 1323  clear
+ 1324  sudo -i
+ 1325  ifconfig
+ 1326  sudo -i
+ 1327  ifconfig
+ 1328  ls -lh
+ 1329  history > hist-database-magno.txt

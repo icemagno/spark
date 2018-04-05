@@ -1,0 +1,864 @@
+    1  ifconfig
+    2  vim /etc/networks
+    3  :q
+    4  vim /etc/network/interfaces
+    5  sudo -i
+    6  exit
+    7  sudo -i
+    8  exit
+    9  vim ~/.bashrc
+   10  source ~/.bashrc
+   11  cd $HADOOP_HOME
+   12  ssh-keygen -t rsa -P ""
+   13  cd /home/magno
+   14  ls
+   15  mv id_rsa.pub ROOT_id_rsa.pub
+   16  cp ~/.ssh/id_rsa.pub .
+   17  mv id_rsa.pub MAGNO_id_rsa.pub
+   18  ls
+   19  ls ~/.ssh/known_hosts 
+   20  mkdir ~/.ssh/authorized_keys
+   21  ls
+   22  mv MAGNO_id_rsa.pub ~/.ssh/authorized_keys/id_rsa.pub
+   23  ssh sparknode01
+   24  ssh-keygen -t rsa -P ""
+   25  ls
+   26  cp  /home/magno/.ssh/id_rsa.pub .
+   27  ls
+   28  sudo -i
+   29  rm -R ~/.ssh/authorized_keys
+   30  cat id_rsa.pub > ~/.ssh/authorized_keys
+   31  ssh sparknode01
+   32  cd $HADOOP_HOME
+   33  cd sbin
+   34  ls
+   35  ./start-dfs.sh
+   36  jps
+   37  whereis java
+   38  vim ~/.bashrc
+   39  source ~/.bashrc
+   40  ./start-dfs.sh
+   41  export
+   42  cd ..
+   43  ls
+   44  vim etc/hadoop/hadoop-env.sh
+   45  ./start-dfs.sh
+   46  cd ..
+   47  cd hadoop
+   48  cd sbin
+   49  ./start-dfs.sh
+   50  jps
+   51  vim ~/.bashrc
+   52  vim ../etc/hadoop/hadoop-env.sh
+   53  ./stop-dfs.sh
+   54  ./start-dfs.sh
+   55  jps
+   56  ./stop-dfs.sh
+   57  ssh 192.168.25.101
+   58  ssh 192.168.25.102
+   59  ssh sparkmaster
+   60  cd ~/hadoopdata/
+   61  ls
+   62  ls dfs
+   63  cd ..
+   64  rm -R ~/hadoopdata/dfs/
+   65  hdfs namenode -format
+   66  vim /usr/local/hadoop/etc/hadoop/slaves 
+   67  $HADOOP_HOME/sbin/start-dfs.sh 
+   68  $HADOOP_HOME/bin/hadoop fs -ls
+   69  sudo shutdown now
+   70  exit
+   71  history > hist-magno-100.txt
+   72  ls -lh
+   73  rm ~/.ssh/authorized_keys
+   74  clear
+   75  ls -lh
+   76  cat MAGNO-100-id_rsa.pub > ~/.ssh/authorized_keys
+   77  cat MAGNO-101-id_rsa.pub >> ~/.ssh/authorized_keys
+   78  cat MAGNO-102-id_rsa.pub >> ~/.ssh/authorized_keys
+   79  ssh 192.168.25.100
+   80  ssh 192.168.25.101
+   81  ssh 192.168.25.102
+   82  ls -lh
+   83  ls hdfs
+   84  rm -rf hdfs
+   85  ls hadoopdata/
+   86  rm hadoopdata/dfs/ -fr
+   87  hdfs namenode -format
+   88  vim /etc/hosts
+   89  vim /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+   90  vim /etc/sysctl.conf
+   91  sudo vim /etc/sysctl.conf
+   92  sudo sysctl -p
+   93  cat /proc/sys/net/ipv6/conf/all/disable_ipv6
+   94  vim /usr/local/hadoop/etc/hadoop/core-site.xml
+   95  ls -lh
+   96  vim  /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+   97  mkdir /home/magno/hdfs
+   98  chmod 750 /home/magno/hdfs
+   99  vim  /usr/local/hadoop/etc/hadoop/yarn-site.xml
+  100  vim ~/.bashrc
+  101  source ~/.bashrc
+  102  hadoop version
+  103  ls
+  104  ls lh
+  105  ls -lh
+  106  mkdir -p /home/magno/hdfs/namenode
+  107  mkdir -p /home/magno/hdfs/namesecondary
+  108  vim  /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+  109  vim  /usr/local/hadoop/etc/hadoop/masters 
+  110  vim  /usr/local/hadoop/etc/hadoop/slaves
+  111  ls hadoopdata/
+  112  ls hdfs
+  113  rm -rf hdfs/*
+  114  hadoop namenode -format
+  115  ls hdfs
+  116  ls /usr/local/hadoop//logs/
+  117  ls /usr/local/hadoop//logs/ -lh
+  118  rm /usr/local/hadoop//logs/*
+  119  ls $HADOOP_HOME/sbin/
+  120  ls /usr/local/hadoop/sbin/start-all.sh
+  121  jps
+  122  ls /usr/local/hadoop//logs/ -lh
+  123  /usr/local/hadoop/sbin/start-all.sh
+  124  jps
+  125  /usr/local/hadoop/sbin/stop-all.sh
+  126  jps
+  127  rm -rf /usr/local/hadoop
+  128  sudo rm -rf /usr/local/hadoop
+  129  ls -lh
+  130  rm hadoop-3.0.0-alpha4.tar.gz 
+  131  ls -lh
+  132  wget http://mirror.nbtelecom.com.br/apache/hadoop/common/hadoop-2.8.1/hadoop-2.8.1.tar.gz
+  133  tar xvf hadoop-2.8.1.tar.gz 
+  134  mv hadoop-2.8.1 /usr/local/hadoop/
+  135  sudo mv hadoop-2.8.1 /usr/local/hadoop/
+  136  sudo chown -R magno:magno  /usr/local/hadoop/
+  137  vim vi /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+  138  vim /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+  139  export
+  140  hadoop version
+  141  vim /usr/local/hadoop/etc/hadoop/core-site.xml 
+  142  vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+  143  cd /usr/local/hadoop/etc/hadoop/
+  144  cp mapred-site.xml.template mapred-site.xml
+  145  vim mapred-site.xml
+  146  vim yarn-site.xml
+  147  mkdir /home/magno/hdfs/yarn/
+  148  cp mapred-site.xml.template mapred-site.xml
+  149  vim mapred-site.xml
+  150  yarn-site.xml
+  151  vim yarn-site.xml
+  152  vim masters
+  153  vim slaves
+  154  ls /home/magno/hdfs/datanode
+  155  rm -rf /home/magno/hdfs/datanode/*
+  156  ls vim yarn-site.xml 
+  157  vim yarn-site.xml 
+  158  ls ~/hdfs
+  159  rm ~/hdfs/yarn -rf
+  160  mkdir ~/yarn/
+  161  mkdir ~/yarn/local
+  162  mkdir ~/yarn/log
+  163  vim hdfs-site.xml 
+  164  ls ~/hdfs/
+  165  rm -rf ~/hdfs/*
+  166  ls ~/hdfs/
+  167  hdfs namenode -format
+  168  start-dfs.sh
+  169  ssh sparknode02
+  170  ssh sparknode01
+  171  export
+  172  vim /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+  173  clear
+  174  start-dfs.sh
+  175  jkps
+  176  jps
+  177  start-yarn.sh
+  178  jps
+  179  sudo -i
+  180  vim ~/.bashrc
+  181  sudo chown magno:magno yarn -R
+  182  vim /usr/local/hadoop/etc/hadoop/yarn-site.xml 
+  183  source ~/.bashrc
+  184  export
+  185  yarn
+  186  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  187  vim /usr/local/hadoop/etc/hadoop/yarn-site.xml 
+  188  vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml 
+  189  vim /usr/local/hadoop/etc/hadoop/mapred-site.xml
+  190  vim /usr/local/hadoop/etc/hadoop/yarn-site.xml 
+  191  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  192  start-yarn.sh
+  193  jps
+  194  start-dfs.sh
+  195  jps
+  196  stop-dfs.sh
+  197  stop-yarn.sh
+  198  start-yarn.sh
+  199  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  200  stop-yarn.sh
+  201  shutdown -r now
+  202  sudo shutdown -r now
+  203  start-yarn.sh
+  204  jps
+  205  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  206  vim /usr/local/hadoop/etc/hadoop/yarn-site.xml 
+  207  jps
+  208  stop-yarn.sh
+  209  start-all.sh
+  210  hdfs dfs -ls /
+  211  stop-all.sh
+  212  vim /usr/local/hadoop/etc/hadoop/yarn-site.xml 
+  213  start-all.sh
+  214  hdfs dfs -ls /
+  215  stop-all.sh
+  216  vim /usr/local/hadoop/etc/hadoop/core-site.xml 
+  217  sudo shutdown -r now
+  218  exit
+  219  start-dfs.sh
+  220  stop-dfs.sh
+  221  ls
+  222  ls -lh
+  223  ls hadoopdata
+  224  ls hdfs
+  225  rm -rf hdfs/*
+  226  vim /usr/local/hadoop/etc/hadoop/core-site.xml 
+  227  vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml 
+  228  mkdir /home/magno/hdfs/namenode
+  229  mkdir /home/magno/hdfs/datanode
+  230  mkdir /home/magno/hdfs/namesecondary
+  231  hdfs namenode -format
+  232  start-dfs.sh
+  233  jps
+  234  netstat -a
+  235  netstat -a | grep listen
+  236  netstat -a | grep LISTEN
+  237  hdfs dfs -ls /
+  238  start-yarn.sh
+  239  hdfs dfs -ls /
+  240  ssh sparknode01
+  241  ssh sparknode02
+  242  ssh sparkmaster
+  243  start-master.sh
+  244  vim ~/.bshrc
+  245  vim ~/.bashrc
+  246  source ~/.bashrc
+  247  start-master.sh
+  248  jps
+  249  start-slaves.sh
+  250  stop-slaves.sh 
+  251  stop-masters.sh 
+  252  stop-master.sh 
+  253  ls
+  254  ls hadoopdata
+  255  vim ~/.bashrc
+  256  ld hdfs
+  257  ls hdfs
+  258  rm -rf hdfs/*
+  259  mkdir hdfs/datanode/
+  260  mkdir hdfs/namenode/
+  261  ls hdfs
+  262  mkdir hdfs/namesecondary
+  263  sudo shutdown -r now
+  264  ls hdfs
+  265  ls hdfs/datanode
+  266  rm -rf hdfs/* && mkdir hdfs/datanode && mkdir hdfs/namenode && mkdir hdfs/namesecondary
+  267  hdfs namenode -format
+  268  start-dfs.sh
+  269  start-yarn.sh
+  270  jps
+  271  hdfs dfs -ls /
+  272  ls
+  273  hdfs dfs -put hist-root.txt /
+  274  sudo chown magno:magno sparkdata -r
+  275  sudo chown magno:magno sparkdata -R
+  276  clear
+  277  start-master.sh
+  278  start-slaves.sh
+  279  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  280  cd $HADOOP_HOME/lib/native
+  281  ls
+  282  ls -lh
+  283  vim ~/.bashrc
+  284  ls $HADOOP_HOME/lib
+  285  ls $HADOOP_HOME/lib/native
+  286  vim ~/.bashrc
+  287  source ~/.bashrc
+  288  spark-submit --class org.apache.spark.examples.SparkPi --master yarn-cluster $SPARK_HOME/lib/spark-examples*.jar 10
+  289  hadoop check native -a
+  290  cd ~
+  291  ls -lh
+  292  hadoop checknative
+  293  sudo apt-get install git
+  294  rm *gz -f
+  295  ls -lh
+  296  mkdir hadoopsource
+  297  cd hadoopsource/
+  298  git clone https://github.com/apache/hadoop.git
+  299  cd hadoop
+  300  git checkout branch-2.8.1
+  301  sudo apt-get install cmake
+  302  sudo apt-get install zlib
+  303  apt-cache search zlib
+  304  sudo apt-get install liblz1
+  305  sudo apt-get install protobuf
+  306  libprotobuf-java protobuf-compiler
+  307  sudo apt-get install libprotobuf-java protobuf-compiler
+  308  sudo apt-get install snappy
+  309  snap -h
+  310  sudo apt-get install maven
+  311  java -version
+  312  mvn package -Pdist,native -DskipTests -Dtar
+  313  ls jadoop-dist
+  314  ls hadoop-dist
+  315  cd ..
+  316  wget https://protobuf.googlecode.com/files/protobuf-2.5.0.tar.bz2
+  317  wget https://github.com/google/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz
+  318  ls
+  319  tar xfvj protobuf-2.5.0.tar.gz 
+  320  tar xfv protobuf-2.5.0.tar.gz 
+  321  ls
+  322  cd protobuf-2.5.0/
+  323  ./configure CC=clang CXX=clang++ CXXFLAGS='-std=c++11 -stdlib=libc++ -O3 -g' LDFLAGS='-stdlib=libc++' LIBS="-lc++ -lc++abi"
+  324  sudo apt-get install libc
+  325  sudo apt-get install libc++
+  326  sudo apt-get install build-essential
+  327  ./configure CC=clang CXX=clang++ CXXFLAGS='-std=c++11 -stdlib=libc++ -O3 -g' LDFLAGS='-stdlib=libc++' LIBS="-lc++ -lc++abi"
+  328  sudo apt-get g++
+  329  sudo apt-get install g++
+  330  apt-get install libc6-dev
+  331  sudo apt-get install libc6-dev
+  332  sudo apt-get install glibc
+  333  apt-cache search glibc
+  334  sudo apt-get install make
+  335  ./configure CC=clang CXX=clang++ CXXFLAGS='-std=c++11 -stdlib=libc++ -O3 -g' LDFLAGS='-stdlib=libc++' LIBS="-lc++ -lc++abi"
+  336  sudo ./configure CC=clang CXX=clang++ CXXFLAGS='-std=c++11 -stdlib=libc++ -O3 -g' LDFLAGS='-stdlib=libc++' LIBS="-lc++ -lc++abi"
+  337  sudo apt-get install gcc
+  338  ./configure
+  339  make -j 4
+  340  sudo make install
+  341  protoc --version
+  342  cd ..
+  343  protoc --version
+  344  ls /usr/local/bin/protoc
+  345  vim /usr/local/bin/protoc
+  346  which protoc
+  347  protoc --version
+  348  ls
+  349  protoc
+  350  sudo ldconfig
+  351  protoc --version
+  352  ls
+  353  cd hadoop
+  354  ls
+  355  mvn package -Pdist,native -DskipTests -Dtar
+  356  apt-get install ant
+  357  sudo apt-get install ant
+  358  sudo apt-get install zlib1g-dev
+  359  sudo apt-get install libssl-dev
+  360  mvn package -Pdist,native -DskipTests -Dtar -rf :hadoop-common
+  361  sudo apt-get install lzo-devel
+  362  sudo apt-get install apt-transport-https ca-certificate
+  363  apt-get install kernel-headers gcc-c++
+  364  sudo apt-get install kernel-headers gcc-c++
+  365  mvn package -Pdist,native -DskipTests -Dtar -rf :hadoop-hdfs-native-client -X
+  366  sudo apt-get install zlib-devel
+  367  sudo apt-get install zlib
+  368  sudo apt-get install zlib1g-dev
+  369  zlib
+  370  sudo apt-get install zlib1g-dev
+  371  sudo apt-get install libtool
+  372  sudo apt-get install automake
+  373  sudo apt-get install autoconf
+  374  mvn package -Pdist,native -DskipTests -Dtar -rf :hadoop-hdfs-native-client -X
+  375  sudo apt-get install libssl-dev
+  376  sudo mvn package -Pdist,native -DskipTests -Dtar -rf :hadoop-hdfs-native-client -X
+  377  sudo apt-get install build-essential autoconf automake libtool cmake zlib1g-dev pkg-config libssl-dev libfuse-dev
+  378  sudo mvn package -Pdist,native -DskipTests -Dtar -rf :hadoop-hdfs-native-client -X
+  379  sudo shutdown now
+  380  ls
+  381  ls -lh
+  382  cd hadoopsource/
+  383  ls
+  384  cd hadoop
+  385  ls
+  386  cd hadoop-dist
+  387  ls
+  388  cd target
+  389  ls
+  390  ls -lh
+  391  cd hadoop-2.8.1/
+  392  ls
+  393  cd lb
+  394  cd lib
+  395  cd native
+  396  ls
+  397  ls -lh
+  398  hadoop checknative
+  399  mv /usr/local/hadoop/lib/native/ /usr/local/hadoop/lib/native-old/
+  400  ls /usr/local/hadoop/lib/native/ 
+  401  mkdir /usr/local/hadoop/lib/native/ 
+  402  cp ./* /usr/local/hadoop/lib/native/ 
+  403  cp -R ./* /usr/local/hadoop/lib/native/ 
+  404  ls /usr/local/hadoop/lib/native/ 
+  405  ls /usr/local/hadoop/lib/native-old 
+  406  cd  /usr/local/hadoop/lib/native/
+  407  ls -lh
+  408  cd ..
+  409  ls lh
+  410  ls -lh
+  411  ls -lh native-old
+  412  ls -lh native-old/examples
+  413  ls -lh native/examples
+  414  start-dfs.sh
+  415  start-yarn.sh
+  416  hdfs dfs -lh /
+  417  hdfs dfs -ls /
+  418  cd /home/magno
+  419  ls -lh
+  420  vim start-cluster.sh
+  421  start-master.sh
+  422  start-slaves.sh
+  423  chmod 0775 start-cluster.sh 
+  424  ls /usr/local/spark/sbin/
+  425  vim start-cluster.sh 
+  426  ls /usr/local/hadoop/sbin/
+  427  vim start-cluster.sh 
+  428  ls -lh
+  429  mkdir install-stuff
+  430  mv *.pub install-stuff/
+  431  ls
+  432  mv *.txt install-stuff/
+  433  ls -lh
+  434  mkdir codes
+  435  cd codes
+  436  cd ..
+  437  rm -rf hadoopsource/
+  438  sudo rm -rf hadoopsource/
+  439  ls lh
+  440  ls -lh
+  441  ls install-stuff/ -lh
+  442  cd codes
+  443  cd ..
+  444  ls
+  445  cd install-stuff/
+  446  ls
+  447  history > hist-magno.txt
+  448  sudo -i
+  449  ls -lh
+  450  sudo chown magno hist-root.txt 
+  451  cd ..
+  452  cd code
+  453  ls
+  454  cd cdes
+  455  cd codes
+  456  ls -lh
+  457  hdfs dfs -ls /
+  458  hdfs dfs -mkdir /examplefiles
+  459  hdfs dfs -put ./loremipsum.txt /examplefiles/
+  460  spark-submit --class org.sparkexample.WordCountTask --master yarn --deploy-mode cluster first-example.jar  hdfs://examplefiles/loremipsum.txt
+  461  spark-submit --class org.sparkexample.WordCountTask --master yarn --deploy-mode cluster first-example.jar  /home/magno/codes/loremipsum.txt
+  462  spark-submit --class org.sparkexample.WordCountTask --master yarn --deploy-mode cluster first-example.jar /examplefiles/loremipsum.txt
+  463  vim ~/.bashrc
+  464  vim /usr/local/spark/conf/spark-env.sh
+  465  hdsf dfs -ls /
+  466  hdfs dfs -ls /
+  467  hdfs dfs -rm /hist-root.txt
+  468  hdfs dfs -expunge
+  469  vim /usr/local/spark/conf/spark-env.sh
+  470  sudo shutdown -r now
+  471  ls -lh
+  472  ./start-cluster.sh 
+  473  jps
+  474  ls -lh
+  475  cd codes
+  476  ls
+  477  spark-submit --class org.sparkexample.WordCountTask --master yarn --deploy-mode cluster first-example.jar /examplefiles/loremipsum.txt
+  478  ls /usr/local/spark/jars
+  479  jar cv0f spark-libs.jar -C $SPARK_HOME/jars/ .
+  480  ls -lh
+  481  hdfs dfs -mkdir /spark-libs/
+  482  hdfs dfs -put spark-libs.jar /spark-libs
+  483  ls /usr/local/spark//conf/
+  484  ls /usr/local/spark//conf/ -lh
+  485  cp /usr/local/spark//conf/spark-defaults.conf.template /usr/local/spark//conf/spark-defaults.conf
+  486  vim /usr/local/spark//conf/spark-defaults.conf
+  487  spark-submit --class org.sparkexample.WordCountTask --master yarn --deploy-mode cluster first-example.jar /examplefiles/loremipsum.txt
+  488  sudo shutdown now
+  489  cd codes/
+  490  ls
+  491  cat run.txt 
+  492  start-dfs.sh
+  493  hdfs dfs -ls /
+  494  hdfs dfs -rm /user
+  495  hdfs dfs -rm -r /user
+  496  hdfs dfs -mkdir /codes
+  497  hdfs dfs -put spark-samples.jar /codes
+  498  hdfs dfs -ls /
+  499  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:7077 --deploy-mode cluster hdfs://codes/spark-samples.jar
+  500  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://codes/spark-samples.jar
+  501  hdfs dfs -put spark-samples.jar /codes
+  502  hdfs dfs -rm /codes/spark-samples.jar
+  503  hdfs dfs -put spark-samples.jar /codes
+  504  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://codes/spark-samples.jar
+  505  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+  506  clear
+  507  hdfs dfs -rm /codes/spark-samples.jar
+  508  hdfs dfs -put spark-samples.jar /codes
+  509  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+  510  hdfs dfs -rm /codes/spark-samples.jar
+  511  hdfs dfs -put spark-samples.jar /codes
+  512  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+  513  hdfs dfs -rm /codes/spark-samples.jar
+  514  hdfs dfs -put spark-samples.jar /codes
+  515  spark-submit --class com.letsprog.learning.samples.transformations.PostgreSQLConnect  --master spark://sparkmaster:6066 --deploy-mode cluster hdfs://sparkmaster:9000/codes/spark-samples.jar
+  516  stop-dfs.sh
+  517  stop-slaves.sh
+  518  stop-master.sh
+  519  sudo shutdown now
+  520  ls -lh
+  521  cat start-cluster.sh 
+  522  start-master.sh
+  523  start-slaves.sh
+  524  ls -lh
+  525  cd codes
+  526  ls -lh
+  527  cd ..
+  528  rm -rf codes
+  529  mkdir codes
+  530  git https://github.com/icemagno/spark.git
+  531  history | grep git
+  532  git clone https://github.com/icemagno/spark.git
+  533  ls -lh
+  534  mv spark codes
+  535  cd codes
+  536  ls -lh
+  537  cd spark
+  538  ls
+  539  cd ..
+  540  rm -rf codes
+  541  mkdir codes
+  542  exit
+  543  vim /usr/local/spark/conf/slaves
+  544  sudo vim /etc/hosts
+  545  ping sparknodedatabase
+  546  ssh sparknodedatabase
+  547  cat MAGNO-103-id_rsa.pub >> ~/.ssh/authorized_keys
+  548  start-dfs.sh
+  549  start-master.sh 
+  550  start-slaves.sh
+  551  stop-slaves.sh
+  552  stop-master.sh
+  553  stop-dfs.sh 
+  554  rm -rf /hdfs/*
+  555  ls hdfs
+  556  rm -rf hdfs/*
+  557  rm -rf hdfs/* && mkdir hdfs/datanode &&  mkdir hdfs/namenode && hdfs/ namesecondary
+  558  mkdir hdfs/datanode &&  mkdir hdfs/namenode && hdfs/namesecondary
+  559  ls hdfs
+  560  rm -rf hdfs/* && mkdir hdfs/datanode &&  mkdir hdfs/namenode && hdfs/namesecondary
+  561  rm -rf hdfs/* && mkdir hdfs/datanode &&  mkdir hdfs/namenode && mkdir hdfs/namesecondary
+  562  hadoop namenode -format
+  563  start-dfs.sh
+  564  jps
+  565  netstat -a | grep 80
+  566  start-yarn.sh
+  567  netstat -a | grep 80
+  568  ls
+  569  cd codes
+  570  ls
+  571  hdfs dfs -mkdir /spark
+  572  hdfs dfs -mkdir /spark/codes
+  573  hdfs dfs -put spark-samples.jar /spark/codes/
+  574  hdfs dfs -rm /spark/codes/spark-samples.jar
+  575  hdfs dfs -put spark-samples.jar /spark/codes/
+  576  start-master.sh
+  577  start-slaves.sh
+  578  stop-master.sh
+  579  stop-slaves.sh
+  580  stop-dfs.sh
+  581  sudo shutdown now
+  582  start-master.sh 
+  583  start-slaves.sh 
+  584  stop-slaves.sh
+  585  vim /usr/local/spark/logs/spark-magno-org.apache.spark.deploy.worker.Worker-1-sparknode02.out
+  586  start-slaves.sh 
+  587  start-dfs.sh
+  588  stop-slaves.sh
+  589  stop-dfs.sh
+  590  stop-master.sh
+  591  sudo shutdown now
+  592  start-dfs.sh
+  593  start-master.sh
+  594  start-slaves.sh
+  595  stop-slaves.sh
+  596  stop-master.sh
+  597  stop-dfs.sh
+  598  sudo shutdown now
+  599  cat /etc/hosts
+  600  ls /usr/local/scala/
+  601  ls
+  602  ls /usr/local/scala/ -lh
+  603  chown magno:magno /usr/local/scala/
+  604  sudo chown magno:magno /usr/local/scala/ -r
+  605  sudo chown magno:magno /usr/local/scala/ 
+  606  start-dfs.sh
+  607  jps
+  608  hdfs dfs -ls /
+  609  start-master.sh
+  610  start-slaves.sh
+  611  jps
+  612  stop-slaves.sh
+  613  stop-master.sh
+  614  stop-dfs.sh
+  615  start-dfs.sh
+  616  start-yarn.sh
+  617  stop-yarn.sh
+  618  stop-dfs.sh
+  619  sudo shutdown now
+  620  start-dfs.sh
+  621  start-master.sh 
+  622  start-slaves.sh
+  623  stop-slaves.sh
+  624  stop-master.sh
+  625  stop-hdfs.sh
+  626  hdfs-stop.sh
+  627  stop-dfs.sh
+  628  sudo shutdown now
+  629  start-dfs.sh
+  630  start-master.sh
+  631  hdfs dfs -expunge
+  632  jps
+  633  ls /usr/local/hadoop/etc/
+  634  ls /usr/local/hadoop/etc/hadoop/
+  635  vim /usr/local/hadoop/etc/hadoop/slaves 
+  636  stop-master.sh 
+  637  stop-dfs.sh 
+  638  start-dfs.sh
+  639  hdfs fs -df -h
+  640  hdfs dfs -df -h
+  641  hdfs dfsadmin -report
+  642  start-master.sh
+  643  start-slaves.sh
+  644  stop-master.sh
+  645  stop-slaves.sh
+  646  stop-dfs.sh
+  647  sudo shutdown now < antares2
+  648  antares2 > sudo shutdown now
+  649  echo "antares2" > sudo shutdown now
+  650  sudo shutdown now
+  651  start-dfs.sh
+  652  start-master.sh
+  653  start-slaves.sh
+  654  stop-master.sh
+  655  stop-slaves.sh
+  656  stop-dfs.sh
+  657  sudo shutdown now
+  658  start-dfs.sh
+  659  start-master.sh
+  660  start-slaves.sh
+  661  stop-slaves.sh
+  662  stop-master.sh
+  663  stop-dfs.sh
+  664  sudo shutdown now
+  665  sudo mkdir /usr/lib/riographx
+  666  sudo chown magno /usr/lib/riographx
+  667  start-dfs.sh 
+  668  start-master.sh
+  669  start-slaves.sh
+  670  stop-master.sh
+  671  stop-slaves.sh
+  672  stop-dfs.sh
+  673  sudo shutdown now
+  674  sage
+  675  apt-add-repository -y ppa:aims/sagemath
+  676  sudo apt-add-repository -y ppa:aims/sagemath
+  677  sudo apt-get update
+  678  sudo apt-get install sagemath-upstream-binary
+  679  vim /usr/lib/sagemath/local/bin/sage-env
+  680  export SAGE_ROOT=/usr/lib/sagemath/
+  681  source /usr/lib/sagemath/local/bin/sage-env
+  682  sudo apt install python-pip
+  683  pip install mathchem
+  684  sudo pip install mathchem
+  685  clear
+  686  /usr/lib/sagemath/local/bin/python2.7 -m pip install mathchem
+  687  sudo -i
+  688  sage
+  689  ls
+  690  cd riographx/
+  691  ls
+  692  chmod 0775 sage.sh
+  693  cat grafo.txt | ./sage.sh
+  694  pip install mathchem
+  695  sudo chown magno /usr/lib/sagemath/local/lib/python2.7/site-packages/mathchem -r
+  696  sudo chown magno /usr/lib/sagemath/local/lib/python2.7/site-packages/mathchem 
+  697  sudo chown magno /usr/lib/sagemath/local/lib/python2.7/site-packages/
+  698  pip install mathchem
+  699  cat grafo.txt | ./sage.sh
+  700  start-dfs.sh
+  701  start-master.sh
+  702  start-slaves.sh
+  703  hdfs dfs -ls /riographx
+  704  stop-slaves.sh
+  705  stop-master.sh
+  706  stop-dfs.sh
+  707  $ sudo shutdown now
+  708  sudo shutdown now
+  709  start-dfs.sh
+  710  start-master.sh
+  711  start-slaves.sh
+  712  sudo mkdir /usr/lib/riographx/
+  713  sudo chmod 0777 /usr/lib/riographx/
+  714  cd riographx/
+  715  chmod 0777 /usr/lib/riographx/echo.sh
+  716  ls
+  717  cp *sh /usr/lib/riographx/
+  718  sudo chmod 0777 /usr/lib/riographx/echo.sh 
+  719  cp * /usr/lib/riographx/
+  720  cp sage.sh /usr/lib/riographx/
+  721  rm -r /usr/lib/riographx/grafos
+  722  ls -lh /usr/lib/riographx/
+  723  ls -lh /usr/lib/riographx/grafos
+  724  rm -r /usr/lib/riographx/grafos
+  725  vim /usr/lib/riographx/grafo.txt 
+  726  cp sage.sh /usr/lib/riographx/
+  727  stop-dfs.sh
+  728  stop-slaves.sh
+  729  stop-master.sh
+  730  sudo shutdown now
+  731  start-dfs.sh
+  732  start-master.sh
+  733  ls  /usr/local/spark//logs/
+  734  ls  /usr/local/spark//logs/ -lh
+  735  start-slaves.sh
+  736  cd /usr/lib/riographx/
+  737  ls -lh
+  738  ls grafos
+  739  stop-slaves.sh
+  740  stop-master.sh
+  741  stop.dfs.sh
+  742  stop-dfs.sh
+  743  sudo shutdown now
+  744  start-dfs.sh
+  745  start-master.sh
+  746  start-slaves.sh
+  747  stop-slaves.sh
+  748  stop-master.sh
+  749  start-master.sh
+  750  start-slaves.sh
+  751  stop-slaves.sh
+  752  stop-master.sh
+  753  stop-dfs.sh
+  754  sudo shutdown now
+  755  start-dfs.sh
+  756  start-master.sh
+  757  start-slaves.sh
+  758  start-dfs.sh
+  759  start-master.sh
+  760  start-slaves.sh
+  761  cd /usr/lib/riographx/
+  762  chmod 0777 broadcast.sh
+  763  ls -lh
+  764  rm -r /usr/lib/riographx/grafos
+  765  stop-slaves.sh
+  766  stop-master.sh
+  767  start-master.sh
+  768  start-slaves.sh
+  769  rm -r /usr/lib/riographx/grafos
+  770  stop-master.sh
+  771  stop-slaves.sh
+  772  stop-dfs.sh
+  773  sudo shutdown now
+  774  start-dfs.sh
+  775  start-master.sh
+  776  start-slaves.sh
+  777  rm -r /usr/lib/riographx/grafos
+  778  cd /usr/lib/riographx/
+  779  cd grafos/
+  780  ls -lh
+  781  ls 1d02feb2575946bb9dc478b6f1b3adbc/
+  782  cat 1d02feb2575946bb9dc478b6f1b3adbc/inputline.txt 
+  783  ls
+  784  cd ..
+  785  ls
+  786  ls grafo
+  787  ls grafos
+  788  vim  sage.sh 
+  789  sudo apt install graphviz
+  790  stop-slaves.sh
+  791  stop-master.sh
+  792  stop-dfs.sh
+  793  sudo shutdown now
+  794  start-dfs.sh
+  795  start-master.sh
+  796  start-slaves.sh
+  797  stop-slaves.sh
+  798  stop-master.sh
+  799  start-master.sh
+  800  start-slaves.sh
+  801  sudo chmod 0777 /usr/lib/riographx/nauty24r2/showg
+  802  rm -r /usr/lib/riographx/grafos
+  803  stop-slaves.sh
+  804  stop-master.sh
+  805  start-master.sh
+  806  start-slaves.sh
+  807  stop-slaves.sh
+  808  stop-master.sh
+  809  stop.dfs.sh
+  810  stop-dfs.sh
+  811  sudo shutdown now
+  812  start-dfs.sh
+  813  start-master.sh
+  814  start-slaves.sh
+  815  htop
+  816  sudo apt-get install htop
+  817  htop
+  818  stop-dfs.sh
+  819  rm -r /usr/lib/riographx/grafos
+  820  stop-slaves.sh
+  821  stop-master.sh
+  822  start-dfs.sh
+  823  start-master.sh
+  824  start-slaves.sh
+  825  stop-slaves.sh
+  826  stop-master.sh
+  827  stop-dfs.sh
+  828  sudo shutdown now
+  829  start-dfs.sh
+  830  start-master.sh
+  831  ls  /usr/local/hadoop/logs/
+  832  ls  /usr/local/hadoop/logs/ -lh
+  833  start-slaves.sh
+  834  ls  /usr/local/hadoop/logs/ -lh
+  835  stop-slaves.sh
+  836  stop-master.sh
+  837  start-master.sh
+  838  start-slaves.sh
+  839  ls /usr/lib/riographx/grafos
+  840  ls /usr/lib/riographx/grafos/0dd46dd52b9846b085f9fc712d02c236/
+  841  find /usr/lib/riographx/grafos -name "matrix.txt"
+  842  htop
+  843  find /usr/lib/riographx/grafos -name "matrix.txt"
+  844  cd /usr/lib/riographx/
+  845  ls -lh
+  846  cat pdfjobs.csv
+  847  find /usr/lib/riographx/grafos -name "matrix.txt"
+  848  ls -lh /usr/lib/riographx/grafos/8afb947fe6684e9c90cc6f3cc279ef63/
+  849  ls -lh /usr/lib/riographx/
+  850  cat pdfjobs.csv 
+  851  find /usr/lib/riographx/grafos -name "matrix.txt"
+  852  uuidgen
+  853  find /usr/lib/riographx/grafos -name "matrix.txt"
+  854  find /usr/lib/riographx/grafos -name "*pdf"
+  855  stop-slaves.sh
+  856  stop-master.sh
+  857  stop-dfs.sh
+  858  sudo shutdow now
+  859  sudo shutdown now
+  860  ifconfig
+  861  cat /etc/hosts
+  862  ping google.com
+  863  history
+  864  history > hist-master.txt

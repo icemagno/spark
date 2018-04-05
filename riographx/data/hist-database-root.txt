@@ -1,0 +1,167 @@
+    1  vim /etc/network/interfaces
+    2  ifconfig
+    3  route -n
+    4  vim /etc/network/interfaces
+    5  ping google.com
+    6  apt-get update
+    7  apt-get upgrade
+    8  shutdown now
+    9  ifconfig
+   10  ping 10.20.0.1
+   11  shutdown now
+   12  vim /etc/network/interfaces
+   13  vim /etc/hostname
+   14  shutdown now
+   15  ping sparkmaster
+   16  vim /etc/hosts
+   17  vim /etc/hostname 
+   18  ls -lh
+   19  cd /home/magno
+   20  ls -lh
+   21  add-apt-repository ppa:webupd8team/java
+   22  apt-get update
+   23  apt-get install oracle-java8-installer
+   24  java -version
+   25  wget https://downloads.lightbend.com/scala/2.12.3/scala-2.12.3.tgz
+   26  ls -lh
+   27  tar xvf scala-2.12.3.tgz 
+   28  ls -lh
+   29  mv scala-2.12.3 /usr/local/scala
+   30  ls -lh
+   31  vim /etc/environment
+   32  scala -version
+   33  exit
+   34  export
+   35  shutdown -r now
+   36  clear
+   37  ifconfig
+   38  ping 192.168.25.1
+   39  ssh
+   40  apt-get install openssh
+   41  apt-get install openssh-server
+   42  apt-get update
+   43  vim /etc/network/interfaces
+   44  ping google.com
+   45  ifdown enp0s3
+   46  ifup enp0s3
+   47  ifconfig
+   48  ping google.com
+   49  apt-get update
+   50  apt-get install openssh-server
+   51  apt-get install openssh-client
+   52  export
+   53  vim ~/.bashrc
+   54  exit
+   55  vim ~/.bashrc
+   56  exit
+   57  export
+   58  scala -version
+   59  cd /home/magno
+   60  wget https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
+   61  tar xvf spark-2.2.0-bin-hadoop2.7.tgz 
+   62  mv spark-2.2.0-bin-hadoop2.7 /usr/local/spark
+   63  vim ~/.bashrc
+   64  spark-shell
+   65  source ~/.bashrc
+   66  spark-shell
+   67  shutdown now
+   68  vim /etc/hosts
+   69  vim /etc/network/interfaces
+   70  vim /etc/hostname
+   71  shutdown -r now
+   72  ping sparknode01
+   73  ping sparkmaster
+   74  vim ~/.bashrc
+   75  source ~/.bashrc
+   76  cd $SPARK_HOME
+   77  cp spark-env.sh.template spark-env.sh
+   78  cd conf
+   79  cp spark-env.sh.template spark-env.sh
+   80  vim ~/.bashrc 
+   81  vim spark-env.sh
+   82  cp slaves.template slaves
+   83  vim slave
+   84  vim slaves
+   85  vim spark-defaults.conf.template 
+   86  mkdir /home/magno/sparkdata
+   87  cd /home/magno
+   88  cp id_rsa.pub ~/.ssh/authorized_keys
+   89  ssh-keygen -t rsa -P ""
+   90  cp id_rsa.pub ~/.ssh/authorized_keys
+   91  jps
+   92  ls -lh
+   93  wget http://www.apache.org/dyn/closer.cgi/hadoop/common/hadoop-2.8.1/hadoop-2.8.1.tar.gz
+   94  rm hadoop-2.8.1.tar.gz 
+   95  wget http://mirror.nbtelecom.com.br/apache/hadoop/common/hadoop-3.0.0-alpha4/hadoop-3.0.0-alpha4.tar.gz
+   96  tar xvf hadoop-3.0.0-alpha4.tar.gz 
+   97  cd /usr/local/hadoop
+   98  ls
+   99  cd bin
+  100  ls
+  101  vim ~/.bashrc
+  102  mkdir /home/magno/hadoopdata
+  103  vim /usr/local/hadoop/etc/hadoop/core-site.xml
+  104  clear
+  105  source ~/.bashrc
+  106  mkdir /home/magno/hdfs
+  107  vim /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+  108  cd ..
+  109  cd etc/hadoop
+  110  vim masters
+  111  vim slaves
+  112  vim ~/.bashrc
+  113  source ~/.bashrc
+  114  chown magno:magno -R /home/magno/hadoopdata/
+  115  chown magno:magno -R /usr/local/hadoop/
+  116  vim ~/.bashrc
+  117  cd /home/magno
+  118  history > hist.txt
+  119  vim hist.txt
+  120  ls
+  121  rm id_rsa.pub 
+  122  exit
+  123  chown magno:magno /usr/local/spark/ -R
+  124  exit
+  125  ls -lh
+  126  cd /home/magno
+  127  ls
+  128  rm -rf hdfs
+  129  rm -rf hadoopdata
+  130  rm -rf derby.log 
+  131  rm -rf codes
+  132  mkdir hadoopdata
+  133  mkdir hdfs
+  134  vim /etc/hosts
+  135  vim /etc/hostname
+  136  vim /etc/network/interfaces
+  137  exit
+  138  apt-get install nauty
+  139  showg
+  140  apt-get remove --auto-remove nauty
+  141  cd /usr/lib/riographx/
+  142  ls
+  143  cd nauty24r2/
+  144  ls
+  145  cat output-6.g6 
+  146  ls -lh
+  147  cat saida.txt
+  148  ls -lh
+  149  ./showg -A -q output-8.g6 teste123.txt
+  150  chmod 0777 showg
+  151  ./showg -A -q output-8.g6 teste123.txt
+  152  cat teste123.txt 
+  153  ./showg 
+  154  ./showg -h
+  155  ./showg -help
+  156  echo "E?bw" | ./showg -A -a
+  157  echo "E?bw" | ./showg -A 
+  158  echo "E?bw" | ./showg -A -q
+  159  sudo shutdown now
+  160  ifconfig
+  161  shutdown now
+  162  vim /etc/network
+  163  vim /etc/networks
+  164  vim /etc/network/interfaces
+  165  shutdown -r now
+  166  cd /home/magno
+  167  history > hist-database-root.txt
