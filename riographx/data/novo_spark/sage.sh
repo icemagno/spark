@@ -61,7 +61,7 @@ while read tline; do
 
 	java -jar "$workdir/evaluate.jar" "$graphsdir/" "$line" 
 
-	#/usr/lib/riographx/nauty24r2/showg -A -q "$sourceg6" "$targetfile"
+	rm -rf "$graphsdir"
 
 
 done
